@@ -1,0 +1,71 @@
+/* Main Navigation */
+.nav-main {
+  justify-content:space-between;
+  
+  a[id*="dnnLOGO"] {
+    padding:1rem;
+    img {
+      height:45px;
+      max-height:100%;
+      width:auto;
+      max-width:100%;
+    }
+    @include mq-max-width(400) {
+      img {
+        height:30px;
+      }
+    }
+  }
+  
+  nav > ul {
+    list-style-type:none;
+    margin:0;
+    display:flex;
+    height:100%;
+    align-items:center;
+    
+    > li {
+      display:inline;
+      + li {
+        margin-left:1rem;
+      }
+    }
+  }
+}
+
+/* Mobile Navigation */
+.mobile {
+	position:relative;
+	width:75px;
+  display:none;
+
+	.mobile-btn{
+		width: 44px;
+		height: 44px;
+		padding: 6px;
+		@include font-size(30);
+		line-height: 1;
+		color: $tertiary-color;
+		text-align: center;
+		background-color: rgba(255,255,255, .75);
+		position: absolute;
+		top:50%;
+		transform: translateY(-50%);
+		right:calc(50% - 22px);
+		transition: all .3s ease;
+		z-index: 10;
+
+		&:hover, &:focus{
+			color: $primary-color;
+		}
+	}
+}
+
+@include mq-max-width(768){
+  .mobile{
+    display:block;
+  }
+  .mobile-nav-group{
+    display:none;
+  }
+}

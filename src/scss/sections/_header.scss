@@ -1,0 +1,9 @@
+header {
+  background-color:$light-grey;
+}
+
+@include mq-max-width(576) {
+  header .container {
+    padding:0;
+  }
+}

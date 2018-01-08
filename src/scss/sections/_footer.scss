@@ -1,0 +1,42 @@
+footer {
+  background-color:$light-grey;
+  
+  .upper {
+    margin-bottom:0;
+    padding-top:4rem;
+    padding-bottom:4rem;
+  }
+  a {
+    font-weight:400;
+  }
+
+  .disclaimer {
+    font-size:12px;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    margin-bottom:0;
+
+    ul {
+      list-style-type:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+
+      li + li:before {
+        content:'';
+        display:inline-block;
+        vertical-align:middle;
+        height:100%;
+        width:10px;
+        border-left:1px solid white;
+        margin-left:10px;
+      }
+    }
+    
+    a {
+      color:white;
+    }
+  }
+}

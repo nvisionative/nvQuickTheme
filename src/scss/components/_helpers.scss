@@ -1,0 +1,38 @@
+/* Position */
+.pos-relative{
+    position: relative
+}
+
+/* Cover Links */
+.cover-link {
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	z-index:100;
+}
+
+/* BG Color Helpers */
+[class*="bg-"] {
+  color:white;
+  padding-top:2rem;
+  padding-bottom:2rem;
+  
+  &[class*="-primary"] {
+    background-color:$primary-color !important;
+  }
+  &[class*="-secondary"] {
+    background-color:$secondary-color !important;
+  }
+  &[class*="-tertiary"] {
+    background-color:$tertiary-color;
+  }
+  &[class*="-light-grey"] {
+    background-color:$light-grey;
+    color:$font-color;
+  }
+  pre {
+    background:white;
+  }
+}

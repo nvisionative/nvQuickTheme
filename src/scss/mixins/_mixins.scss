@@ -1,0 +1,43 @@
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// REM Font-size with PX falleback
+// usage
+// @include font-size(13);
+// Output: font-size: 13px;
+//         font-size: 1.3rem;
+@mixin font-size($sizeValue) {
+  font-size: $sizeValue + px;
+  font-size: ($sizeValue / 16) + rem;
+}
+
+// Vertical rhythm
+// @include font-baseline(16,24);
+@mixin font-baseline($font-size, $lineheight){
+	font-size: $font-size + px;
+	font-size: ($font-size / $base-font-size ) + rem;
+	line-height: ( $lineheight / $font-size / 1 );
+    margin: 0 0 ( ($lineheight / $font-size * ( 1 / ( $lineheight / $defaultlineheight))) * .5em ) 0; 
+}
+
+@mixin background-cover(){
+	background-repeat: no-repeat;
+	background-position: center center;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+}
+
+@mixin mq-max-width( $width-in-px ) {
+  @media only screen and (max-width: ($width-in-px / $base-font-size) * 1em ) {
+    @content;
+  }
+}
+
+@mixin mq-min-width( $width-in-px ) {
+  @media only screen and (min-width: ($width-in-px / $base-font-size) * 1em ) {
+    @content;
+  }
+}
