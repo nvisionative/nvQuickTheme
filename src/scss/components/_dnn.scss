@@ -3401,8 +3401,8 @@ div.dnnSliderInput {
 	position: relative;
 	display: inline-block;
 	width: 47%;
-    margin:15px 0 23px 0;
-    max-width: 445px;
+  margin:15px 0 23px 0;
+  max-width: 445px;
 	border: 1px solid #d3d3d3;
 	-ms-border-radius: 3px;
 	border-radius: 3px;
@@ -3411,14 +3411,14 @@ div.dnnSliderInput {
 
 div.dnnSliderInput .ui-slider-handle {
 	position: absolute;
-    z-index: 2;
-    width: 14px;
-    height: 14px;
-    cursor: default;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  cursor: default;
 	border: 1px solid #aaaaaa;
-    background-color: #cccccc;
-    font-weight: normal;
-    color: #555555;
+  background-color: #cccccc;
+  font-weight: normal;
+  color: #555555;
 	outline: none;
 	top: -2px;
 	margin-left: -7px;
@@ -3438,3 +3438,114 @@ div.dnnSliderInput .dnnTooltip .dnnFormHelpContent {
 	z-index: 1;
 }
 /*END DNN Slider Input Style*/
+
+/* NV DNN Styling */
+
+/* Basic EditMode Layout */
+.dnnModuleManager {
+  padding:0 !important;
+}
+
+.dnnDragHint {
+  height:32px !important;
+}
+
+[class*="DNNContainer"] {
+  padding:10px;
+}
+
+/* Action Menu */
+div.actionMenu .dnn_mact {
+  display:flex;
+  margin-left:-28px !important;
+  margin-top:1px !important;
+  
+  > li[class*="actionMenu"] {
+    width:auto !important;
+    height:auto !important;
+    float:none !important;
+    border:none !important;
+    margin-right:1px !important;
+        
+    &:hover {
+      background:transparent !important;
+    }
+    
+    > a {
+      height:30px !important;
+      width:30px !important;
+      display:inline-flex !important;
+      justify-content:center;
+      align-items:center;
+    }
+    
+    > ul {
+      margin-top:12px !important;
+      
+      li {
+        height:auto !important;
+      }
+    }
+  }
+}
+
+/* On Page Editor */
+.eipbackimg {
+  margin-top:-41px !important;
+  margin-left:-9px !important;
+  height:30px !important;
+  
+  &.editMode {
+    border:none !important;
+    
+    .eipbuttonbackimg {
+      border:none !important;
+    }
+  }
+  
+  .eipbuttonbackimg {
+    height:30px !important;
+    width:30px !important;
+    
+    /* Edit Menu Sprite Sheet Positioning, ugh. */
+    &.eipbutton_edit, &.eipbutton_save {
+      background-position:center center !important;
+    }  
+    &.eipbutton_cancel {
+      background-position:-35px -2px !important;
+    }
+    &.eipbutton_bold {
+      background-position:-67px -2px !important;
+    }
+    &.eipbutton_italic {
+      background-position:-99px -2px !important;
+    }
+    &.eipbutton_underline {
+      background-position:-131px -2px !important;
+    }
+    &.eipbutton_justifyleft {
+      background-position:-163px -2px !important;
+    }
+    &.eipbutton_justifycenter {
+      background-position:-195px -2px !important;
+    }
+    &.eipbutton_justifyright {
+      background-position:-227px -2px !important;
+    }
+    &.eipbutton_orderedlist {
+      background-position:-259px -2px !important;
+    }
+    &.eipbutton_unorderedlist {
+      background-position:-291px -2px !important;
+    }
+    &.eipbutton_outdent {
+      background-position:-323px -2px !important;
+    }
+    &.eipbutton_indent {
+      background-position:-355px -2px !important;
+    }
+    &.eipbutton_createlink {
+      background-position:-387px -2px !important;
+    }
+  }
+}

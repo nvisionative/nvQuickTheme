@@ -6,7 +6,8 @@ jQuery( document ).ready(function($) {
     side: 'right'
   });
   
-  /* Hides empty container divs */
+  /* Hides empty container divs if all cols are empty */
+  /* Required proper Bootstrap structure to function properly */
   $('main div[class*=container]').each(function () {
     var $main = $(this),
       $allChildren = $main.find('div[class*=col]');

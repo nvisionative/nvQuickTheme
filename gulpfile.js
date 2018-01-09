@@ -41,18 +41,19 @@ gulp.task('images', function() {
 ------------------------------------------------------*/
 
 // Development CSS creation.
-// Checks for errors and concats. Does not minify.
+// Checks for errors and concats. Minified.
 gulp.task('scss', function() {
 	return gulp.src( './'+src+'scss/**/*.scss')
     .pipe(plumber({errorHandler: onError}))
     .pipe(sass({outputStyle: 'compressed'}))
-    	.on('error', notify.onError(function( err ){
-    			return { message: err.message, title : 'ERROR', sound: "Frog"};
-    		})
-    	)
-    	.pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
-		.pipe(gulp.dest( './assets/css/'))
-		.on('error', notify.onError(function( err ){
+    .pipe(rename('style.min.css'))
+    .on('error', notify.onError(function( err ){
+        return { message: err.message, title : 'ERROR', sound: "Frog"};
+      })
+    )
+    .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+		.pipe(gulp.dest( './'+assets+'/css/'))
+    .on('error', notify.onError(function( err ){
 				return { message: err.message, title : 'ERROR', sound: "Frog"};
 			})
 		)
@@ -100,7 +101,7 @@ gulp.task('js', function () {
 
 
 /*
-*	YARN node Initialization
+*	YARN INITIALIZATION
 ------------------------------------------------------*/
 
 // Pulls from packages and distributes where necessary.

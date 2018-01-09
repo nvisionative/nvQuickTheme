@@ -4,7 +4,7 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="assets/css/bootstrap.min.css" Priority="100" PathNameAlias="SkinPath" />
 <dnn:DnnCssInclude runat="server" FilePath="assets/css/font-awesome.min.css" Priority="110" PathNameAlias="SkinPath" />
-<dnn:DnnCssInclude runat="server" FilePath="assets/css/style.css" Priority="120" PathNameAlias="SkinPath" />
+<dnn:DnnCssInclude runat="server" FilePath="assets/css/style.min.css" Priority="120" PathNameAlias="SkinPath" />
 
 <dnn:DnnJsInclude runat="server" FilePath="assets/js/jquery.sidr.min.js" ForceProvider="DnnFormBottomProvider" Priority="100" PathNameAlias="SkinPath" />
 <dnn:DnnJsInclude runat="server" FilePath="assets/js/bootstrap.bundle.min.js" ForceProvider="DnnFormBottomProvider" Priority="120" PathNameAlias="SkinPath" />
