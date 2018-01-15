@@ -1,0 +1,63 @@
+<ul class="main topLevel">
+  [*>NODE-TOP]
+</ul>
+
+  [>NODE-TOP]
+    <li[?SELECTED] class="active"[/?]>
+      
+      [?ENABLED]
+        [?NODE]
+          <div class="btn-group">
+        [/?]
+
+        <a href="[=URL]" class="btn btn-primary">[=TEXT]</a>
+
+        [?NODE]
+          <a href="#" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        [/?]
+          
+      [?ELSE]    
+        [?NODE]
+          <div class="dropdown">
+        [/?]
+
+        <a href="#" class="btn btn-primary[?NODE] dropdown-toggle[/?]" [?NODE]id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"[/?]>[=TEXT]</a>
+      [/?]
+      
+      [?NODE]
+        <ul class="dropdown-menu dropdown-menu-right">
+          [*>NODE]
+        </ul>
+      [/?]
+    </li>
+  [/>]
+  
+  [>NODE]
+    <li class="dropdown-item[?NODE] dropdown[/?][?SELECTED] active[/?]">
+      
+      [?ENABLED]
+        [?NODE]
+          <div class="btn-group">
+        [/?]
+        
+        <a href="[=URL]">[=TEXT]</a>
+        
+        [?NODE]
+          <a href="#" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        [/?]
+      
+      [?ELSE]
+        [?NODE]
+          <div class="dropdown">
+        [/?]
+
+        <a href="#" class="btn btn-primary[?NODE] dropdown-toggle[/?]" [?NODE]id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"[/?]>[=TEXT]</a>
+      [/?]
+      
+      [?NODE]
+        <ul class="dropdown-menu dropdown-menu-right subLevel">
+          [*>NODE]
+        </ul>
+      [/?]
+    </li>
+  [/>]

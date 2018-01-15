@@ -21,7 +21,7 @@
   </div>
 
   <div class="container">
-    <div class="row justify-content-between">
+    <div class="row">
       <div id="DoublePaneOneOne" class="col-md-6 pr-5" runat="server"></div>
       <div id="DoublePaneOneTwo" class="col-md-6 bg-light-grey" runat="server"></div>
     </div>

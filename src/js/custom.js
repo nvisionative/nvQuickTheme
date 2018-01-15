@@ -1,9 +1,14 @@
-jQuery( document ).ready(function($) {
-  
-  /* Sidr Prep */
-  $('#mobile-btn').sidr({
-    source: '#nav-items',
-    side: 'right'
+jQuery( document ).ready(function($) { 
+  /* SlimMenu Prep */
+  $('#navigation').slimmenu({
+    resizeWidth: '800',
+    collapserTitle: '',
+    animSpeed: 0,
+    easingEffect: null,
+    indentChildren: false,
+    childrenIndenter: '&nbsp;',
+    expandIcon: '',
+    collapseIcon: ''
   });
   
   /* Hides empty container divs if all cols are empty */

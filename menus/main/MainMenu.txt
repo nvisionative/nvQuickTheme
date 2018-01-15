@@ -1,40 +1,37 @@
-<ul class="main topLevel">
+<ul class="slimmenu normal" id="navigation">
   [*>NODE-TOP]
-  
 </ul>
 
   [>NODE-TOP]
-      <li[?SELECTED] class="active"[/?]>
+    <li[?SELECTED] class="active"[/?]>
+      
       [?ENABLED]
-          [?NODE]<div class="btn-group">[/?]
-          <a href="[=URL]" class="btn btn-primary">[=TEXT]</a>
-          [?NODE]
-          <a href="#" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-          [/?]
-          </a>
-      [?ELSE]
-          [?NODE]<div class="dropdown">[/?]
-          <a href="#" class="btn btn-primary[?NODE] dropdown-toggle[/?]" [?NODE]id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"[/?]>[=TEXT]</a>
+        <a href="[=URL]" class="btn btn-primary[?NODE] split[/?]">[=TEXT]</a>
+      [?ELSE]    
+        <a href="#" class="btn btn-primary[?NODE] single[/?]">[=TEXT]</a>
       [/?]
+      
       [?NODE]
-          <ul class="dropdown-menu dropdown-menu-right">
+        <ul>
           [*>NODE]
-          </ul>
+        </ul>
       [/?]
-      </li>
+    </li>
   [/>]
+  
   [>NODE]
-      <li class="dropdown-item[?NODE] dropdown[/?][?SELECTED] active[/?]">
-      [?ENABLED]
-          <a href="[=URL]">[=TEXT]</a>
+    <li class="[?SELECTED] active[/?]">
+      
+      [?ENABLED]  
+        <a href="[=URL]" [?NODE]class="split"[/?]>[=TEXT]</a>
       [?ELSE]
-          <a href="#">[=TEXT]</a>
+        <a href="#">[=TEXT]</a>
       [/?]
+      
       [?NODE]
-          <ul class="dropdown-menu subLevelRight">
+        <ul>
           [*>NODE]
-          
-          </ul>
+        </ul>
       [/?]
-      </li>
+    </li>
   [/>]

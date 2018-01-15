@@ -3,7 +3,7 @@
 /* Changes the default gutter size */
 $gutter:2rem;
 
-[class^='col'] {
+[class^='col-'] {
   padding-left:$gutter;
   padding-right:0;
   
@@ -23,7 +23,7 @@ $gutter:2rem;
     .container { 
       max-width:1140px; 
     }
-    [class^='col'] {       
+    [class^='col-'] {       
       padding-left:$gutter;
       padding-right:$gutter;
     }
