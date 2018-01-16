@@ -160,7 +160,7 @@ gulp.task('buildzips', function (cb) {
 // Zips the .zip files and single files into a package zip file.
 // Will need to change if filenames change, or adding files.
 gulp.task('zipfiles', function() {
-  return gulp.src(['./**/*.zip', 'dnn-manifest.dnn', 'default.ascx', 'default.doctype.xml', 'default.jpg', 'LICENSE.md'])
+  return gulp.src(['./**/*.zip', 'dnn-manifest.dnn', 'default.ascx', 'default.doctype.xml', 'default.jpg', 'LICENSE'])
     .pipe(zip('nvQuickTheme.zip'))
     .pipe(gulp.dest('./'))
 });
