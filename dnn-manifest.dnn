@@ -31,7 +31,11 @@
             </skinFile>
             <skinFile>
               <path />
-              <name>default.jpg</name>
+              <name>default.png</name>
+            </skinFile>
+            <skinFile>
+              <path />
+              <name>thumbnail_default.png</name>
             </skinFile>
             <skinFile>
               <path />
