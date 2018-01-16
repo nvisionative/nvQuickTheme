@@ -1,5 +1,5 @@
 {
-  "name": "BaseStrap",
+  "name": "nvQuickTheme",
   "version": "1.0.0",
   "description": "Barebones Bootstrap 4 DNN Theme",
   "main": "gulpfile.js",
@@ -14,13 +14,16 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-imagemin": "^4.0.0",
     "gulp-jshint": "2.x",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^4.1.0",
     "jshint": "^2.9.5"
   }
 }

@@ -7,6 +7,9 @@ var gulp          = require('gulp'),
     rename        = require('gulp-rename'),
     uglify        = require('gulp-uglify'),
     notify        = require('gulp-notify'),
+    sequence      = require('gulp-sequence'),
+    zip           = require('gulp-zip'),
+    clean         = require('gulp-clean'),
     path          = require('path'),
     config        = require( manifest ),
     node          = ( config.node.length )? config.node+'/' : '',
@@ -89,7 +92,7 @@ gulp.task('js', function () {
 gulp.task('setup', function(){
 
 	// This copies the normalize css file over to the scss components folder.
-	// If you update normalize it will get updated if you run [setup].
+	// If you update normalize it will get overwritten if you run [setup].
 	gulp.src( './'+node+'/normalize.css/normalize.css' )
 		.pipe(rename("_normalize.scss"))
 		.pipe(gulp.dest( './'+src+"scss/components/"));
@@ -111,14 +114,77 @@ gulp.task('setup', function(){
 
 
 /*
+*	PACKAGING TASKS (still being built)
+* ------------------------------------------------------*/
+
+// Zips the Dist/CSS Folder
+gulp.task('zipcss', function() {
+  return gulp.src('./'+dist+'/css/*')
+    .pipe(zip('css.zip'))
+    .pipe(gulp.dest('./'+dist+'/css/'))
+});
+  
+// Zips the Dist/JS Folder
+gulp.task('zipjs', function() {
+  return gulp.src('./'+dist+'/js/*')
+    .pipe(zip('js.zip'))
+    .pipe(gulp.dest('./'+dist+'/js/'))
+});
+
+// Zips the Dist/Fonts Folder
+gulp.task('zipfonts', function() {
+  return gulp.src('./'+dist+'/fonts/*')
+    .pipe(zip('fonts.zip'))
+    .pipe(gulp.dest('./'+dist+'/fonts/'))
+});
+  
+// Zips the Menus Folder
+gulp.task('zipmenus', function() {
+  return gulp.src('./menus/main/*')
+    .pipe(zip('menus.zip'))
+    .pipe(gulp.dest('./menus/main/'))
+});
+
+// Zips the Partials Folder
+gulp.task('zippartials', function() {
+  return gulp.src('./partials/*')
+    .pipe(zip('partials.zip'))
+    .pipe(gulp.dest('./partials/'))
+});
+
+// Runs all the Zip tasks for subfolders
+gulp.task('buildzips', function (cb) {
+  sequence(['zipcss', 'zipjs', 'zipfonts', 'zipmenus', 'zippartials'], cb)
+});
+
+// Zips the .zip files and single files into a package zip file.
+// Will need to change if filenames change, or adding files.
+gulp.task('zipfiles', function() {
+  return gulp.src(['./**/*.zip', 'dnn-manifest.dnn', 'default.ascx', 'default.doctype.xml', 'default.jpg', 'LICENSE.md'])
+    .pipe(zip('nvQuickTheme.zip'))
+    .pipe(gulp.dest('./'))
+});
+
+// Cleans up all directory zip files.
+gulp.task('cleanup', function() {
+  return gulp.src('./*/**/*.zip')
+    .pipe(clean())
+});
+
+
+
+/*
 *	DEV TASKS
 * ------------------------------------------------------*/
 
 // gulp watch
 gulp.task('watch', function () {
-    gulp.watch( src+"scss/**/*.scss", ['scss']);
-    gulp.watch([ src+"js/**/*.js"], ['js']);
+    gulp.watch( src+"scss/**/*.scss", ['scss'])
+    gulp.watch([ src+"js/**/*.js"], ['js'])
 });
 
 // gulp build
 gulp.task('build', ['scss', 'js']);
+
+// gulp package
+gulp.task('package', sequence('buildzips', 'zipfiles', 'cleanup'));
