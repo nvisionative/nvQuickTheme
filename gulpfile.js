@@ -22,9 +22,9 @@ var gulp          = require('gulp'),
     
 // Compresses images for production.
 gulp.task('images', function() {
-	return gulp.src( './'+node+'images/**/*.{jpg,jpeg,png,gif}' )
+	return gulp.src( './images/**/*.{jpg,jpeg,png,gif}' )
 		.pipe(imagemin())
-		.pipe(gulp.dest( './'+node+'images/' ));
+		.pipe(gulp.dest( './images/' ));
 });
 
 
@@ -89,7 +89,7 @@ gulp.task('js', function () {
 
 // Pulls from packages and distributes where necessary.
 // Add/modify as needed.
-gulp.task('setup', function(){
+gulp.task('update', function(){
 
 	// This copies the normalize css file over to the scss components folder.
 	// If you update normalize it will get overwritten if you run [setup].
@@ -159,7 +159,7 @@ gulp.task('buildzips', function (cb) {
 
 // Zips the .zip files and single files into a package zip file.
 // Will need to change if filenames change, or adding files.
-gulp.task('zipfiles', function() {
+gulp.task('zipfiles', function() { 
   return gulp.src(['./**/*.zip', 'dnn-manifest.dnn', 'default.ascx', 'default.doctype.xml', 'default.png', 'thumbnail_default.png', 'LICENSE'])
     .pipe(zip('nvQuickTheme.zip'))
     .pipe(gulp.dest('./'))
