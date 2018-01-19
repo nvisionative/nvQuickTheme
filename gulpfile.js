@@ -9,6 +9,7 @@ var gulp          = require('gulp'),
     uglify        = require('gulp-uglify'),
     notify        = require('gulp-notify'),
     sequence      = require('gulp-sequence'),
+    replace       = require('gulp-replace'),
     zip           = require('gulp-zip'),
     clean         = require('gulp-clean'),
     path          = require('path'),
@@ -115,7 +116,7 @@ gulp.task('update', function(){
 
 
 /*
-*	PACKAGING TASKS (still being built)
+*	PACKAGING TASKS
 * ------------------------------------------------------*/
 
 // Zips the dist/css Folder
@@ -156,26 +157,35 @@ gulp.task('zipmenus', function() {
 // Zips the Partials Folder
 gulp.task('zippartials', function() {
   return gulp.src('./partials/*')
+    .pipe(gulp.dest('./_temp/'))
+    .pipe(replace('dist/', ''))
     .pipe(zip('partials.zip'))
     .pipe(gulp.dest('./partials/'))
 });
 
-// Runs all the Zip tasks for subfolders
+// Zips the root Folder template files
+gulp.task('ziproot', function() {
+  return gulp.src(['*.ascx', '*.xml', '*.html', '*.htm'])
+    .pipe(zip('root.zip'))
+    .pipe(gulp.dest('./'))
+});
+
+// Runs all the Zip tasks
 gulp.task('buildzips', function (cb) {
-  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipmenus', 'zippartials'], cb)
+  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipmenus', 'zippartials', 'ziproot'], cb)
 });
 
 // Zips the .zip files and single files into a package zip file.
-// Will need to change if filenames change, or adding files.
+// Will need to change if filenames change, or adding specific files.
 gulp.task('zipfiles', function() { 
-  return gulp.src(['./**/*.zip', '*.dnn', '*.ascx', '*.xml', '*.png', '*.jpg', '*.htm', '*.html', 'LICENSE'])
+  return gulp.src(['./**/*.zip', '*.dnn', '*.png', '*.jpg', 'LICENSE', '!./_temp'])
     .pipe(zip(project+'.zip'))
     .pipe(gulp.dest('./'))
 });
 
 // Cleans up all directory zip files.
 gulp.task('cleanup', function() {
-  return gulp.src('./*/**/*.zip')
+  return gulp.src(['./*/**/*.zip', './_temp', 'root.zip'])
     .pipe(clean())
 });
 

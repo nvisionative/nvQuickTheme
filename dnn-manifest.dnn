@@ -23,14 +23,6 @@
             <!-- Main Directory -->
             <skinFile>
               <path />
-              <name>default.ascx</name>
-            </skinFile>
-            <skinFile>
-              <path />
-              <name>default.doctype.xml</name>
-            </skinFile>
-            <skinFile>
-              <path />
               <name>default.png</name>
             </skinFile>
             <skinFile>
@@ -43,6 +35,16 @@
             </skinFile>
                         
           </skinFiles>
+        </component>
+        
+        <!-- SkinRoot Folder -->
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
+            <resourceFile>
+                <name>root.zip</name>
+            </resourceFile>
+          </resourceFiles>
         </component>
         
         <!-- Partials Folder -->
@@ -68,7 +70,7 @@
         <!-- CSS Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\dist\css\</basePath>
+            <basePath>Portals\_default\Skins\nvQuickTheme\css\</basePath>
             <resourceFile>
                 <name>dist/css/css.zip</name>
             </resourceFile>
@@ -78,7 +80,7 @@
         <!-- JS Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\dist\js\</basePath>
+            <basePath>Portals\_default\Skins\nvQuickTheme\js\</basePath>
             <resourceFile>
                 <name>dist/js/js.zip</name>
             </resourceFile>
@@ -88,7 +90,7 @@
         <!-- Fonts Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\dist\fonts\</basePath>
+            <basePath>Portals\_default\Skins\nvQuickTheme\fonts\</basePath>
             <resourceFile>
                 <name>dist/fonts/fonts.zip</name>
             </resourceFile>
