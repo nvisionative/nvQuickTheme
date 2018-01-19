@@ -1,3 +1,4 @@
+var project       = 'nvQuickTheme';
 var manifest      = './manifest.json';
 var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
@@ -22,9 +23,9 @@ var gulp          = require('gulp'),
     
 // Compresses images for production.
 gulp.task('images', function() {
-	return gulp.src( './images/**/*.{jpg,jpeg,png,gif}' )
+	return gulp.src( './'+src+'images/**/*.{jpg,jpeg,png,gif}' )
 		.pipe(imagemin())
-		.pipe(gulp.dest( './images/' ));
+		.pipe(gulp.dest( './'+dist+'images/' ));
 });
 
 
@@ -57,7 +58,7 @@ gulp.task('js', function () {
       .pipe(jshint())
       .pipe(uglify())
       .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest( './dist/js/'))
+      .pipe(gulp.dest( './'+dist+'js/'))
       .pipe(jshint.reporter('fail'))
       .pipe(notify(function (file) {
 		    if (file.jshint.success) {
@@ -117,28 +118,35 @@ gulp.task('update', function(){
 *	PACKAGING TASKS (still being built)
 * ------------------------------------------------------*/
 
-// Zips the Dist/CSS Folder
+// Zips the dist/css Folder
 gulp.task('zipcss', function() {
   return gulp.src('./'+dist+'/css/*')
     .pipe(zip('css.zip'))
     .pipe(gulp.dest('./'+dist+'/css/'))
 });
   
-// Zips the Dist/JS Folder
+// Zips the dist/js Folder
 gulp.task('zipjs', function() {
   return gulp.src('./'+dist+'/js/*')
     .pipe(zip('js.zip'))
     .pipe(gulp.dest('./'+dist+'/js/'))
 });
 
-// Zips the Dist/Fonts Folder
+// Zips the dist/images Folder
+gulp.task('zipimages', function() {
+  return gulp.src('./'+dist+'/images/*')
+    .pipe(zip('images.zip'))
+    .pipe(gulp.dest('./'+dist+'/images/'))
+});
+
+// Zips the dist/fonts Folder
 gulp.task('zipfonts', function() {
   return gulp.src('./'+dist+'/fonts/*')
     .pipe(zip('fonts.zip'))
     .pipe(gulp.dest('./'+dist+'/fonts/'))
 });
   
-// Zips the Menus Folder
+// Zips the menus Folder
 gulp.task('zipmenus', function() {
   return gulp.src('./menus/main/*')
     .pipe(zip('menus.zip'))
@@ -154,14 +162,14 @@ gulp.task('zippartials', function() {
 
 // Runs all the Zip tasks for subfolders
 gulp.task('buildzips', function (cb) {
-  sequence(['zipcss', 'zipjs', 'zipfonts', 'zipmenus', 'zippartials'], cb)
+  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipmenus', 'zippartials'], cb)
 });
 
 // Zips the .zip files and single files into a package zip file.
 // Will need to change if filenames change, or adding files.
 gulp.task('zipfiles', function() { 
-  return gulp.src(['./**/*.zip', 'dnn-manifest.dnn', 'default.ascx', 'default.doctype.xml', 'default.png', 'thumbnail_default.png', 'LICENSE'])
-    .pipe(zip('nvQuickTheme.zip'))
+  return gulp.src(['./**/*.zip', '*.dnn', '*.ascx', '*.xml', '*.png', '*.jpg', '*.htm', '*.html', 'LICENSE'])
+    .pipe(zip(project+'.zip'))
     .pipe(gulp.dest('./'))
 });
 
@@ -184,7 +192,7 @@ gulp.task('watch', function () {
 });
 
 // gulp build
-gulp.task('build', ['scss', 'js']);
+gulp.task('build', ['scss', 'js', 'images']);
 
 // gulp package
-gulp.task('package', sequence('buildzips', 'zipfiles', 'cleanup'));
+gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
