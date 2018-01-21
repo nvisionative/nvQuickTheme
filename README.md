@@ -1,4 +1,4 @@
-# nvQuickTheme
+[![](http://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](http://nvquicktheme.nvisionative.com)
 
 **nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://github.com/nvisionative/nvQuickTheme/wiki) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
 
