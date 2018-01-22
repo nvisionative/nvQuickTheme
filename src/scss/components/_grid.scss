@@ -3,6 +3,7 @@
 /* Changes the default gutter size */
 $gutter:2rem;
 
+// Sets gutter to one side when not-collapsed
 [class^='col-'] {
   padding-left:$gutter;
   padding-right:0;
@@ -16,6 +17,7 @@ $gutter:2rem;
   $size: nth($breakpoint, 1);
   $width: nth($breakpoint, 2);
   
+  // Upon collapse of cols at the appropriate breakpoint, adds a margin
   @include mq-max-width($width) {
     [class^='col-#{$size}'] + [class^='col-#{$size}'] {
       margin-top:2rem;
@@ -23,6 +25,8 @@ $gutter:2rem;
     .container { 
       max-width:1200px; 
     }
+    
+    // Adds the gutter to the left and right when collapsed
     [class^='col-'] {       
       padding-left:$gutter;
       padding-right:$gutter;

@@ -12,7 +12,7 @@ jQuery( document ).ready(function($) {
   });
   
   /* Hides empty container divs if all cols are empty */
-  /* Required proper Bootstrap structure to function properly */
+  /* Requires proper Bootstrap structure to function properly */
   $('main div[class*=container]').each(function () {
     var $main = $(this),
       $allChildren = $main.find('div[class*=col]');
