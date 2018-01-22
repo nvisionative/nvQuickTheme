@@ -146,6 +146,13 @@ gulp.task('zipfonts', function() {
     .pipe(zip('fonts.zip'))
     .pipe(gulp.dest('./'+dist+'/fonts/'))
 });
+
+// Zips the containers Folder
+gulp.task('zipcontainers', function() {
+  return gulp.src('./containers/*')
+    .pipe(zip('cont.zip'))
+    .pipe(gulp.dest('./containers/'))
+});
   
 // Zips the menus Folder
 gulp.task('zipmenus', function() {
@@ -172,7 +179,7 @@ gulp.task('ziproot', function() {
 
 // Runs all the Zip tasks
 gulp.task('buildzips', function (cb) {
-  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipmenus', 'zippartials', 'ziproot'], cb)
+  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipcontainers', 'zipmenus', 'zippartials', 'ziproot'], cb)
 });
 
 // Zips the .zip files and single files into a package zip file.

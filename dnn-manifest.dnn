@@ -97,6 +97,16 @@
           </resourceFiles>
         </component>
         
+        <!-- Containers Folder -->
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>Portals\_default\Containers\nvQuickTheme\</basePath>
+            <resourceFile>
+                <name>containers/cont.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+        
       </components>
     </package>
   </packages>
