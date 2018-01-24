@@ -23,9 +23,40 @@
   }
 }
 
-/* Secondary Navigation */
-.nav-secondary {
-
+/* User Controls */
+.user-controls {
+  display:inline-flex;
+  
+  
+  li {
+    display:inline-flex;
+    align-items:center;
+    margin-left:1rem;
+  
+    a {
+      padding:.375rem .375rem;
+      line-height:1.5;
+      border:1px solid transparent;
+      display:inline-flex;
+    }
+    
+    input {
+      padding:.375rem .375rem;
+      border:1px solid $tertiary-color;
+      border-radius:.25rem;
+    }
+    
+    .dnnSearchBoxClearText {
+      top:0;
+      margin:0;
+      height:100%;
+    }
+  }
+}
+@include mq-max-width(1152) {
+  .user-controls {
+    display:none;
+  }
 }
 
 /* Mobile Wrapper */
@@ -96,10 +127,6 @@ nav ul {
         border-left: .3em solid transparent;
         transition:.25s ease all;
       }
-      /* TODO Move to Mobile
-      &.expanded:before {
-        transform:rotate(180deg);
-      }*/
     }
     
     /* Normal Menu Style */
@@ -182,8 +209,7 @@ nav ul {
           border-bottom: .3em solid transparent;
           border-left: .3em solid;
         }
-        
-        /* TODO Copy to Mobile with &.expanded */
+
         &:hover, &:focus {
           background-color:$primary-color;
         }
