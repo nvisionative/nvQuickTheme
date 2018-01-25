@@ -1,4 +1,5 @@
 var project       = 'nvQuickTheme', // If using dev environment in live instance, this needs to be the same as your root folder name.
+    version       = '0.9.0',
     author        = 'TK Sheppard',
     company       = 'nvisionative',
     url           = 'www.nvquicktheme.com',
@@ -135,6 +136,7 @@ gulp.task('update', function() {
 gulp.task('manifest', function() {
   gulp.src('./dnn-manifest.dnn')
     .pipe(replace(/\<package name\=\"(.*?)(?=\")/, '<package name="'+company+ '.' +project))
+    .pipe(replace(/type\=\"Skin\" version\=\"(.*?)(?=\")/, 'type="Skin" version="'+version))
     .pipe(replace(/\<friendlyName\>(.*?)(?=\<)/, '<friendlyName>'+project))
     .pipe(replace(/\<description\>(.*?)(?=\<)/, '<description>'+description))
     .pipe(replace(/\<name\>(.*?)(?=\<)/, '<name>'+author))
