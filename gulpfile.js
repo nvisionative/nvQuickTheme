@@ -1,4 +1,10 @@
-var project       = 'nvQuickTheme';
+var project       = 'nvQuickTheme',
+    author        = 'TK Sheppard',
+    company       = 'nvisionative',
+    url           = 'www.nvquicktheme.com',
+    email         = 'support@nvisionative.com',
+    description   = 'A Bootstrap 4 DNN Framework';
+
 var manifest      = './manifest.json';
 var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
@@ -111,6 +117,21 @@ gulp.task('update', function(){
   gulp.src( './'+node+'/font-awesome/css/font-awesome.min.css')
 		.pipe(gulp.dest( './'+dist+"/css/"));
     
+});
+
+gulp.task('manifest', function() {
+  gulp.src('./dnn-manifest.dnn')
+    .pipe(replace(/\<package name\=\"(.*?)(?=\")/, '<package name="'+company+ '.' +project))
+    .pipe(replace(/\<friendlyName\>(.*?)(?=\<)/, '<friendlyName>'+project))
+    .pipe(replace(/\<description\>(.*?)(?=\<)/, '<description>'+description))
+    .pipe(replace(/\<name\>(.*?)(?=\<)/, '<name>'+author))
+    .pipe(replace(/\<organization\>(.*?)(?=\<)/, '<organization>'+company))
+    .pipe(replace(/\<url\>(.*?)(?=\<)/, '<url>'+url))
+    .pipe(replace(/\<email\>(.*?)(?=\<)/, '<email>'+email))
+    .pipe(replace(/\<skinName\>(.*?)(?=\<)/, '<skinName>'+project))
+    .pipe(replace(/(\\Skins\\)(.*?)(?=\\)/g, '\\Skins\\'+project))
+    .pipe(replace(/(\\Containers\\)(.*?)(?=\\)/g, '\\Containers\\'+project))
+    .pipe(gulp.dest('./'))
 });
 
 

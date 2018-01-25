@@ -1,13 +1,13 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="nvisionative.nvquicktheme" type="Skin" version="0.9.0">
+    <package name="nvisionative.nvQuickTheme" type="Skin" version="0.9.0">
       <friendlyName>nvQuickTheme</friendlyName>
       <description>A Bootstrap 4 DNN Framework</description>
       <iconFile>MyIcon.png</iconFile>
       <owner>
-        <name>nvisionative</name>
+        <name>TK Sheppard</name>
         <organization>nvisionative</organization>
-        <url>www.nvisionative.com</url>
+        <url>www.nvquicktheme.com</url>
         <email>support@nvisionative.com</email>
       </owner>
       <license src="LICENSE" />
@@ -17,7 +17,7 @@
       <components>
         <component type="Skin">
           <skinFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme</basePath>
+            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <skinName>nvQuickTheme</skinName>
             
             <!-- Main Directory -->
