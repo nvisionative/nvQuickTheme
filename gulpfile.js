@@ -1,4 +1,4 @@
-var project       = 'nvQuickTheme',
+var project       = 'nvQuickTheme', // If using dev environment in live instance, this needs to be the same as your root folder name.
     author        = 'TK Sheppard',
     company       = 'nvisionative',
     url           = 'www.nvquicktheme.com',
@@ -60,7 +60,7 @@ gulp.task('scss', function() {
 
 // Development JS creation.
 // Checks for errors and concats. Minifies.
-gulp.task('js', function () {
+gulp.task('js', function() {
     return gulp.src( [ './'+src+'js/*.js'] )
       .pipe(jshint())
       .pipe(uglify())
@@ -92,12 +92,24 @@ gulp.task('js', function () {
 
 
 /*
+*	DNN TASKS
+------------------------------------------------------*/
+
+gulp.task('containers', function() {
+  gulp.src('./containers/*')
+    .pipe(gulp.dest('../../Containers/' +project+ '/'))
+    .pipe(notify({message: 'Containers updated!', title : 'containers', sound: false}));
+});
+
+
+
+/*
 *	SETUP TASKS
 ------------------------------------------------------*/
 
 // Pulls from packages and distributes where necessary.
 // Add/modify as needed.
-gulp.task('update', function(){
+gulp.task('update', function() {
 
 	// This copies the normalize css file over to the scss components folder.
 	// If you update normalize it will get overwritten if you run [setup].
@@ -119,6 +131,7 @@ gulp.task('update', function(){
     
 });
 
+// Takes the information provided at the top of this file and populates it into the dnn-manifest file.
 gulp.task('manifest', function() {
   gulp.src('./dnn-manifest.dnn')
     .pipe(replace(/\<package name\=\"(.*?)(?=\")/, '<package name="'+company+ '.' +project))
@@ -132,6 +145,7 @@ gulp.task('manifest', function() {
     .pipe(replace(/(\\Skins\\)(.*?)(?=\\)/g, '\\Skins\\'+project))
     .pipe(replace(/(\\Containers\\)(.*?)(?=\\)/g, '\\Containers\\'+project))
     .pipe(gulp.dest('./'))
+    .pipe(notify({message: 'Manifest updated successfully!', title : 'manifest', sound: false}));
 });
 
 
@@ -227,10 +241,11 @@ gulp.task('cleanup', function() {
 gulp.task('watch', function () {
     gulp.watch( src+"scss/**/*.scss", ['scss'])
     gulp.watch([ src+"js/**/*.js"], ['js'])
+    gulp.watch( './containers/*', ['containers'])
 });
 
 // gulp build
-gulp.task('build', ['scss', 'js', 'images']);
+gulp.task('build', ['scss', 'js', 'images', 'containers']);
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
