@@ -222,14 +222,14 @@ gulp.task('buildzips', function (cb) {
 // Zips the .zip files and single files into a package zip file.
 // Will need to change if filenames change, or adding specific files.
 gulp.task('zipfiles', function() { 
-  return gulp.src(['./**/*.zip', '*.dnn', '*.png', '*.jpg', 'LICENSE', '!./_temp'])
-    .pipe(zip(project+'.zip'))
-    .pipe(gulp.dest('./'))
+  return gulp.src(['./**/*.zip', '*.dnn', '*.png', '*.jpg', 'LICENSE', '!./_temp', '!./build/*'])
+    .pipe(zip(project+'\_'+version+'\_install.zip'))
+    .pipe(gulp.dest('./build/'))
 });
 
 // Cleans up all directory zip files.
 gulp.task('cleanup', function() {
-  return gulp.src(['./*/**/*.zip', './_temp', 'root.zip'])
+  return gulp.src(['./*/**/*.zip', './_temp', 'root.zip', '!./build/*'])
     .pipe(clean())
 });
 
