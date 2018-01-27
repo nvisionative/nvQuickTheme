@@ -16,11 +16,16 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 
 
 ## Wiki Pages
+### Table of Contents
 * [Home](https://github.com/nvisionative/nvQuickTheme/wiki)
 * [Installation](https://github.com/nvisionative/nvQuickTheme/wiki/Installation)
+* [Project Setup](https://github.com/nvisionative/nvQuickTheme/wiki/Project-Setup)
 * [Commands](https://github.com/nvisionative/nvQuickTheme/wiki/Commands)
+
+### Appendix
 * [Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/Dependencies)
-* [DevDependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
+* [Dev Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
+* [SCSS](https://github.com/nvisionative/nvQuickTheme/wiki/SCSS)
  
 ---
 [![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
