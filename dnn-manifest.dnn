@@ -1,11 +1,11 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="nvisionative.nvQuickTheme" type="Skin" version="0.9.0">
+    <package name="nvisionative.nvQuickTheme" type="Skin" version="1.0.0">
       <friendlyName>nvQuickTheme</friendlyName>
-      <description>A Bootstrap 4 DNN Framework</description>
+      <description>A DNN Theme Building Framework</description>
       <iconFile>MyIcon.png</iconFile>
       <owner>
-        <name>TK Sheppard</name>
+        <name>TK Sheppard & David Poindexter</name>
         <organization>nvisionative</organization>
         <url>www.nvquicktheme.com</url>
         <email>support@nvisionative.com</email>
