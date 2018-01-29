@@ -1,6 +1,6 @@
 var project       = 'nvQuickTheme', // If using dev environment in live instance, this needs to be the same as your root folder name.
     version       = '1.0.0',
-    author        = 'TK Sheppard & David Poindexter',
+    author        = 'TK Sheppard &amp; David Poindexter', 
     company       = 'nvisionative',
     url           = 'www.nvquicktheme.com',
     email         = 'support@nvisionative.com',
