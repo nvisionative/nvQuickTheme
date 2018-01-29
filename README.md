@@ -1,6 +1,6 @@
 [![](http://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](http://nvquicktheme.nvisionative.com)
 
-**nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://github.com/nvisionative/nvQuickTheme/wiki) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
+**nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today are loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://github.com/nvisionative/nvQuickTheme/wiki) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
 
 Are you tired of spending countless hours trying to squeeze every ounce of performance out of your DNN themes, just so you can rank better on *Google PageSpeed Insights*?  How are your scores?  Have you broken the **80s for Desktop** or the **60s for Mobile**?  You have probalby discovered by now that it is very tough to accomplish this on a DNN site.  
 
@@ -16,11 +16,16 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 
 
 ## Wiki Pages
+### Table of Contents
 * [Home](https://github.com/nvisionative/nvQuickTheme/wiki)
 * [Installation](https://github.com/nvisionative/nvQuickTheme/wiki/Installation)
+* [Project Setup](https://github.com/nvisionative/nvQuickTheme/wiki/Project-Setup)
 * [Commands](https://github.com/nvisionative/nvQuickTheme/wiki/Commands)
+
+### Appendix
 * [Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/Dependencies)
-* [DevDependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
+* [Dev Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
+* [SCSS](https://github.com/nvisionative/nvQuickTheme/wiki/SCSS)
  
 ---
 [![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
