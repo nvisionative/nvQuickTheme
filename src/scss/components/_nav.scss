@@ -32,7 +32,10 @@
   li {
     display:inline-flex;
     align-items:center;
-    margin-left:1rem;
+    
+    + li {
+      margin-left:1rem;
+    }
   
     a {
       padding:.375rem .375rem;
@@ -59,9 +62,11 @@
     }
   }
 }
-@include mq-max-width(1152) {
+@include mq-max-width(800) {
   .user-controls {
-    display:none;
+    input {
+      width:100px;
+    }
   }
 }
 
@@ -79,7 +84,7 @@
   display:flex;
   justify-content:center;
   align-items:center;
-  right:0;
+  right:15px;
   top:50%;
   transform: translate(0, -50%);
   width:44px;

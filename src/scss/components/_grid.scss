@@ -25,7 +25,13 @@ $gutter:2rem;
     .container { 
       max-width:1200px; 
     }
-    
+    .container-fluid .container {
+      padding:0;
+      .row {
+        margin-left:0;
+        margin-right:0;
+      }
+    }
     // Adds the gutter to the left and right when collapsed
     [class^='col-'] {       
       padding-left:$gutter;
