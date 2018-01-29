@@ -6,7 +6,8 @@
         <dnn:MENU id="menu" MenuStyle="menus/main" runat="server" NodeSelector="*"></dnn:MENU>
         <ul class="user-controls" style="display:none;">
           <li><dnn:Login runat="server" id="dnnLogin" /></li>
-          <li><dnn:Search runat="server" id="dnnSearch" CssClass="TEST" ShowSite="false" ShowWeb="false" Submit="<i class='fa fa-search'></i>" /></li>
+          <li><dnn:User runat="server" id="dnnUser" /></li>
+          <li><dnn:Search runat="server" id="dnnSearch" ShowSite="false" ShowWeb="false" Submit="<i class='fa fa-search'></i>" /></li>
           <li><dnn:Language runat="server" id="dnnLanguage" ShowMenu="false" ShowLinks="false" /></li>
         </ul>
       </nav>
