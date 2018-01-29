@@ -1,5 +1,9 @@
 header {
   background-color:$light-grey;
+  
+  .user-controls {
+    background-color:$tertiary-color;
+  }
 }
 
 @include mq-max-width(576) {

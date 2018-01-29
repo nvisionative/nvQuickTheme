@@ -24,9 +24,10 @@
 }
 
 /* User Controls */
-.user-controls {
+.user-controls ul {
   display:inline-flex;
-  
+  margin:0;
+  padding:5px;
   
   li {
     display:inline-flex;
@@ -38,6 +39,11 @@
       line-height:1.5;
       border:1px solid transparent;
       display:inline-flex;
+      color:white;
+      
+      &:hover, &:focus {
+        color:$secondary-color;
+      }
     }
     
     input {
