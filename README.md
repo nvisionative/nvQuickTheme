@@ -2,9 +2,9 @@
 
 **nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today are loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://github.com/nvisionative/nvQuickTheme/wiki) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
 
-Are you tired of spending countless hours trying to squeeze every ounce of performance out of your DNN themes, just so you can rank better on *Google PageSpeed Insights*?  How are your scores?  Have you broken the **80s for Desktop** or the **60s for Mobile**?  You have probalby discovered by now that it is very tough to accomplish this on a DNN site.  
+Are you tired of spending countless hours trying to squeeze every ounce of performance out of your DNN themes, just so you can rank better on *Google PageSpeed Insights*?  How are your scores?  Have you broken the **80s for Desktop** or the **60s for Mobile**?  You have probably discovered by now that it is very tough to accomplish this on a DNN site.  
 
-Well, the search is over!  Utilizing **nvQuickTheme**, you can rest assured that you are doing everything you possibly can within the context of the theme to acheive stellar scores.  As a matter of fact, the [nvQuickTheme website](http://www.nvquicktheme.com), which of course is running nvQuickTheme scores **93/100 (Desktop)** and **75/100 (Mobile)**.  Yes, you read that correctly.  If you don't believe us, please feel free to [analyze it yourself](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fwww.nvquicktheme.com%2F&tab=desktop)!
+Well, the search is over!  Utilizing **nvQuickTheme**, you can rest assured that you are doing everything you possibly can within the context of the theme to achieve stellar scores.  As a matter of fact, the [nvQuickTheme website](http://www.nvquicktheme.com), which of course is running nvQuickTheme, scores **93/100 (Desktop)** and **75/100 (Mobile)**.  Yes, you read that correctly.  If you don't believe us, please feel free to [analyze it yourself](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fwww.nvquicktheme.com%2F&tab=desktop)!
 
 ## Background
 
@@ -26,6 +26,16 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 * [Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/Dependencies)
 * [Dev Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
 * [SCSS](https://github.com/nvisionative/nvQuickTheme/wiki/SCSS)
+
+### How To...
+* [Download and Install the Out-Of-Box Theme](https://github.com/nvisionative/nvQuickTheme/wiki/Download-and-Install-the-Out-Of-Box-Theme)
+* Show/Hide LOGIN, USER, SEARCH, LANGUAGE (coming soon)
+* Add/Change/Remove Content Panes (coming soon)
+* Change Theme Colors (coming soon)
+* Change Fonts (coming soon)
+* Change Responsive Breakpoints (coming soon)
+* Optimize Images (coming soon)
+* Troubleshoot node/npm/yarn/gulp issues on Mac (coming soon)
  
 ---
 [![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
