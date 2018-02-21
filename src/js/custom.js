@@ -10,13 +10,4 @@ jQuery( document ).ready(function($) {
     expandIcon: '',
     collapseIcon: ''
   });
-  
-  /* Hides empty container divs if all cols are empty */
-  /* Requires proper Bootstrap structure to function properly */
-  $('main div[class*=container]').each(function () {
-    var $main = $(this),
-      $allChildren = $main.find('div[class*=col]');
-      $allEmptyChildren = $allChildren.filter(':empty');
-    $main.toggle($allChildren.length !== $allEmptyChildren.length);
-  });
 });

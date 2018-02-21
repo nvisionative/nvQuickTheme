@@ -22,8 +22,11 @@ var gulp          = require('gulp'),
     path          = require('path'),
     config        = require( manifest ),
     node          = ( config.node.length )? config.node+'/' : '',
+    assets        = ( config.assets.length )? config.assets+'/' : '',
     src           = ( config.src.length )? config.src+'/' : '',
     dist          = ( config.dist.length )? config.dist+'/' : '';
+    temp          = ( config.temp.length )? config.temp+'/' : '';
+    build          = ( config.build.length )? config.build+'/' : '';
 
 /*
 *	IMAGE/SVG TASKS
@@ -53,6 +56,17 @@ gulp.task('scss', function() {
 		.pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
 });
 
+// Dev Bootstrap creation.
+// Checks for errors and concats. Minifies. All Bootstrap CSS
+gulp.task('bscss', function() {
+  return gulp.src('./'+src+assets+'bootstrap/scss/**/*.scss')
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+		.pipe(gulp.dest( './'+dist+'/css/'))
+		.pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
+})
+
 
 
 /*
@@ -62,32 +76,32 @@ gulp.task('scss', function() {
 // Development JS creation.
 // Checks for errors and concats. Minifies.
 gulp.task('js', function() {
-    return gulp.src( [ './'+src+'js/*.js'] )
-      .pipe(jshint())
-      .pipe(uglify())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest( './'+dist+'js/'))
-      .pipe(jshint.reporter('fail'))
-      .pipe(notify(function (file) {
-		    if (file.jshint.success) {
-		    	return { message : 'JS much excellent success!',
-									title : file.relative,
-									sound: false,
-									icon: path.join('node_modules/gulp-notify/node', 'gulp.png'),
-								};
-		    }
-		    var errors = file.jshint.results.map(function (data) {
-		       	if (data.error) {
-		        	return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
-		        }
-		    }).join("\n");
-		    return { message : file.relative + " (" + file.jshint.results.length + " errors)\n" + errors,
-								sound: "Frog",
-								emitError : true,
-								icon: path.join('node_modules/gulp-notify/node', 'gulp-error.png'),
-								title : 'JSLint'
-							};
-    	}))
+  return gulp.src( [ './'+src+'js/*.js'] )
+    .pipe(jshint())
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest( './'+dist+'js/'))
+    .pipe(jshint.reporter('fail'))
+    .pipe(notify(function (file) {
+      if (file.jshint.success) {
+        return { message : 'JS much excellent success!',
+          title : file.relative,
+          sound: false,
+          icon: path.join('node_modules/gulp-notify/node', 'gulp.png'),
+        };
+      }
+      var errors = file.jshint.results.map(function (data) {
+        if (data.error) {
+          return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+        }
+      }).join("\n");
+      return { message : file.relative + " (" + file.jshint.results.length + " errors)\n" + errors,
+        sound: "Frog",
+        emitError : true,
+        icon: path.join('node_modules/gulp-notify/node', 'gulp-error.png'),
+        title : 'JSLint'
+      };
+    }))
 });
 
 
@@ -110,17 +124,18 @@ gulp.task('containers', function() {
 
 // Pulls from packages and distributes where necessary.
 // Add/modify as needed.
-gulp.task('update', function() {
+gulp.task('init', function() {
 
 	// This copies the normalize css file over to the scss components folder.
-	// If you update normalize it will get overwritten if you run [setup].
+	// This will overwrite any changes you've made to normalize.css.
 	gulp.src( './'+node+'/normalize.css/normalize.css' )
 		.pipe(rename("_normalize.scss"))
 		.pipe(gulp.dest( './'+src+"scss/components/"));
   
-	// Copies over bootstrap css and js to dist.
-	gulp.src( './'+node+'/bootstrap/dist/css/bootstrap.min.css')
-		.pipe(gulp.dest( './'+dist+"/css/"));
+  // Copies over bootstrap scss and js to dist.
+  // This will overwrite any changes you've made to bootstrap's scss
+	gulp.src( './'+node+'/bootstrap/scss/**/*', {base: './'+node})
+		.pipe(gulp.dest( './'+src+assets));
   gulp.src( './'+node+'/bootstrap/dist/js/bootstrap.bundle.min.js')
 		.pipe(gulp.dest( './'+dist+"/js/"));
   
@@ -207,12 +222,13 @@ gulp.task('cleanup', function() {
 // gulp watch
 gulp.task('watch', function () {
     gulp.watch( src+"scss/**/*.scss", ['scss'])
+    gulp.watch( src+assets+"bootstrap/scss/**/*.scss", ['bscss'])
     gulp.watch([ src+"js/**/*.js"], ['js'])
     gulp.watch( './containers/*', ['containers'])
 });
 
 // gulp build
-gulp.task('build', ['scss', 'js', 'images', 'containers']);
+gulp.task('build', ['scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
