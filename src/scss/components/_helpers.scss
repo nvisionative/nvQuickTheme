@@ -16,9 +16,7 @@
 /* BG Color Helpers */
 [class*="bg-"] {
   color:white;
-  padding-top:2rem;
-  padding-bottom:2rem;
-  
+    
   &[class*="-primary"] {
     background-color:$primary-color !important;
   }
