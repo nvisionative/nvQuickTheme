@@ -37,62 +37,22 @@
           </skinFiles>
         </component>
         
-        <!-- SkinRoot Folder -->
+        <!-- Menus, Partials, and Root -->
         <component type="ResourceFile">
           <resourceFiles>
             <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>root.zip</name>
+                <name>else.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
         
-        <!-- Partials Folder -->
+        <!-- CSS, Fonts, JS, Images Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\partials\</basePath>
+            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>partials/partials.zip</name>
-            </resourceFile>
-          </resourceFiles>
-        </component>
-        
-        <!-- Menus Folder -->
-        <component type="ResourceFile">
-          <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\menus\main\</basePath>
-            <resourceFile>
-                <name>menus/main/menus.zip</name>
-            </resourceFile>
-          </resourceFiles>
-        </component>
-        
-        <!-- CSS Folder -->
-        <component type="ResourceFile">
-          <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\css\</basePath>
-            <resourceFile>
-                <name>dist/css/css.zip</name>
-            </resourceFile>
-          </resourceFiles>
-        </component>
-        
-        <!-- JS Folder -->
-        <component type="ResourceFile">
-          <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\js\</basePath>
-            <resourceFile>
-                <name>dist/js/js.zip</name>
-            </resourceFile>
-          </resourceFiles>
-        </component>
-        
-        <!-- Fonts Folder -->
-        <component type="ResourceFile">
-          <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\fonts\</basePath>
-            <resourceFile>
-                <name>dist/fonts/fonts.zip</name>
+                <name>dist.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
@@ -102,7 +62,7 @@
           <resourceFiles>
             <basePath>Portals\_default\Containers\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>containers/cont.zip</name>
+                <name>cont.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>

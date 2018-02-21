@@ -156,80 +156,45 @@ gulp.task('manifest', function() {
 *	PACKAGING TASKS
 * ------------------------------------------------------*/
 
-// Zips the dist/css Folder
-gulp.task('zipcss', function() {
-  return gulp.src('./'+dist+'/css/*')
-    .pipe(zip('css.zip'))
-    .pipe(gulp.dest('./'+dist+'/css/'))
-});
-  
-// Zips the dist/js Folder
-gulp.task('zipjs', function() {
-  return gulp.src('./'+dist+'/js/*')
-    .pipe(zip('js.zip'))
-    .pipe(gulp.dest('./'+dist+'/js/'))
+// Zips dist folder
+gulp.task('zipdist', function() {
+  return gulp.src('dist/**/*')
+    .pipe(zip('dist.zip'))
+    .pipe(gulp.dest('./'+temp))
 });
 
-// Zips the dist/images Folder
-gulp.task('zipimages', function() {
-  return gulp.src('./'+dist+'/images/*')
-    .pipe(zip('images.zip'))
-    .pipe(gulp.dest('./'+dist+'/images/'))
-});
-
-// Zips the dist/fonts Folder
-gulp.task('zipfonts', function() {
-  return gulp.src('./'+dist+'/fonts/*')
-    .pipe(zip('fonts.zip'))
-    .pipe(gulp.dest('./'+dist+'/fonts/'))
-});
-
-// Zips the containers Folder
+// Zips containers folder
 gulp.task('zipcontainers', function() {
-  return gulp.src('./containers/*')
+  return gulp.src('./containers/**/*')
     .pipe(zip('cont.zip'))
-    .pipe(gulp.dest('./containers/'))
-});
-  
-// Zips the menus Folder
-gulp.task('zipmenus', function() {
-  return gulp.src('./menus/main/*')
-    .pipe(zip('menus.zip'))
-    .pipe(gulp.dest('./menus/main/'))
+    .pipe(gulp.dest('./'+temp))
 });
 
-// Zips the Partials Folder
-gulp.task('zippartials', function() {
-  return gulp.src('./partials/*')
-    .pipe(gulp.dest('./_temp/'))
+// Zips everything else
+gulp.task('zipelse', function() {
+  return gulp.src(['./menus/**/*', './partials/*', '*.ascx', '*.xml', '*.html', '*.htm'], {base: '.'})
+    .pipe(gulp.dest('./'+temp))
     .pipe(replace('dist/', ''))
-    .pipe(zip('partials.zip'))
-    .pipe(gulp.dest('./partials/'))
+    .pipe(zip('else.zip'))
+    .pipe(gulp.dest('./'+temp))
 });
 
-// Zips the root Folder template files
-gulp.task('ziproot', function() {
-  return gulp.src(['*.ascx', '*.xml', '*.html', '*.htm'])
-    .pipe(zip('root.zip'))
-    .pipe(gulp.dest('./'))
-});
-
-// Runs all the Zip tasks
+// Runs all the zip tasks
 gulp.task('buildzips', function (cb) {
-  sequence(['zipcss', 'zipjs', 'zipimages', 'zipfonts', 'zipcontainers', 'zipmenus', 'zippartials', 'ziproot'], cb)
+  sequence(['zipdist', 'zipcontainers', 'zipelse'], cb)
 });
 
 // Zips the .zip files and single files into a package zip file.
-// Will need to change if filenames change, or adding specific files.
+// Will need to change if adding specific files.
 gulp.task('zipfiles', function() { 
-  return gulp.src(['./**/*.zip', '*.dnn', '*.png', '*.jpg', 'LICENSE', '!./_temp', '!./build/*'])
+  return gulp.src(['./'+temp+'*.zip','*.{dnn,png,jpg}', 'LICENSE'])
     .pipe(zip(project+'\_'+version+'\_install.zip'))
-    .pipe(gulp.dest('./build/'))
+    .pipe(gulp.dest('./'+build))
 });
 
-// Cleans up all directory zip files.
+// Cleans temp folder
 gulp.task('cleanup', function() {
-  return gulp.src(['./*/**/*.zip', './_temp', 'root.zip', '!./build/*'])
+  return gulp.src('./_temp')
     .pipe(clean())
 });
 
