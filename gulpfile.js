@@ -24,8 +24,8 @@ var gulp          = require('gulp'),
     node          = ( config.node.length )? config.node+'/' : '',
     assets        = ( config.assets.length )? config.assets+'/' : '',
     src           = ( config.src.length )? config.src+'/' : '',
-    dist          = ( config.dist.length )? config.dist+'/' : '';
-    temp          = ( config.temp.length )? config.temp+'/' : '';
+    dist          = ( config.dist.length )? config.dist+'/' : '',
+    temp          = ( config.temp.length )? config.temp+'/' : '',
     build          = ( config.build.length )? config.build+'/' : '';
 
 /*
@@ -209,7 +209,7 @@ gulp.task('zipfiles', function() {
 
 // Cleans temp folder
 gulp.task('cleanup', function() {
-  return gulp.src('./_temp')
+  return gulp.src('./'+temp)
     .pipe(clean())
 });
 
