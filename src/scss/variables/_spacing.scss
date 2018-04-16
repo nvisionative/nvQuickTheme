@@ -1,0 +1,14 @@
+// Spacing for container padding helpers
+
+$cspacer: 1rem !default;
+$cspacers: () !default;
+$cspacers: map-merge((
+  0: 0,
+  1: ($cspacer * .25),
+  2: ($cspacer * .5),
+  3: $cspacer,
+  4: ($cspacer * 1.5),
+  5: ($cspacer * 2),
+  6: ($cspacer * 3),
+  7: ($cspacer * 4),
+), $cspacers);

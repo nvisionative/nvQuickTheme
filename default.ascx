@@ -22,15 +22,15 @@
 
   <div class="container">
     <div class="row">
-      <div id="DoublePaneOneOne" class="col-md-6 pr-5" runat="server"></div>
-      <div id="DoublePaneOneTwo" class="col-md-6 bg-light-grey" runat="server"></div>
+      <div id="DoublePaneOneOne" class="col-md-6 cpr-5" runat="server"></div>
+      <div id="DoublePaneOneTwo" class="col-md-6 bg-light-grey cp-5" runat="server"></div>
     </div>
   </div>   
 
   <div class="container-fluid bg-tertiary">
     <div class="container">
       <div class="row align-items-center">
-        <div id="FullWidthBGDoublePaneOne" class="col-md-6" runat="server"></div>
+        <div id="FullWidthBGDoublePaneOne" class="col-md-6 cpy-5" runat="server"></div>
         <div id="FullWidthBGDoublePaneTwo" class="col-md-6" runat="server"></div>
       </div>
     </div>

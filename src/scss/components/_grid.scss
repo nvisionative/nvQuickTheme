@@ -1,43 +1,28 @@
-// Bootstrap Grid Changes
-
-/* Changes the default gutter size */
-$xgutter:2rem;
-$ygutter:4rem;
-
-// Sets gutters on all cols
-[class^='col-'] {
-  padding-left:$xgutter;
-  padding-right:$xgutter;
-  margin-top:$ygutter;
-  margin-bottom:$ygutter;
 }
 
-@each $breakpoint in $breakpoints {
-  $size: nth($breakpoint, 1);
-  $width: nth($breakpoint, 2);
+// Pulls information for each breakpoint
+@each $size, $width in $breakpoints {
   
-  // Upon collapse of cols at the appropriate breakpoint, adds a margin
+  // Upon collapse of cols at the appropriate breakpoint:
   @include mq-max-width($width) {
+
+    // adds a margin to the top cols that come after cols
     [class^='col-#{$size}'] + [class^='col-#{$size}'] {
-      margin-top:0;
-      margin-bottom:$ygutter;
+      margin-top:($cspacer * 2); 
     }
-    .container { 
-      max-width:1200px; 
+
+    // adds padding to the child div of the col to even spacing
+    .container [class^="col-#{$size}"] > div {
+      padding-left:$cspacer !important;
+      padding-right:$cspacer !important;
     }
+
+    // removes padding for container within fluid container
     .container-fluid .container {
       padding:0;
-
-      .row {
-        margin-left:0;
-        margin-right:0;
-      }
     }
-    // Adds the gutter to the left and right when collapsed
-    [class^='col-'] {       
-      padding-left:$xgutter;
-      padding-right:$xgutter;
+
+      }
     }
   }
 }
-
