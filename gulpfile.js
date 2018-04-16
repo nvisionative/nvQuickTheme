@@ -1,12 +1,3 @@
-var project       = 'nvQuickTheme', // If using dev environment in live instance, this needs to be the same as your root folder name.
-    version       = '1.0.0',
-    author        = 'TK Sheppard &amp; David Poindexter', 
-    company       = 'nvisionative',
-    url           = 'www.nvquicktheme.com',
-    email         = 'support@nvisionative.com',
-    description   = 'A DNN Theme Building Framework';
-
-var manifest      = './manifest.json';
 var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     jshint        = require('gulp-jshint'),
@@ -20,13 +11,23 @@ var gulp          = require('gulp'),
     zip           = require('gulp-zip'),
     clean         = require('gulp-clean'),
     path          = require('path'),
-    config        = require( manifest ),
+    details       = require('./project-details.json'),
+    project       = details.project,
+    version       = details.version,
+    author        = details.author,
+    company       = details.company,
+    url           = details.url,
+    email         = details.email,
+    description   = details.description,
+    config        = require('./pathing.json'),
     node          = ( config.node.length )? config.node+'/' : '',
     assets        = ( config.assets.length )? config.assets+'/' : '',
     src           = ( config.src.length )? config.src+'/' : '',
     dist          = ( config.dist.length )? config.dist+'/' : '',
     temp          = ( config.temp.length )? config.temp+'/' : '',
-    build          = ( config.build.length )? config.build+'/' : '';
+    build         = ( config.build.length )? config.build+'/' : '';
+    
+
 
 /*
 *	IMAGE/SVG TASKS
@@ -34,9 +35,14 @@ var gulp          = require('gulp'),
     
 // Compresses images for production.
 gulp.task('images', function() {
-	return gulp.src( './'+src+'images/**/*.{jpg,jpeg,png,gif}' )
-		.pipe(imagemin())
-		.pipe(gulp.dest( './'+dist+'images/' ));
+	return gulp.src( './images/**/*.{jpg,jpeg,png,gif}' )
+		.pipe(imagemin({
+      interlaced: true,
+      progressive: true,
+      optimizationLevel: 5,
+      svgoPlugins: [{removeViewBox: true}]
+    }))
+		.pipe(gulp.dest( './dist/images/' ));
 });
 
 
@@ -56,15 +62,15 @@ gulp.task('scss', function() {
 		.pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
 });
 
-// Dev Bootstrap creation.
+// Development Bootstrap creation.
 // Checks for errors and concats. Minifies. All Bootstrap CSS
 gulp.task('bscss', function() {
   return gulp.src('./'+src+assets+'bootstrap/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename({suffix: '.min'}))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
-		.pipe(gulp.dest( './'+dist+'/css/'))
-		.pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
+		.pipe(gulp.dest( './'+dist+'css/'))
+		.pipe(notify({message: 'Styles compiled successfully!', title : 'bootstrap', sound: false}));
 })
 
 
@@ -87,7 +93,6 @@ gulp.task('js', function() {
         return { message : 'JS much excellent success!',
           title : file.relative,
           sound: false,
-          icon: path.join('node_modules/gulp-notify/node', 'gulp.png'),
         };
       }
       var errors = file.jshint.results.map(function (data) {
@@ -96,9 +101,8 @@ gulp.task('js', function() {
         }
       }).join("\n");
       return { message : file.relative + " (" + file.jshint.results.length + " errors)\n" + errors,
-        sound: "Frog",
+        sound: false,
         emitError : true,
-        icon: path.join('node_modules/gulp-notify/node', 'gulp-error.png'),
         title : 'JSLint'
       };
     }))
@@ -112,7 +116,7 @@ gulp.task('js', function() {
 
 gulp.task('containers', function() {
   gulp.src('./containers/*')
-    .pipe(gulp.dest('../../Containers/' +project+ '/'))
+    .pipe(gulp.dest('../../Containers/'+project+'/'))
     .pipe(notify({message: 'Containers updated!', title : 'containers', sound: false}));
 });
 
@@ -147,9 +151,9 @@ gulp.task('init', function() {
     
 });
 
-// Takes the information provided at the top of this file and populates it into the dnn-manifest file.
+// Takes the information provided at the top of this file and populates it into the manifest.dnn file.
 gulp.task('manifest', function() {
-  gulp.src('./dnn-manifest.dnn')
+  gulp.src('./manifest.dnn')
     .pipe(replace(/\<package name\=\"(.*?)(?=\")/, '<package name="'+company+ '.' +project))
     .pipe(replace(/type\=\"Skin\" version\=\"(.*?)(?=\")/, 'type="Skin" version="'+version))
     .pipe(replace(/\<friendlyName\>(.*?)(?=\<)/, '<friendlyName>'+project))
@@ -187,7 +191,7 @@ gulp.task('zipcontainers', function() {
 
 // Zips everything else
 gulp.task('zipelse', function() {
-  return gulp.src(['./menus/**/*', './partials/*', '*.ascx', '*.xml', '*.html', '*.htm'], {base: '.'})
+  return gulp.src(['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm}'], {base: '.'})
     .pipe(gulp.dest('./'+temp))
     .pipe(replace('dist/', ''))
     .pipe(zip('else.zip'))
@@ -225,6 +229,7 @@ gulp.task('watch', function () {
     gulp.watch( src+assets+"bootstrap/scss/**/*.scss", ['bscss'])
     gulp.watch([ src+"js/**/*.js"], ['js'])
     gulp.watch( './containers/*', ['containers'])
+    gulp.watch( './project-details.json', ['manifest'])
 });
 
 // gulp build
