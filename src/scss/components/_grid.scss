@@ -1,3 +1,8 @@
+// bg clipping at gutter for cols
+[class*="col"] {
+  &[class*="bg-"] {
+    background-clip:content-box;
+  }
 }
 
 // Pulls information for each breakpoint
@@ -22,6 +27,10 @@
       padding:0;
     }
 
+    // switches bg clipping back to the edge of padding
+    [class^="col-#{$size}"] {
+      &[class*="bg-"] {
+        background-clip:padding-box !important;
       }
     }
   }
