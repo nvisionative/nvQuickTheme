@@ -3304,9 +3304,8 @@ div.actionMenu .dnn_mact {
 
 /* On Page Editor */
 .eipbackimg {
-  margin-top:-41px !important;
-  margin-left:-9px !important;
   height:30px !important;
+  z-index:1250;
   
   &.editMode {
     border:none !important;

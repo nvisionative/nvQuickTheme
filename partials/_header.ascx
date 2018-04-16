@@ -1,5 +1,5 @@
-<header>
-  <div class="container-fluid user-controls">
+<header class="bg-light-grey">
+  <div class="container-fluid user-controls bg-tertiary">
     <div class="container">
       <div class="row justify-content-end">
         <ul>

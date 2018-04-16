@@ -1,17 +1,15 @@
 footer {
-  background-color:$light-grey;
   
   .upper {
     margin-bottom:0;
-    padding-top:$ygutter;
-    padding-bottom:$ygutter;
+
   }
   a {
     font-weight:400;
   }
 
   .disclaimer {
-    font-size:12px;
+    @include font-size(12);
     padding-top:1rem;
     padding-bottom:1rem;
     margin-bottom:0;
