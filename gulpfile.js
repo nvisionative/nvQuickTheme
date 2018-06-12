@@ -55,11 +55,13 @@ gulp.task('images', function() {
 // Development CSS creation.
 // Checks for errors and concats. Minifies.
 gulp.task('scss', function() {
-	return gulp.src( './'+src+'scss/**/*.scss')
+  return gulp.src( './'+src+'scss/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(rename({suffix: '.min'}))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+    .pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest( './'+dist+'/css/'))
 		.pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
 });
@@ -68,10 +70,11 @@ gulp.task('scss', function() {
 // Checks for errors and concats. Minifies. All Bootstrap CSS
 gulp.task('bscss', function() {
   return gulp.src('./'+src+assets+'bootstrap/scss/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(sourcemaps.write())
     .pipe(rename({suffix: '.min'}))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+    .pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest( './'+dist+'css/'))
 		.pipe(notify({message: 'Styles compiled successfully!', title : 'bootstrap', sound: false}));
 })
