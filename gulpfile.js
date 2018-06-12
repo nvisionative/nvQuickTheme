@@ -2,6 +2,7 @@ var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     jshint        = require('gulp-jshint'),
     sass          = require('gulp-sass'),
+    sourcemaps    = require('gulp-sourcemaps'),
     imagemin      = require('gulp-imagemin'),
     rename        = require('gulp-rename'),
     uglify        = require('gulp-uglify'),
@@ -56,6 +57,7 @@ gulp.task('images', function() {
 gulp.task('scss', function() {
 	return gulp.src( './'+src+'scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sourcemaps.write())
     .pipe(rename({suffix: '.min'}))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
 		.pipe(gulp.dest( './'+dist+'/css/'))
@@ -67,6 +69,7 @@ gulp.task('scss', function() {
 gulp.task('bscss', function() {
   return gulp.src('./'+src+assets+'bootstrap/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sourcemaps.write())
     .pipe(rename({suffix: '.min'}))
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
 		.pipe(gulp.dest( './'+dist+'css/'))
