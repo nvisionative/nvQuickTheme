@@ -1,5 +1,5 @@
 ---
-name: Help and other questions
+name: Help and Other Questions
 about: Ask for help or others questions re. using the solution
 
 ---
