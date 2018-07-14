@@ -203,7 +203,7 @@ nav ul {
           top: 0;
           z-index: 999;
           display: none;
-          width: 100%;
+          white-space:nowrap;
           border-radius:.25em;
         }
       }
