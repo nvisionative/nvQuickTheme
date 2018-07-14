@@ -2,22 +2,22 @@ menu:
   - title: Table of Contents
     subfolderitems:
       - page: Home
-        url: /home.md
+        url: /home.html
       - page: Installation
-        url: /installation.md
+        url: /installation.html
       - page: Project Setup
-        url: /project-setup.md
+        url: /project-setup.html
       - page: Commands
-        url: /commands.md
+        url: /commands.html
   - title: Appendix
     subfolderitems:
       - page: Dependencies
-        url: /dependencies.md
+        url: /dependencies.html
       - page: Dev Dependencies
-        url: /DevDependencies.md
+        url: /DevDependencies.html
       - page: SCSS
-        url: /SCSS.md
+        url: /SCSS.html
   - title: How To...
     subfolderitems:
       - page: Working With the Out-Of-Box Theme
-        url: /Working-With-the-Out-Of-Box-Theme.md
+        url: /Working-With-the-Out-Of-Box-Theme.html
