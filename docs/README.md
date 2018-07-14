@@ -14,8 +14,15 @@ Some work with a manual workflow, editing flat files with their favorite code/te
 
 The [nvisionative](http://www.nvisionative.com) team has been working in the DNN ecosystem since its inception and has seen all sorts of approaches for custom and commercial themes alike.  A large majority of these themes are bloated with all sorts of widgets, 3rd party components, bells, whistles, etc.  Given the great depth of experience over the years, our team has identified so many ways to resolve issues in and improve DNN themes.  From **best practices** to HUGE **performance enhancements**, there have been so many lessons learned.  Now it is time give back to this great community that has provided so much to us.
 
+{% for item in site.data.nav.menu %}
+  <h3>{{ item.title }}</h3>
+    <ul>
+      {% for entry in item.subfolderitems %}
+        <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
+      {% endfor %}
+    </ul>
+{% endfor %}
 
-## Wiki Pages
 ### Table of Contents
 * [Home](https://github.com/nvisionative/nvQuickTheme/wiki)
 * [Installation](https://github.com/nvisionative/nvQuickTheme/wiki/Installation)
