@@ -1,0 +1,23 @@
+nav:
+  - title: Table of Contents
+    subfolderitems:
+      - page: Home
+        url: /home.md
+      - page: Installation
+        url: /installation.md
+      - page: Project Setup
+        url: /project-setup.md
+      - page: Commands
+        url: /commands.md
+  - title: Appendix
+    subfolderitems:
+      - page: Dependencies
+        url: /dependencies.md
+      - page: Dev Dependencies
+        url: /DevDependencies.md
+      - page: SCSS
+        url: /SCSS.md
+  - title: How To...
+    subfolderitems:
+      - page: Working With the Out-Of-Box Theme
+        url: /Working-With-the-Out-Of-Box-Theme.md
