@@ -2,22 +2,22 @@ menu:
   - title: Table of Contents
     subfolderitems:
       - page: Home
-        url: /home.html
+        url: /nvQuickTheme/home.html
       - page: Installation
-        url: /installation.html
+        url: /nvQuickTheme/installation.html
       - page: Project Setup
-        url: /project-setup.html
+        url: /nvQuickTheme/project-setup.html
       - page: Commands
-        url: /commands.html
+        url: /nvQuickTheme/commands.html
   - title: Appendix
     subfolderitems:
       - page: Dependencies
-        url: /dependencies.html
+        url: /nvQuickTheme/dependencies.html
       - page: Dev Dependencies
-        url: /DevDependencies.html
+        url: /nvQuickTheme/DevDependencies.html
       - page: SCSS
-        url: /SCSS.html
+        url: /nvQuickTheme/SCSS.html
   - title: How To...
     subfolderitems:
       - page: Working With the Out-Of-Box Theme
-        url: /Working-With-the-Out-Of-Box-Theme.html
+        url: /nvQuickTheme/Working-With-the-Out-Of-Box-Theme.html
