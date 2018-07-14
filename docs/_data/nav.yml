@@ -2,7 +2,7 @@ menu:
   - title: Table of Contents
     subfolderitems:
       - page: Home
-        url: /nvQuickTheme/README.html
+        url: /nvQuickTheme/
       - page: Installation
         url: /nvQuickTheme/Installation.html
       - page: Project Setup
