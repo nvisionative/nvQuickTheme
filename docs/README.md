@@ -13,33 +13,3 @@ There have been many ways to develop DNN themes over the years.  Some start from
 Some work with a manual workflow, editing flat files with their favorite code/text editor and wiring everything up "old school".  Others use a fully Integrated Development Environment (IDE), like Visual Studio.  Many even use the famous Christoc Visual Studio Templates for building out themes in a more structured way.  Yet others develop their own unique workflows that best suit their particular use case.
 
 The [nvisionative](http://www.nvisionative.com) team has been working in the DNN ecosystem since its inception and has seen all sorts of approaches for custom and commercial themes alike.  A large majority of these themes are bloated with all sorts of widgets, 3rd party components, bells, whistles, etc.  Given the great depth of experience over the years, our team has identified so many ways to resolve issues in and improve DNN themes.  From **best practices** to HUGE **performance enhancements**, there have been so many lessons learned.  Now it is time give back to this great community that has provided so much to us.
-
-{% for item in site.data.nav.menu %}
-  <h3>{{ item.title }}</h3>
-    <ul>
-      {% for entry in item.subfolderitems %}
-        <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
-      {% endfor %}
-    </ul>
-{% endfor %}
-
-### Table of Contents
-* [Home](https://github.com/nvisionative/nvQuickTheme/wiki)
-* [Installation](https://github.com/nvisionative/nvQuickTheme/wiki/Installation)
-* [Project Setup](https://github.com/nvisionative/nvQuickTheme/wiki/Project-Setup)
-* [Commands](https://github.com/nvisionative/nvQuickTheme/wiki/Commands)
-
-### Appendix
-* [Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/Dependencies)
-* [Dev Dependencies](https://github.com/nvisionative/nvQuickTheme/wiki/DevDependencies)
-* [SCSS](https://github.com/nvisionative/nvQuickTheme/wiki/SCSS)
-
-### How To...
-* [Download and Install the Out-Of-Box Theme](https://github.com/nvisionative/nvQuickTheme/wiki/Download-and-Install-the-Out-Of-Box-Theme)
-* Show/Hide LOGIN, USER, SEARCH, LANGUAGE (coming soon)
-* Add/Change/Remove Content Panes (coming soon)
-* Change Theme Colors (coming soon)
-* Change Fonts (coming soon)
-* Change Responsive Breakpoints (coming soon)
-* Optimize Images (coming soon)
-* Troubleshoot node/npm/yarn/gulp issues on Mac (coming soon)
