@@ -2,11 +2,11 @@ When you start a new theme project, you will need to edit **project-details.json
 
 ```javascript
 // project-details.json
-	"project": "Project Name",
-	"version": "1.0.0",
-	"author": "Author &amp; Author",
-	"company": "My Company",
-	"url": "www.mysite.com",
+    "project": "Project Name",
+    "version": "1.0.0",
+    "author": "Author &amp; Author",
+    "company": "My Company",
+    "url": "www.mysite.com",
     "email": "support@mysite.com",
     "description": "Theme based on nvQuickTheme"
 ```
