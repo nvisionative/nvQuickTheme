@@ -36,7 +36,7 @@ var gulp          = require('gulp'),
     
 // Compresses images for production.
 gulp.task('images', function() {
-	return gulp.src( './images/**/*.{jpg,jpeg,png,gif}' )
+	return gulp.src( './'+src+'images/**/*.{jpg,jpeg,png,gif}' )
 		.pipe(imagemin({
       interlaced: true,
       progressive: true,
