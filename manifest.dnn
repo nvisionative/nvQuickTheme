@@ -19,7 +19,7 @@
           <skinFiles>
             <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <skinName>nvQuickTheme</skinName>
-            
+
             <!-- Main Directory -->
             <skinFile>
               <path />
@@ -33,40 +33,71 @@
               <path />
               <name>LICENSE</name>
             </skinFile>
-                        
+
           </skinFiles>
         </component>
-        
+
         <!-- Menus, Partials, and Root -->
         <component type="ResourceFile">
           <resourceFiles>
             <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>else.zip</name>
+              <name>else.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
-        
+
         <!-- CSS, Fonts, JS, Images Folder -->
         <component type="ResourceFile">
           <resourceFiles>
             <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>dist.zip</name>
+              <name>dist.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
-        
+
         <!-- Containers Folder -->
         <component type="ResourceFile">
           <resourceFiles>
             <basePath>Portals\_default\Containers\nvQuickTheme\</basePath>
             <resourceFile>
-                <name>cont.zip</name>
+              <name>cont.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
-        
+
+        <!-- Ensure MIME types are mapped -->
+        <component type="Config">
+          <config>
+            <configFile>web.config</configFile>
+            <install>
+              <configuration>
+                <nodes configfile="web.config">
+                  <node path="/configuration/system.webServer" targetpath="/configuration/system.webServer/staticContent" action="update" collision="ignore">
+                    <staticContent>
+                    </staticContent>
+                  </node>
+                  <node path="/configuration/system.webServer/staticContent" action="update" key="fileExtension" collision="ignore">
+                    <remove fileExtension=".otf" />
+                    <mimeMap fileExtension=".otf" mimeType="font/otf" />
+                    <remove fileExtension=".svg" />
+                    <mimeMap fileExtension=".svg" mimeType="image/svg+xml" />
+                    <remove fileExtension=".woff" />
+                    <mimeMap fileExtension=".woff" mimeType="font/x-woff" />
+                    <remove fileExtension=".woff2" />
+                    <mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
+                  </node>
+                </nodes>
+              </configuration>
+            </install>
+            <uninstall>
+              <configuration>
+                <nodes />
+              </configuration>
+            </uninstall>
+          </config>
+        </component>
       </components>
     </package>
   </packages>
