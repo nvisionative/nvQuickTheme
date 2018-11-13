@@ -21,4 +21,4 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
  
   
 ---
-[![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/)
+[![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
