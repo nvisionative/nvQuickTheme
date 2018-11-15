@@ -1,6 +1,6 @@
 [![](http://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](http://nvquicktheme.nvisionative.com)
 
-[![Build status](https://nvisionative.visualstudio.com/nvQuickTheme/_apis/build/status/nvQuickTheme-Node.js%20With%20gulp-CI)](https://nvisionative.visualstudio.com/nvQuickTheme/_build/latest?definitionId=1)
+[![Build status](https://nvisionative.visualstudio.com/nvQuickTheme/_apis/build/status/nvQuickTheme-Node.js%20With%20gulp-CI)](https://nvisionative.visualstudio.com/nvQuickTheme/_build/latest?definitionId=1) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/)
 
 **nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today are loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://nvisionative.github.io/nvQuickTheme/) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
 
@@ -21,4 +21,4 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
  
   
 ---
-[![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/)
+[![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
