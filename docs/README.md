@@ -2,7 +2,7 @@
 
 Are you tired of spending countless hours trying to squeeze every ounce of performance out of your DNN themes, just so you can rank better on *Google PageSpeed Insights*?  How are your scores?  Have you broken the **80s for Desktop** or the **60s for Mobile**?  You have probably discovered by now that it is very tough to accomplish this on a DNN site.  
 
-Well, the search is over!  Utilizing **nvQuickTheme**, you can rest assured that you are doing everything you possibly can within the context of the theme to achieve stellar scores.  As a matter of fact, the [nvQuickTheme website](https://www.nvquicktheme.com), which of course is running nvQuickTheme, scores **93/100 (Desktop)** and **73/100 (Mobile)**.  Yes, you read that correctly.  If you don't believe us, please feel free to [analyze it yourself](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.nvquicktheme.com%2F&tab=desktop)!
+Well, the search is over!  Utilizing **nvQuickTheme**, you can rest assured that you are doing everything you possibly can within the context of the theme to achieve stellar scores.  As a matter of fact, the [nvQuickTheme website](https://www.nvquicktheme.com), which of course is running nvQuickTheme, scores **100/100 (Desktop)** and **89/100 (Mobile)**.  Yes, you read that correctly.  If you don't believe us, please feel free to [analyze it yourself](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.nvquicktheme.com%2F&tab=desktop)!
 
 ## Background
 
