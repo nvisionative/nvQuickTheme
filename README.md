@@ -18,6 +18,13 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 
 ## Documentation
 [Learn How To Use nvQuickTheme](https://nvisionative.github.io/nvQuickTheme/)
+
+## Video Series
+### Intro
+[![nvQuickTheme Video Series - Intro](https://img.youtube.com/vi/-w0qSTZfBUU/0.jpg)](https://www.youtube.com/watch?v=-w0qSTZfBUU)
+
+### Project Setup
+[![nvQuickTheme Video Series - Project Setup](https://img.youtube.com/vi/7UhpbUaeFQc/0.jpg)](https://www.youtube.com/watch?v=7UhpbUaeFQc)
  
   
 ---

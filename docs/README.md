@@ -11,3 +11,10 @@ There have been many ways to develop DNN themes over the years.  Some start from
 Some work with a manual workflow, editing flat files with their favorite code/text editor and wiring everything up "old school".  Others use a fully Integrated Development Environment (IDE), like Visual Studio.  Many even use the famous Christoc Visual Studio Templates for building out themes in a more structured way.  Yet others develop their own unique workflows that best suit their particular use case.
 
 The [nvisionative](https://www.nvisionative.com) team has been working in the DNN ecosystem since its inception and has seen all sorts of approaches for custom and commercial themes alike.  A large majority of these themes are bloated with all sorts of widgets, 3rd party components, bells, whistles, etc.  Given the great depth of experience over the years, our team has identified so many ways to resolve issues in and improve DNN themes.  From **best practices** to HUGE **performance enhancements**, there have been so many lessons learned.  Now it is time give back to this great community that has provided so much to us.
+
+## Video Series
+### Intro
+[![nvQuickTheme Video Series - Intro](https://img.youtube.com/vi/-w0qSTZfBUU/0.jpg)](https://www.youtube.com/watch?v=-w0qSTZfBUU)
+
+### Project Setup
+[![nvQuickTheme Video Series - Project Setup](https://img.youtube.com/vi/7UhpbUaeFQc/0.jpg)](https://www.youtube.com/watch?v=7UhpbUaeFQc)
