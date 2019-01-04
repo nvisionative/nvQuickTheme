@@ -29,6 +29,16 @@ var gulp          = require('gulp'),
     build         = ( config.build.length )? config.build+'/' : '';
     
 
+/*------------------------------------------------------*/
+/* INIT TASKS ------------------------------------------*/
+/*------------------------------------------------------*/
+
+// Pulls from src/fonts and distributes where necessary
+gulp.task('fonts-init', function() {
+  // Copies fonts to dist
+  gulp.src( './'+src+'/fonts/*')
+		.pipe(gulp.dest( './'+dist+"/fonts/"));
+});
 
 /*
 *	IMAGE/SVG TASKS
@@ -238,7 +248,7 @@ gulp.task('watch', function () {
 });
 
 // gulp build
-gulp.task('build', ['scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
+gulp.task('build', ['fonts-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
