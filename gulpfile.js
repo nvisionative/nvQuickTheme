@@ -65,6 +65,17 @@ gulp.task('normalize-init', function() {
 		  .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'normalize-init', sound: false}));
 });
 
+// Pull bootstrap from node_modules and distribute
+gulp.task('bs-init', function() {
+  // Copy bootstrap css and js to dist
+	gulp.src( './'+node+'/bootstrap/dist/css/bootstrap.min.*')
+		.pipe(gulp.dest( './'+dist+'/css/'))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'bs-init', sound: false}));
+  gulp.src( './'+node+'/bootstrap/dist/js/bootstrap.bundle.min.*')
+		.pipe(gulp.dest( './'+dist+"/js/"))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'bs-init', sound: false}));  
+});
+
 /*------------------------------------------------------*/
 /* END INIT TASKS --------------------------------------*/
 /*------------------------------------------------------*/
@@ -104,20 +115,6 @@ gulp.task('scss', function() {
       .pipe(gulp.dest( './'+dist+'/css/'))
 		  .pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
 });
-
-// Development Bootstrap creation.
-// Checks for errors and concats. Minifies. All Bootstrap CSS
-gulp.task('bscss', function() {
-  return gulp.src('./'+src+assets+'bootstrap/scss/**/*.scss')
-    .pipe(sourcemaps.init({largeFile: true}))
-      .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
-      .pipe(rename({suffix: '.min'}))
-      .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
-    .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest( './'+dist+'/css/'))
-      .pipe(notify({message: 'Styles compiled successfully!', title : 'bootstrap', sound: false}));
-});
-
 
 
 /*
@@ -165,24 +162,6 @@ gulp.task('containers', function() {
     .pipe(notify({message: 'Containers updated!', title : 'containers', sound: false}));
 });
 
-
-
-/*
-*	SETUP TASKS
-------------------------------------------------------*/
-
-// Pulls from packages and distributes where necessary.
-// Add/modify as needed.
-gulp.task('init', function() {
-
-  // Copies over bootstrap scss and js to dist.
-  // This will overwrite any changes you've made to bootstrap's scss
-	gulp.src( './'+node+'/bootstrap/scss/**/*', {base: './'+node})
-		.pipe(gulp.dest( './'+src+assets));
-  gulp.src( './'+node+'/bootstrap/dist/js/bootstrap.bundle.min.js')
-		.pipe(gulp.dest( './'+dist+"/js/"));
-  
-});
 
 // Takes the information provided at the top of this file and populates it into the manifest.dnn file.
 gulp.task('manifest', function() {
@@ -259,14 +238,13 @@ gulp.task('cleanup', function() {
 // gulp watch
 gulp.task('watch', function () {
     gulp.watch( src+"scss/**/*.scss", ['scss'])
-    gulp.watch( src+assets+"bootstrap/scss/**/*.scss", ['bscss'])
     gulp.watch([ src+"js/**/*.js"], ['js'])
     gulp.watch( './containers/*', ['containers'])
     gulp.watch( './project-details.json', ['manifest'])
 });
 
 // gulp build
-gulp.task('build', ['fonts-init', 'fa-init', 'normalize-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
+gulp.task('build', sequence('fonts-init', 'fa-init', 'normalize-init', 'bs-init', 'scss', 'js', 'images', 'containers', 'manifest'));
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
