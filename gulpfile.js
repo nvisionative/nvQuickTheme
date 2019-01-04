@@ -33,12 +33,30 @@ var gulp          = require('gulp'),
 /* INIT TASKS ------------------------------------------*/
 /*------------------------------------------------------*/
 
-// Pulls from src/fonts and distributes where necessary
+// Pull fonts from src/fonts and distribute
 gulp.task('fonts-init', function() {
-  // Copies fonts to dist
+  // Copy fonts to dist
   gulp.src( './'+src+'/fonts/*')
 		.pipe(gulp.dest( './'+dist+"/fonts/"));
 });
+
+// Pull normalize.css from node_modules and distribute
+// Check for errors, concat, minify
+gulp.task('normalize-init', function() {
+  return gulp.src( './'+node+'normalize.css/normalize.css')
+    .pipe(sourcemaps.init({largeFile: true}))
+      .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+      .pipe(rename({suffix: '.min'}))
+      .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+    .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest( './'+dist+'/css/'))
+		  .pipe(notify({message: 'normalize.css compiled successfully!', title : 'sass', sound: false}));
+});
+
+/*------------------------------------------------------*/
+/* END INIT TASKS --------------------------------------*/
+/*------------------------------------------------------*/
+
 
 /*
 *	IMAGE/SVG TASKS
@@ -248,7 +266,7 @@ gulp.task('watch', function () {
 });
 
 // gulp build
-gulp.task('build', ['fonts-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
+gulp.task('build', ['fonts-init', 'normalize-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
