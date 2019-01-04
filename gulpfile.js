@@ -37,8 +37,20 @@ var gulp          = require('gulp'),
 gulp.task('fonts-init', function() {
   // Copy fonts to dist
   gulp.src( './'+src+'/fonts/*')
-		.pipe(gulp.dest( './'+dist+"/fonts/"));
+		.pipe(gulp.dest( './'+dist+"/fonts/"))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fonts-init', sound: false}));
 });
+
+// Pull font-awesome from node_modules and distribute
+gulp.task('fa-init', function() {
+  // Copy font-awesome assets to dist
+  gulp.src( './'+node+'/font-awesome/fonts/*')
+		.pipe(gulp.dest( './'+dist+"/fonts/"))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fa-init', sound: false}));
+  gulp.src( './'+node+'/font-awesome/css/font-awesome.min.css')
+		.pipe(gulp.dest( './'+dist+"/css/"))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fa-init', sound: false}));
+  })
 
 // Pull normalize.css from node_modules and distribute
 // Check for errors, concat, minify
@@ -50,7 +62,7 @@ gulp.task('normalize-init', function() {
       .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
     .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest( './'+dist+'/css/'))
-		  .pipe(notify({message: 'normalize.css compiled successfully!', title : 'sass', sound: false}));
+		  .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'normalize-init', sound: false}));
 });
 
 /*------------------------------------------------------*/
@@ -163,12 +175,6 @@ gulp.task('containers', function() {
 // Add/modify as needed.
 gulp.task('init', function() {
 
-	// This copies the normalize css file over to the scss components folder.
-	// This will overwrite any changes you've made to normalize.css.
-	gulp.src( './'+node+'/normalize.css/normalize.css' )
-		.pipe(rename("_normalize.scss"))
-		.pipe(gulp.dest( './'+src+"scss/components/"));
-  
   // Copies over bootstrap scss and js to dist.
   // This will overwrite any changes you've made to bootstrap's scss
 	gulp.src( './'+node+'/bootstrap/scss/**/*', {base: './'+node})
@@ -176,12 +182,6 @@ gulp.task('init', function() {
   gulp.src( './'+node+'/bootstrap/dist/js/bootstrap.bundle.min.js')
 		.pipe(gulp.dest( './'+dist+"/js/"));
   
-  // Copies over font-awesome assets to dist.
-  gulp.src( './'+node+'/font-awesome/fonts/*')
-		.pipe(gulp.dest( './'+dist+"/fonts/"));
-  gulp.src( './'+node+'/font-awesome/css/font-awesome.min.css')
-		.pipe(gulp.dest( './'+dist+"/css/"));
-    
 });
 
 // Takes the information provided at the top of this file and populates it into the manifest.dnn file.
@@ -266,7 +266,7 @@ gulp.task('watch', function () {
 });
 
 // gulp build
-gulp.task('build', ['fonts-init', 'normalize-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
+gulp.task('build', ['fonts-init', 'fa-init', 'normalize-init', 'scss', 'bscss', 'js', 'images', 'containers', 'manifest']);
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
