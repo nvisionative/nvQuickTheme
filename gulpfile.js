@@ -52,6 +52,14 @@ gulp.task('fa-init', function() {
     .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fa-init', sound: false}));
   })
 
+// Pull jquery.slimmenu.min.js from src/assets and distribute
+gulp.task('slimmenu-init', function() {
+  // Copy jquery.slimmenu.min.js to dist
+  gulp.src( './'+src+'/assets/jquery.slimmenu.min.js')
+		.pipe(gulp.dest( './'+dist+"/js/"))
+    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'slimmenu-init', sound: false}));
+});
+
 // Pull normalize.css from node_modules and distribute
 // Check for errors, concat, minify
 gulp.task('normalize-init', function() {
@@ -243,8 +251,11 @@ gulp.task('watch', function () {
     gulp.watch( './project-details.json', ['manifest'])
 });
 
+// gulp init
+gulp.task('init', sequence('fonts-init', 'fa-init', 'slimmenu-init', 'normalize-init', 'bs-init'));
+
 // gulp build
-gulp.task('build', sequence('fonts-init', 'fa-init', 'normalize-init', 'bs-init', 'scss', 'js', 'images', 'containers', 'manifest'));
+gulp.task('build', sequence('init', 'scss', 'js', 'images', 'containers', 'manifest'));
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
