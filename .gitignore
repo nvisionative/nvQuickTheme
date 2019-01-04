@@ -1,4 +1,3 @@
 node_modules/
 build/
-dist/css/style.min.css
-dist/css/bootstrap.min.css
+dist/
