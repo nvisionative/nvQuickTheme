@@ -32,13 +32,12 @@ var gulp          = require('gulp'),
 /*------------------------------------------------------*/
 /* INIT TASKS ------------------------------------------*/
 /*------------------------------------------------------*/
-
 // Pull fonts from src/fonts and distribute
 gulp.task('fonts-init', function() {
   // Copy fonts to dist
   gulp.src( './'+src+'/fonts/*')
 		.pipe(gulp.dest( './'+dist+"/fonts/"))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fonts-init', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fonts-init', sound: false}));
 });
 
 // Pull font-awesome from node_modules and distribute
@@ -46,10 +45,10 @@ gulp.task('fa-init', function() {
   // Copy font-awesome assets to dist
   gulp.src( './'+node+'/font-awesome/fonts/*')
 		.pipe(gulp.dest( './'+dist+"/fonts/"))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fa-init', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fa-init', sound: false}));
   gulp.src( './'+node+'/font-awesome/css/font-awesome.min.css')
 		.pipe(gulp.dest( './'+dist+"/css/"))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'fa-init', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fa-init', sound: false}));
   })
 
 // Pull jquery.slimmenu.min.js from src/assets and distribute
@@ -57,20 +56,20 @@ gulp.task('slimmenu-init', function() {
   // Copy jquery.slimmenu.min.js to dist
   gulp.src( './'+src+'/assets/jquery.slimmenu.min.js')
 		.pipe(gulp.dest( './'+dist+"/js/"))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'slimmenu-init', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'slimmenu-init', sound: false}));
 });
 
 // Pull normalize.css from node_modules and distribute
-// Check for errors, concat, minify
+// Check for errors, concat, compress, minify
 gulp.task('normalize-init', function() {
   return gulp.src( './'+node+'normalize.css/normalize.css')
     .pipe(sourcemaps.init({largeFile: true}))
-      .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(rename({suffix: '.min'}))
       .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
     .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest( './'+dist+'/css/'))
-		  .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'normalize-init', sound: false}));
+		  .pipe(notify({message: '<%= file.relative %> distributed!', title : 'normalize-init', sound: false}));
 });
 
 // Pull bootstrap from node_modules and distribute
@@ -78,22 +77,20 @@ gulp.task('bs-init', function() {
   // Copy bootstrap css and js to dist
 	gulp.src( './'+node+'/bootstrap/dist/css/bootstrap.min.*')
 		.pipe(gulp.dest( './'+dist+'/css/'))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'bs-init', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'bs-init', sound: false}));
   gulp.src( './'+node+'/bootstrap/dist/js/bootstrap.bundle.min.*')
 		.pipe(gulp.dest( './'+dist+"/js/"))
-    .pipe(notify({message: '<%= file.relative %> distributed successfully!', title : 'bs-init', sound: false}));  
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'bs-init', sound: false}));  
 });
-
 /*------------------------------------------------------*/
 /* END INIT TASKS --------------------------------------*/
 /*------------------------------------------------------*/
 
 
-/*
-*	IMAGE/SVG TASKS
-------------------------------------------------------*/
-    
-// Compresses images for production.
+/*------------------------------------------------------*/
+/* IMAGE TASKS -----------------------------------------*/
+/*------------------------------------------------------*/
+// Optimize images
 gulp.task('images', function() {
   return gulp.src( './'+src+'images/**/*.{jpg,jpeg,png,gif}' )
 		.pipe(imagemin({
@@ -102,35 +99,39 @@ gulp.task('images', function() {
       optimizationLevel: 5,
       svgoPlugins: [{removeViewBox: true}]
     }))
-		.pipe(gulp.dest( './dist/images/' ));
-});
+		.pipe(gulp.dest( './dist/images/' ))
+    .pipe(notify({message: '<%= file.relative %> optimized!', title : 'sass', sound: false}));
+  });
+/*------------------------------------------------------*/
+/* END IMAGE TASKS -------------------------------------*/
+/*------------------------------------------------------*/
 
 
-
-/*
-*	CSS TASKS
-------------------------------------------------------*/
-
-// Development CSS creation.
-// Checks for errors and concats. Minifies.
+/*------------------------------------------------------*/
+/* CSS TASKS -------------------------------------------*/
+/*------------------------------------------------------*/
+// Compile SCSS to CSS and distribute
+// Check for errors, concat, compress, minify
 gulp.task('scss', function() {
   return gulp.src( './'+src+'scss/**/*.scss')
     .pipe(sourcemaps.init({largeFile: true}))
-      .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+      .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(rename({suffix: '.min'}))
       .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
     .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest( './'+dist+'/css/'))
-		  .pipe(notify({message: 'Styles compiled successfully!', title : 'sass', sound: false}));
+		  .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'scss', sound: false}));
 });
+/*------------------------------------------------------*/
+/* END CSS TASKS ---------------------------------------*/
+/*------------------------------------------------------*/
 
 
-/*
-*	JAVASCRIPT TASKS
-------------------------------------------------------*/
-
-// Development JS creation.
-// Checks for errors and concats. Minifies.
+/*------------------------------------------------------*/
+/* JAVASCRIPT TASKS ------------------------------------*/
+/*------------------------------------------------------*/
+// Minify JS
+// Check for errors, concat, minify
 gulp.task('js', function() {
   return gulp.src( [ './'+src+'js/*.js'] )
     .pipe(jshint())
@@ -140,7 +141,7 @@ gulp.task('js', function() {
     .pipe(jshint.reporter('fail'))
     .pipe(notify(function (file) {
       if (file.jshint.success) {
-        return { message : 'JS much excellent success!',
+        return { message : '<%= file.relative %> minified!',
           title : file.relative,
           sound: false,
         };
@@ -157,21 +158,22 @@ gulp.task('js', function() {
       };
     }))
 });
+/*------------------------------------------------------*/
+/* END JAVASCRIPT TASKS --------------------------------*/
+/*------------------------------------------------------*/
 
 
-
-/*
-*	DNN TASKS
-------------------------------------------------------*/
-
+/*------------------------------------------------------*/
+/* DNN TASKS -------------------------------------------*/
+/*------------------------------------------------------*/
+// Distribute containers
 gulp.task('containers', function() {
   gulp.src('./containers/*')
     .pipe(gulp.dest('../../Containers/'+project+'/'))
-    .pipe(notify({message: 'Containers updated!', title : 'containers', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'containers', sound: false}));
 });
 
-
-// Takes the information provided at the top of this file and populates it into the manifest.dnn file.
+// Update manifest.dnn
 gulp.task('manifest', function() {
   gulp.src('./manifest.dnn')
     .pipe(replace(/\<package name\=\"(.*?)(?=\")/, '<package name="'+company+ '.' +project))
@@ -186,30 +188,31 @@ gulp.task('manifest', function() {
     .pipe(replace(/(\\Skins\\)(.*?)(?=\\)/g, '\\Skins\\'+project))
     .pipe(replace(/(\\Containers\\)(.*?)(?=\\)/g, '\\Containers\\'+project))
     .pipe(gulp.dest('./'))
-    .pipe(notify({message: 'Manifest updated successfully!', title : 'manifest', sound: false}));
+    .pipe(notify({message: '<%= file.relative %> updated!', title : 'manifest', sound: false}));
 });
+/*------------------------------------------------------*/
+/* END DNN TASKS ---------------------------------------*/
+/*------------------------------------------------------*/
 
 
-
-/*
-*	PACKAGING TASKS
-* ------------------------------------------------------*/
-
-// Zips dist folder
+/*------------------------------------------------------*/
+/* PACKAGING TASKS -------------------------------------*/
+/*------------------------------------------------------*/
+// ZIP contents of dist folder
 gulp.task('zipdist', function() {
   return gulp.src('dist/**/*')
     .pipe(zip('dist.zip'))
     .pipe(gulp.dest('./'+temp))
 });
 
-// Zips containers folder
+// ZIP contents of containers folder
 gulp.task('zipcontainers', function() {
   return gulp.src('./containers/**/*')
     .pipe(zip('cont.zip'))
     .pipe(gulp.dest('./'+temp))
 });
 
-// Zips everything else
+// ZIP everything else
 gulp.task('zipelse', function() {
   return gulp.src(['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm,txt}'], {base: '.'})
     .pipe(gulp.dest('./'+temp))
@@ -218,31 +221,31 @@ gulp.task('zipelse', function() {
     .pipe(gulp.dest('./'+temp))
 });
 
-// Runs all the zip tasks
+// Run all ZIP tasks
 gulp.task('buildzips', function (cb) {
   sequence(['zipdist', 'zipcontainers', 'zipelse'], cb)
 });
 
-// Zips the .zip files and single files into a package zip file.
-// Will need to change if adding specific files.
+// Assemble files into DNN theme install package
 gulp.task('zipfiles', function() { 
   return gulp.src(['./'+temp+'*.zip','*.{dnn,png,jpg}', 'LICENSE'])
     .pipe(zip(project+'\_'+version+'\_install.zip'))
     .pipe(gulp.dest('./'+build))
 });
 
-// Cleans temp folder
+// Cleanup temp folder
 gulp.task('cleanup', function() {
   return gulp.src('./'+temp)
     .pipe(clean())
 });
+/*------------------------------------------------------*/
+/* END PACKAGING TASKS ---------------------------------*/
+/*------------------------------------------------------*/
 
 
-
-/*
-*	DEV TASKS
-* ------------------------------------------------------*/
-
+/*------------------------------------------------------*/
+/* DEV TASKS -------------------------------------------*/
+/*------------------------------------------------------*/
 // gulp watch
 gulp.task('watch', function () {
     gulp.watch( src+"scss/**/*.scss", ['scss'])
@@ -259,3 +262,6 @@ gulp.task('build', sequence('init', 'scss', 'js', 'images', 'containers', 'manif
 
 // gulp package
 gulp.task('package', sequence('build', 'buildzips', 'zipfiles', 'cleanup'));
+/*------------------------------------------------------*/
+/* END DEV TASKS ---------------------------------------*/
+/*------------------------------------------------------*/
