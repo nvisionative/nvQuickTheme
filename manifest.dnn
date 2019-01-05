@@ -10,7 +10,7 @@
         <url>www.nvquicktheme.com</url>
         <email>support@nvisionative.com</email>
       </owner>
-      <license src="LICENSE" />
+      <license src="themeLicense.txt" />
       <releaseNotes src="themeReleaseNotes.txt" />
       <dependencies>
         <dependency type="coreVersion">09.00.00</dependency>
