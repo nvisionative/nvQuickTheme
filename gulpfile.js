@@ -211,7 +211,7 @@ gulp.task('zipcontainers', function() {
 
 // Zips everything else
 gulp.task('zipelse', function() {
-  return gulp.src(['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm}'], {base: '.'})
+  return gulp.src(['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm,txt}'], {base: '.'})
     .pipe(gulp.dest('./'+temp))
     .pipe(replace('dist/', ''))
     .pipe(zip('else.zip'))
