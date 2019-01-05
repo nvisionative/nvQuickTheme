@@ -11,6 +11,7 @@
         <email>support@nvisionative.com</email>
       </owner>
       <license src="LICENSE" />
+      <releaseNotes src="themeReleaseNotes.txt" />
       <dependencies>
         <dependency type="coreVersion">09.00.00</dependency>
       </dependencies>
