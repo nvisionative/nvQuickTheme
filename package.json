@@ -12,9 +12,10 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-imagemin": "^5.0.3",
     "gulp-jshint": "2.x",
     "gulp-notify": "^3.0.0",
