@@ -1,7 +1,7 @@
-### Bootstrap 4
-By far the largest dependency, Bootstrap 4, is the framework we chose to use. We encourage anyone unfamiliar with Bootstrap 4 to bookmark and reference their extensive documentation [here](https://v4-alpha.getbootstrap.com/layout/overview/).
+### Bootstrap
+By far the largest dependency, Bootstrap, is the framework we chose to use. We encourage anyone unfamiliar with Bootstrap 4 to bookmark and reference their extensive documentation [here](https://getbootstrap.com/).
 
-Our default.ascx, header and footer partials show proper use of bootstrap and its layout classes. Bootstrap 4 is robust, powerful, and has all the bells and whistles that most websites need.
+Our **default.ascx**, **_header.ascx** and **_footer.ascx** partials show proper use of bootstrap and its layout classes. Bootstrap is robust, powerful, and has all the bells and whistles that most websites need.
 
 
 ***

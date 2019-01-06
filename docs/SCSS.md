@@ -26,9 +26,6 @@ It's important to keep in mind that order matters when compiling because that's 
 // mixins will take variables but then needs to be before any mixin calls
 @import 'mixins/mixins';
 
-// normalize.scss is done first to establish it as the baseline but is still easily overwritten
-@import 'components/normalize';
-
 // our baseline file
 @import 'base';
 
