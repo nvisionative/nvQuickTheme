@@ -17,14 +17,7 @@ var gulp          = require('gulp'),
     company       = details.company,
     url           = details.url,
     email         = details.email,
-    description   = details.description,
-    config        = require('./pathing.json'),
-    node          = ( config.node.length )? config.node+'/' : '',
-    assets        = ( config.assets.length )? config.assets+'/' : '',
-    src           = ( config.src.length )? config.src+'/' : '',
-    dist          = ( config.dist.length )? config.dist+'/' : '',
-    temp          = ( config.temp.length )? config.temp+'/' : '',
-    build         = ( config.build.length )? config.build+'/' : '';
+    description   = details.description;
     
 var paths = {
   projectdetails: {
@@ -81,25 +74,25 @@ var paths = {
   zipdist: {
     src: 'dist/**/*',
     zipfile: 'dist.zip',
-    dest: './'+temp
+    dest: './temp/'
   },
   zipcontainers: {
     src: './containers/**/*',
     zipfile: 'cont.zip',
-    dest: './'+temp
+    dest: './temp/'
   },
   zipelse: {
     src: ['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm}'],
     zipfile: 'else.zip',
-    dest: './'+temp
+    dest: './temp/'
   },
   zippackage: {
-    src: ['./'+temp+'*.zip','*.{dnn,png,jpg,txt}', 'LICENSE'],
+    src: ['./temp/*.zip','*.{dnn,png,jpg,txt}', 'LICENSE'],
     zipfile: project+'\_'+version+'\_install.zip',
-    dest: './'+build
+    dest: './build/'
   },
   cleanup: {
-    src: './'+temp
+    src: './temp/'
   }
 };
     
