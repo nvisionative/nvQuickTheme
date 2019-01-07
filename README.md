@@ -1,6 +1,6 @@
-[![](http://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](http://nvquicktheme.nvisionative.com)
+[![](https://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](https://nvquicktheme.nvisionative.com)
 
-[![Build status](https://nvisionative.visualstudio.com/nvQuickTheme/_apis/build/status/nvQuickTheme-Node.js%20With%20gulp-CI)](https://nvisionative.visualstudio.com/nvQuickTheme/_build/latest?definitionId=1) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/)
+[![Build status](https://nvisionative.visualstudio.com/nvQuickTheme/_apis/build/status/nvQuickTheme-Node.js%20With%20gulp-CI)](https://nvisionative.visualstudio.com/nvQuickTheme/_build/latest?definitionId=1) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/) [![HitCount](http://hits.dwyl.io/nvisionative/nvQuickTheme.svg)](http://hits.dwyl.io/nvisionative/nvQuickTheme)
 
 **nvQuickTheme** is more than just a great minimalist DNN (DotNetNuke) theme.  It is a powerful theme building framework and developer workflow.  This "starter solution" was made with developer efficiency and the ultimate DNN theme performance in mind.  Most DNN themes in the marketplace today are loaded with bloat, which can make theming a pain, and for someone new to DNN, almost impossible.  Our [documentation](https://nvisionative.github.io/nvQuickTheme/) will outline basic usage, modification, and advanced usage of this framework and developer workflow.
 
@@ -26,6 +26,8 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 ### Project Setup
 [![nvQuickTheme Video Series - Project Setup](https://img.youtube.com/vi/7UhpbUaeFQc/0.jpg)](https://www.youtube.com/watch?v=7UhpbUaeFQc)
  
+### Color Scheme
+[![nvQuickTheme Video Series - Color Scheme](https://img.youtube.com/vi/o1XW3e8JKfw/0.jpg)](https://www.youtube.com/watch?v=o1XW3e8JKfw)
   
 ---
 [![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
