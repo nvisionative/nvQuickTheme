@@ -19,5 +19,11 @@ menu:
         url: /nvQuickTheme/SCSS.html
   - title: How To...
     subfolderitems:
-      - page: Working With the Out-Of-Box Theme
-        url: /nvQuickTheme/Working-With-the-Out-Of-Box-Theme.html
+      - page: Work With Out-Of-Box Theme
+        url: /nvQuickTheme/Work-With-Out-Of-Box-Theme.html
+      - page: Change Color Scheme
+        url: /nvQuickTheme/Change-Color-Scheme.html
+      - page: Add Custom Theme Release Notes
+        url: /nvQuickTheme/Add-Custom-Theme-Release-Notes.html
+      - page: Add Custom Theme License
+        url: /nvQuickTheme/Add-Custom-Theme-License.html
