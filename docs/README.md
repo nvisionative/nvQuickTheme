@@ -18,3 +18,6 @@ The [nvisionative](https://www.nvisionative.com) team has been working in the DN
 
 ### Project Setup
 [![nvQuickTheme Video Series - Project Setup](https://img.youtube.com/vi/7UhpbUaeFQc/0.jpg)](https://www.youtube.com/watch?v=7UhpbUaeFQc)
+
+### Color Scheme
+[![nvQuickTheme Video Series - Color Scheme](https://img.youtube.com/vi/o1XW3e8JKfw/0.jpg)](https://www.youtube.com/watch?v=o1XW3e8JKfw)

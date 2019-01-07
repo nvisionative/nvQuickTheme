@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="nvisionative.nvQuickTheme" type="Skin" version="1.3.0">
+    <package name="nvisionative.nvQuickTheme" type="Skin" version="2.0.0">
       <friendlyName>nvQuickTheme</friendlyName>
       <description>A DNN Theme Dev Framework</description>
       <iconFile>MyIcon.png</iconFile>
@@ -10,7 +10,8 @@
         <url>www.nvquicktheme.com</url>
         <email>support@nvisionative.com</email>
       </owner>
-      <license src="LICENSE" />
+      <license src="themeLicense.txt" />
+      <releaseNotes src="themeReleaseNotes.txt" />
       <dependencies>
         <dependency type="coreVersion">09.00.00</dependency>
       </dependencies>
