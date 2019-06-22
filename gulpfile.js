@@ -28,11 +28,11 @@ var paths = {
     dest: './dist/fonts/'
   },
   faFonts: {
-    src: './node_modules/font-awesome/fonts/*',
-    dest: './dist/fonts/'
+    src: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
+    dest: './dist/webfonts/'
   },
   faCss: {
-    src: './node_modules/font-awesome/css/font-awesome.min.css',
+    src: './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
     dest: './dist/css/'
   },
   slimMenu: {
@@ -107,14 +107,14 @@ function fontsInit() {
     .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fontsInit', sound: false}));
 }
 
-// Copy font-awesome fonts from node_modules to dist/fonts
+// Copy fontawesome-free fonts from node_modules to dist/fonts
 function faFontsInit() {
   return gulp.src(paths.faFonts.src)
     .pipe(gulp.dest(paths.faFonts.dest))
     .pipe(notify({message: '<%= file.relative %> distributed!', title : 'faFontsInit', sound: false}));
 }
 
-// Copy font-awesome CSS from node_modules to dist/css
+// Copy fontawesome-free CSS from node_modules to dist/css/fontawesome-free
 function faCssInit() {
   return gulp.src(paths.faCss.src)
     .pipe(gulp.dest(paths.faCss.dest))
