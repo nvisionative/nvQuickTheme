@@ -1,4 +1,5 @@
-var gulp          = require('gulp'),
+var bs            = require('browser-sync').create(),
+    gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     jshint        = require('gulp-jshint'),
     sass          = require('gulp-sass'),
@@ -301,6 +302,17 @@ function cleanup() {
 /*------------------------------------------------------*/
 /* DEV TASKS -------------------------------------------*/
 /*------------------------------------------------------*/
+//gulp serve
+function serve() {
+  bs.init({
+      proxy: "nvQuickTheme.loc"
+  });
+  gulp.watch(paths.images.src, images).on('change', bs.reload);
+  gulp.watch(paths.styles.src, styles).on('change', bs.reload);
+  gulp.watch(paths.scripts.src, scripts).on('change', bs.reload);
+  gulp.watch(paths.containers.src, containers).on('change', bs.reload);
+}
+
 // gulp watch
 function watch() {
   gulp.watch(paths.images.src, images);
@@ -344,6 +356,7 @@ exports.zipelse = zipelse;
 exports.ziptemp = ziptemp;
 exports.zippackage = zippackage;
 exports.cleanup = cleanup;
+exports.serve = serve;
 exports.watch = watch;
 exports.init = init;
 exports.build = build;

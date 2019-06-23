@@ -12,6 +12,7 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean": "^0.4.0",
