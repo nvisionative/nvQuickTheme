@@ -52,7 +52,7 @@ var paths = {
     dest: './dist/js/'
   },
   images: {
-    src: './src/images/**/*.{jpg,jpeg,png,gif,svg}',
+    src: './src/images/**/*.{jpg,jpeg,png,gif}',
     dest: './dist/images/'
   },
   styles: {
