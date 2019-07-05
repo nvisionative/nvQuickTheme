@@ -6,9 +6,9 @@
     <li[?SELECTED] class="active"[/?]>
       
       [?ENABLED]
-        <a href="[=URL]" class="btn btn-primary[?NODE] split[/?]">[=TEXT]</a>
+        <a href="[=URL]" class="btn btn-primary[?NODE] split[/?]" target="[=TARGET]">[=TEXT]</a>
       [?ELSE]    
-        <a href="#" class="btn btn-primary[?NODE] single[/?]">[=TEXT]</a>
+        <a href="#" class="btn btn-primary[?NODE] single[/?]" target="[=TARGET]">[=TEXT]</a>
       [/?]
       
       [?NODE]
@@ -23,9 +23,9 @@
     <li class="[?SELECTED] active[/?]">
       
       [?ENABLED]  
-        <a href="[=URL]" [?NODE]class="split"[/?]>[=TEXT]</a>
+        <a href="[=URL]" [?NODE]class="split"[/?] target="[=TARGET]">[=TEXT]</a>
       [?ELSE]
-        <a href="#">[=TEXT]</a>
+        <a href="#" target="[=TARGET]">[=TEXT]</a>
       [/?]
       
       [?NODE]
