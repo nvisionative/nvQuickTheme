@@ -1,7 +1,7 @@
 <header class="bg-light-grey">
-  <div class="container-fluid user-controls bg-tertiary">
+  <div class="container-fluid bg-tertiary">
     <div class="container">
-      <div class="row justify-content-end">
+      <div class="row user-controls justify-content-end">
         <ul>
           <li><dnn:Login runat="server" id="dnnLogin" /></li>
           <li><dnn:User runat="server" id="dnnUser" /></li>

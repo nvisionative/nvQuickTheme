@@ -23,12 +23,12 @@
 }
 
 /* User Controls */
-.user-controls ul {
+.user-controls > ul {
   display:inline-flex;
   margin:0;
   padding:5px;
   
-  li {
+  > li {
     display:inline-flex;
     align-items:center;
     
