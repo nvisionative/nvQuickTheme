@@ -44,10 +44,6 @@ var paths = {
     src: './node_modules/normalize.css/normalize.css',
     dest: './dist/css/'
   },
-  bsCss: {
-    src: './node_modules/bootstrap/dist/css/bootstrap.min.*',
-    dest: './dist/css/'
-  },
   bsJs: {
     src: './node_modules/bootstrap/dist/js/bootstrap.bundle.min.*',
     dest: './dist/js/'
@@ -184,7 +180,7 @@ function images() {
 // Compile custom SCSS to CSS and copy to dist/css
 function styles() {
   return gulp.src(paths.styles.src, { sourcemaps: true })
-  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+  .pipe(sass({includePaths: ['./node_modules']},{outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
   .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
@@ -322,7 +318,7 @@ function watch() {
 }
 
 // gulp init
-var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsCssInit, bsJsInit);
+var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit);
 
 // gulp build
 var build = gulp.series(init, styles, scripts, images, containers, manifest);
