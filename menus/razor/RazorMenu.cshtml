@@ -1,0 +1,67 @@
+@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+    
+<ul class="slimmenu normal" id="navigation">
+    @RenderPages(Model.Source.root.Children)
+</ul>
+
+@helper RenderPages(IEnumerable<MenuNode> pages)
+{
+    if (!pages.Any())
+    {
+        return;
+    }
+
+    foreach (var page in pages)
+    {
+        var hasChildren = page.HasChildren();
+        var split = hasChildren ? "split" : string.Empty;
+        var single = hasChildren ? "single" :string.Empty;
+
+        <li class="@(page.Selected ? "active" : string.Empty)">
+            @if (page.Enabled)
+            {
+                <a href="@page.Url" class="btn btn-primary @split" target="@page.Target">@page.Text</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-primary @single" target="@page.Target">@page.Text</a>
+            }
+
+            @if (hasChildren)
+            {
+                <ul>
+                    @RenderNestedPages(page.Children)
+                </ul>
+            }
+        </li>
+    }    
+}
+
+@helper RenderNestedPages(IEnumerable<MenuNode> pages)
+{
+    foreach (var page in pages)
+    {
+        var hasChildren = page.HasChildren();
+        var split = hasChildren ? "split" : string.Empty;
+
+        <li class="@(page.Selected ? "active" : string.Empty)">
+            @if (page.Enabled)
+            {
+                <a href="@page.Url" class="@split" target="@page.Target">@page.Text</a>
+            }
+            else
+            {
+                <a href="#" target="@page.Target">@page.Text</a>
+            }
+
+            @if (hasChildren)
+            {
+                <ul>
+                    @RenderNestedPages(page.Children)
+                </ul>
+            }
+        </li>
+    }
+}
