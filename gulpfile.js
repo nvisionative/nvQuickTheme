@@ -1,5 +1,4 @@
-var bs            = require('browser-sync').create(),
-    gulp          = require('gulp'),
+var gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     jshint        = require('gulp-jshint'),
     sass          = require('gulp-sass'),
@@ -29,11 +28,11 @@ var paths = {
     dest: './dist/fonts/'
   },
   faFonts: {
-    src: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
-    dest: './dist/webfonts/'
+    src: './node_modules/font-awesome/fonts/*',
+    dest: './dist/fonts/'
   },
   faCss: {
-    src: './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
+    src: './node_modules/font-awesome/css/font-awesome.min.css',
     dest: './dist/css/'
   },
   slimMenu: {
@@ -44,12 +43,16 @@ var paths = {
     src: './node_modules/normalize.css/normalize.css',
     dest: './dist/css/'
   },
+  bsCss: {
+    src: './node_modules/bootstrap/dist/css/bootstrap.min.*',
+    dest: './dist/css/'
+  },
   bsJs: {
     src: './node_modules/bootstrap/dist/js/bootstrap.bundle.min.*',
     dest: './dist/js/'
   },
   images: {
-    src: './src/images/**/*.{jpg,jpeg,png,gif,svg}',
+    src: './src/images/**/*.{jpg,jpeg,png,gif}',
     dest: './dist/images/'
   },
   styles: {
@@ -104,14 +107,14 @@ function fontsInit() {
     .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fontsInit', sound: false}));
 }
 
-// Copy fontawesome-free fonts from node_modules to dist/fonts
+// Copy font-awesome fonts from node_modules to dist/fonts
 function faFontsInit() {
   return gulp.src(paths.faFonts.src)
     .pipe(gulp.dest(paths.faFonts.dest))
     .pipe(notify({message: '<%= file.relative %> distributed!', title : 'faFontsInit', sound: false}));
 }
 
-// Copy fontawesome-free CSS from node_modules to dist/css/fontawesome-free
+// Copy font-awesome CSS from node_modules to dist/css
 function faCssInit() {
   return gulp.src(paths.faCss.src)
     .pipe(gulp.dest(paths.faCss.dest))
@@ -180,7 +183,7 @@ function images() {
 // Compile custom SCSS to CSS and copy to dist/css
 function styles() {
   return gulp.src(paths.styles.src, { sourcemaps: true })
-  .pipe(sass({includePaths: ['./node_modules']},{outputStyle: 'compressed'}).on('error', sass.logError))
+  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
   .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
@@ -298,17 +301,6 @@ function cleanup() {
 /*------------------------------------------------------*/
 /* DEV TASKS -------------------------------------------*/
 /*------------------------------------------------------*/
-//gulp serve
-function serve() {
-  bs.init({
-      proxy: "nvQuickTheme.loc"
-  });
-  gulp.watch(paths.images.src, images).on('change', bs.reload);
-  gulp.watch(paths.styles.src, styles).on('change', bs.reload);
-  gulp.watch(paths.scripts.src, scripts).on('change', bs.reload);
-  gulp.watch(paths.containers.src, containers).on('change', bs.reload);
-}
-
 // gulp watch
 function watch() {
   gulp.watch(paths.images.src, images);
@@ -318,7 +310,7 @@ function watch() {
 }
 
 // gulp init
-var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit);
+var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsCssInit, bsJsInit);
 
 // gulp build
 var build = gulp.series(init, styles, scripts, images, containers, manifest);
@@ -352,7 +344,6 @@ exports.zipelse = zipelse;
 exports.ziptemp = ziptemp;
 exports.zippackage = zippackage;
 exports.cleanup = cleanup;
-exports.serve = serve;
 exports.watch = watch;
 exports.init = init;
 exports.build = build;
