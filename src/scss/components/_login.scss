@@ -116,7 +116,9 @@
     }
 }
 
-a#dnn_dnnLogin_loginLink {
+
+//Hides the #dnnHiddenLogin LOGIN theme object
+.hiddenLogin {
     bottom: 0;
     display: block;
     height: 25px;
