@@ -45,3 +45,6 @@
 
 <!-- Footer -->
 <!--#include file="partials/_footer.ascx" -->
+
+<!-- Login -->
+<!--#include file="partials/_login.ascx" -->
