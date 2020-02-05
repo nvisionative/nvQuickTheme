@@ -134,7 +134,7 @@ function normalizeInit() {
   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
-  .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+  .pipe(autoprefixer())
   .pipe(gulp.dest(paths.normalize.dest, { sourcemaps: '.' }))
   .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'normalizeInit', sound: false}));
 }
@@ -186,7 +186,7 @@ function styles() {
   .pipe(sass({includePaths: ['./node_modules']},{outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
-  .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+  .pipe(autoprefixer())
   .pipe(gulp.dest(paths.styles.dest, { sourcemaps: '.' }))
   .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'styles', sound: false}));
 }
