@@ -88,8 +88,11 @@ var paths = {
     zipfile: project+'\_'+version+'\_install.zip',
     dest: './build/'
   },
-  cleanup: {
+  cleantemp: {
     src: './temp/'
+  },
+  cleandist: {
+    src: './dist/'
   }
 };
     
@@ -131,7 +134,7 @@ function normalizeInit() {
   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
-  .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+  .pipe(autoprefixer())
   .pipe(gulp.dest(paths.normalize.dest, { sourcemaps: '.' }))
   .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'normalizeInit', sound: false}));
 }
@@ -183,7 +186,7 @@ function styles() {
   .pipe(sass({includePaths: ['./node_modules']},{outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
-  .pipe(autoprefixer({browsers: ['last 2 versions', 'ie >= 9', '> 1%']}))
+  .pipe(autoprefixer())
   .pipe(gulp.dest(paths.styles.dest, { sourcemaps: '.' }))
   .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'styles', sound: false}));
 }
@@ -244,6 +247,20 @@ function manifest() {
 
 
 /*------------------------------------------------------*/
+/* MAINTENANCE TASKS -----------------------------------*/
+/*------------------------------------------------------*/
+// Clean up dist folder
+function cleandist() {
+  return gulp.src(paths.cleandist.src, { allowEmpty: true })
+    .pipe(clean())
+    .pipe(notify({message: 'dist folder cleaned up!', title : 'cleandist', sound: false}));
+}
+/*------------------------------------------------------*/
+/* END MAINTENANCE TASKS -------------------------------*/
+/*------------------------------------------------------*/
+
+
+/*------------------------------------------------------*/
 /* PACKAGING TASKS -------------------------------------*/
 /*------------------------------------------------------*/
 // ZIP contents of dist folder
@@ -284,11 +301,11 @@ function zippackage() {
     .pipe(notify({message: '<%= file.relative %> created!', title : 'zippackage', sound: false}));
 }
 
-// Cleanup temp folder
-function cleanup() {
-  return gulp.src(paths.cleanup.src)
+// Clean temp folder
+function cleantemp() {
+  return gulp.src(paths.cleantemp.src)
     .pipe(clean())
-    .pipe(notify({message: 'temp folder cleaned up!', title : 'cleanup', sound: false}));
+    .pipe(notify({message: 'temp folder cleaned up!', title : 'cleantemp', sound: false}));
 }
 /*------------------------------------------------------*/
 /* END PACKAGING TASKS ---------------------------------*/
@@ -321,10 +338,10 @@ function watch() {
 var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit);
 
 // gulp build
-var build = gulp.series(init, styles, scripts, images, containers, manifest);
+var build = gulp.series(cleandist, init, styles, scripts, images, containers, manifest);
 
 // gulp package
-var package = gulp.series(build, ziptemp, zippackage, cleanup);
+var package = gulp.series(build, ziptemp, zippackage, cleantemp);
 /*------------------------------------------------------*/
 /* END DEV TASKS ---------------------------------------*/
 /*------------------------------------------------------*/
@@ -346,12 +363,13 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.containers = containers;
 exports.manifest = manifest;
+exports.cleandist = cleandist;
 exports.zipdist = zipdist;
 exports.zipcontainers = zipcontainers;
 exports.zipelse = zipelse;
 exports.ziptemp = ziptemp;
 exports.zippackage = zippackage;
-exports.cleanup = cleanup;
+exports.cleantemp = cleantemp;
 exports.serve = serve;
 exports.watch = watch;
 exports.init = init;

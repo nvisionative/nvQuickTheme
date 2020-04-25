@@ -26,5 +26,18 @@
     "gulp-uglify": "^3.0.0",
     "gulp-zip": "^4.1.0",
     "jshint": "^2.9.5"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ]
 }

@@ -12,7 +12,8 @@ This command initializes all third-party dependencies utilized within **nvQuickT
 * **gulp bsJsInit**
 
 ### gulp build
-This command error checks, concatenates, compiles and minifies all your JS and SCSS into the `./dist/` folder, as well as copies your containers to the correct folder. More specifically, it executes the following commands in series (completes each task before the next):
+This command cleans your `./dist/` folder, then error checks, concatenates, compiles and minifies all your JS and SCSS into the `./dist/` folder, as well as copies your containers to the correct folder. More specifically, it executes the following commands in series (completes each task before the next):
+* **gulp cleandist**
 * **gulp init**
 * **gulp styles**
 * **gulp scripts**
@@ -55,6 +56,9 @@ Copies containers to the correct folder within your DNN instance (assuming you a
 ## Process Commands
 These commands are used within other commands and for other special situations. _We recommend use of these only for advanced users._
 
+### gulp cleandist
+Deletes contents of `./dist/` folder. This is particularly useful when assets (such as images) are no longer required and removed from `./src/` folder. It is the first task triggered during **gulp build**.
+
 ### gulp zipdist
 ZIPs contents of `./dist/` folder. Used to prepare for theme packaging.
 
@@ -67,5 +71,5 @@ ZIPs contents of `./menus/` folder, `./partials/` folder, and all ASCX, XML, HTM
 ### gulp zippackage
 ZIPs all subset ZIP files and other pertinent project files into theme package installation file using the following naming convention: `[project]_[version]_install.zip`
 
-### gulp cleanup
-Deletes all temporary ZIP and project files used in package tasks.
+### gulp cleantemp
+Deletes all temporary ZIP and project files from `./temp/` folder used in package tasks.
