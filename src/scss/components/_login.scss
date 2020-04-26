@@ -102,7 +102,7 @@
                             padding-right: .25em;
                         }
 
-                        &::nth-child(2) {
+                        &:nth-child(2) {
                             padding-left: .25em;
                         }
                     }
@@ -114,4 +114,16 @@
             }
         }
     }
+}
+
+
+//Hides the #dnnHiddenLogin LOGIN theme object
+.hiddenLogin {
+    bottom: 0;
+    display: none;
+    height: 25px;
+    left: 0;
+    position: fixed;
+    text-indent: -1000px;
+    width: 25px;
 }

@@ -15,4 +15,6 @@
       </ul>
     </div>
   </div>
+
+  <dnn:Login runat="server" id="dnnHiddenLogin" CssClass="hiddenLogin" />
 </footer>
