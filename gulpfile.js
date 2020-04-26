@@ -139,13 +139,6 @@ function normalizeInit() {
   .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'normalizeInit', sound: false}));
 }
 
-// Copy bootstrap CSS from node_modules to dist/css
-function bsCssInit() {
-  return gulp.src(paths.bsCss.src)
-    .pipe(gulp.dest(paths.bsCss.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'bsCssInit', sound: false}));
-}
-
 // Copy bootstrap JS from node_modules to dist/js
 function bsJsInit() {
   return gulp.src(paths.bsJs.src)
@@ -356,7 +349,6 @@ exports.faFontsInit = faFontsInit;
 exports.faCssInit = faCssInit;
 exports.slimMenuInit = slimMenuInit;
 exports.normalizeInit = normalizeInit;
-exports.bsCssInit = bsCssInit;
 exports.bsJsInit = bsJsInit;
 exports.images = images;
 exports.styles = styles;
