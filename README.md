@@ -1,4 +1,4 @@
-[![](https://nvquicktheme.nvisionative.com/portals/0/nvQuickTheme_logo.png)](https://nvquicktheme.nvisionative.com)
+[![](https://www.nvquicktheme.com/Portals/0/nvQuickTheme_LOGO_final.png)](https://www.nvquicktheme.com)
 
 [![Build status](https://nvisionative.visualstudio.com/nvQuickTheme/_apis/build/status/nvQuickTheme-Node.js%20With%20gulp-CI)](https://nvisionative.visualstudio.com/nvQuickTheme/_build/latest?definitionId=1) [![Greenkeeper badge](https://badges.greenkeeper.io/nvisionative/nvQuickTheme.svg)](https://greenkeeper.io/) [![HitCount](http://hits.dwyl.io/nvisionative/nvQuickTheme.svg)](http://hits.dwyl.io/nvisionative/nvQuickTheme)
 
@@ -30,4 +30,4 @@ The [nvisionative](http://www.nvisionative.com) team has been working in the DNN
 [![nvQuickTheme Video Series - Color Scheme](https://img.youtube.com/vi/o1XW3e8JKfw/0.jpg)](https://www.youtube.com/watch?v=o1XW3e8JKfw)
   
 ---
-[![Brought to the DNN community by nvisionative](http://www.nvquicksite.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
+[![Brought to the DNN community by nvisionative](http://www.nvquicktheme.com/Portals/0/broughtBy-nvisionative.png)](http://www.nvisionative.com)
