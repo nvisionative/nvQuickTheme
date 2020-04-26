@@ -3,9 +3,9 @@ $light-grey: #e6e6e6 !default;
 $grey:#7d7d7d !default;
 $dark-grey: #333333 !default;
 
-$primary-color: rgb(236, 61, 70) !default;
-$secondary-color: rgb(0, 165, 225) !default;
-$tertiary-color: rgb(70, 42, 43) !default;
+$primary-color: map-get($bs-colors, 'primary') !default;
+$secondary-color: map-get($bs-colors, 'secondary')  !default;
+$tertiary-color: #462a2b !default;
 
 $border-color: #bbb !default;
 $link-color: $primary-color !default;
