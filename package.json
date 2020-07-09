@@ -7,7 +7,7 @@
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "bootstrap": "^4.4.1",
     "normalize.css": "^8.0.1"
   },
