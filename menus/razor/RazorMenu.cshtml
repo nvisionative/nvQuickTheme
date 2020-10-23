@@ -18,15 +18,16 @@
         var hasChildren = page.HasChildren();
         var split = hasChildren ? "split" : string.Empty;
         var single = hasChildren ? "single" :string.Empty;
+        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") : "";
 
         <li class="@(page.Selected ? "active" : string.Empty)">
             @if (page.Enabled)
             {
-                <a href="@page.Url" class="btn btn-primary @split" target="@page.Target">@page.Text</a>
+                <a href="@page.Url" class="btn btn-primary @split" @attrTarget>@page.Text</a>
             }
             else
             {
-                <a href="#" class="btn btn-primary @single" target="@page.Target">@page.Text</a>
+                <a href="#" class="btn btn-primary @single" @attrTarget>@page.Text</a>
             }
 
             @if (hasChildren)
@@ -45,15 +46,16 @@
     {
         var hasChildren = page.HasChildren();
         var split = hasChildren ? "split" : string.Empty;
+        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") : "";
 
         <li class="@(page.Selected ? "active" : string.Empty)">
             @if (page.Enabled)
             {
-                <a href="@page.Url" class="@split" target="@page.Target">@page.Text</a>
+                <a href="@page.Url" class="@split" @attrTarget>@page.Text</a>
             }
             else
             {
-                <a href="#" target="@page.Target">@page.Text</a>
+                <a href="#" @attrTarget>@page.Text</a>
             }
 
             @if (hasChildren)
