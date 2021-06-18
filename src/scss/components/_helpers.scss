@@ -34,27 +34,3 @@
     background:white;
   }
 }
-
-// padding on div below contentpane
-// usage: adding cpy-4 class to a div would add padding to top and bottom of the div underneath it
-// mostly useful for cols with a bg color
-@each $size, $length in $cspacers {
-
-  .cp-#{$size} > div { padding: $length !important; }
-  .cpt-#{$size} > div,
-  .cpy-#{$size} > div {
-    padding-top: $length !important;
-  }
-  .cpr-#{$size} > div,
-  .cpx-#{$size} > div {
-    padding-right: $length !important;
-  }
-  .cpb-#{$size} > div,
-  .cpy-#{$size} > div {
-    padding-bottom: $length !important;
-  }
-  .cpl-#{$size} > div,
-  .cpx-#{$size} > div {
-    padding-left: $length !important;
-  }
-}
