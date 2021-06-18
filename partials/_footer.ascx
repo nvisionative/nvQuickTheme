@@ -1,20 +1,28 @@
-<footer class="bg-light-grey">
-  <div class="container upper">
-    <div class="row py-5">
-      <div id="FooterPaneOne" class="col-md-4" runat="server"></div>
-      <div id="FooterPaneTwo" class="col-md-4" runat="server"></div>
-      <div id="FooterPaneThree" class="col-md-4" runat="server"></div>
-    </div>
-  </div>
-  <div class="container-fluid bg-primary disclaimer">
+<footer>
+  <div class="bg-primary">
     <div class="container">
-      <ul>
-        <li><dnn:COPYRIGHT id="dnnCopyright" runat="server" /></li>
-        <li><dnn:TERMS id="dnnTerms" runat="server" /></li>
-        <li><dnn:PRIVACY id="dnnPrivacy" runat="server" /></li>
-      </ul>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="FooterPaneA" runat="server"></div>
+        </div>
+        <div class="col-md-6">
+          <div id="FooterPaneB" runat="server"></div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <dnn:Login runat="server" id="dnnHiddenLogin" CssClass="hiddenLogin" />
+  <div class="bg-secondary">
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-12">
+          <ul class="list-unstyled disclaimer">
+            <li><dnn:COPYRIGHT id="dnnCopyright" runat="server" /></li>
+            <li><dnn:TERMS id="dnnTerms" Text="Terms" runat="server" /></li>
+            <li><dnn:PRIVACY id="dnnPrivacy" Text="Privacy" runat="server" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
+<dnn:Login runat="server" id="dnnHiddenLogin" CssClass="hiddenLogin" />
