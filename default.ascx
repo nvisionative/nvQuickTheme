@@ -11,8 +11,7 @@
 
   <div class="container">
     <div class="row">
-      <div id="DoublePaneOneOne" class="col-md-6 cpr-5" runat="server"></div>
-      <div id="DoublePaneOneTwo" class="col-md-6 bg-light-grey cp-5" runat="server"></div>
+      <div id="ContentPane" class="col-12" runat="server"></div> 
     </div>
   </div>
 
