@@ -18,12 +18,6 @@
   margin: 0 0 ( ($lineheight / $font-size * ( 1 / ( $lineheight / $defaultlineheight))) * .5em ) 0; 
 }
 
-@mixin background-cover(){
-	background-repeat: no-repeat;
-	background-position: center center;
-  background-size: cover;
-}
-
 @mixin mq-max-width( $width-in-px ) {
   @media only screen and (max-width: ($width-in-px / $base-font-size) * 1em ) {
     @content;

@@ -3,8 +3,8 @@ $light-grey: #e6e6e6 !default;
 $grey:#7d7d7d !default;
 $dark-grey: #333333 !default;
 
-$primary-color: map-get($bs-colors, 'primary') !default;
-$secondary-color: map-get($bs-colors, 'secondary')  !default;
+$primary-color: map-get($theme-colors, 'primary') !default;
+$secondary-color: map-get($theme-colors, 'secondary')  !default;
 $tertiary-color: #462a2b !default;
 
 $border-color: #bbb !default;
