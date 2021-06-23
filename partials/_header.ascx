@@ -1,5 +1,5 @@
 <header class="sticky-top">
-  <div class="bg-secondary py-1">
+  <div class="bg-main-accent py-1">
     <div class="container">
       <div class="row justify-content-end">
         <ul class="list-unstyled user-controls">
@@ -11,12 +11,12 @@
       </div>
     </div>
   </div>
-  <div class="bg-primary">
+  <div class="bg-dark-shade">
     <div class="container">
       <div class="row navbar-header">
         <dnn:LOGO id="dnnLOGO" runat="server" />
         <nav>
-          <dnn:MENU id="menu" MenuStyle="menus/razor" runat="server" NodeSelector="*"></dnn:MENU>
+          <dnn:MENU id="menu" MenuStyle="menus/simple" runat="server" NodeSelector="*"></dnn:MENU>
         </nav>
       </div>
     </div>
