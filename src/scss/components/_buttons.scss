@@ -1,61 +1,15 @@
-.btn-primary {
-  background-color:$primary-color;
-  border-color:$primary-color;
-}
-
-.btn-secondary {
-  background-color:$secondary-color;
-  border-color:$secondary-color;
-}
-
-.btn-primary, .btn-secondary {
-  &:hover, &:active, &:focus {
-    background-color:$tertiary-color !important;
-    border-color:$tertiary-color !important;
-    box-shadow:none !important;
+// button iterations for each color
+@each $color, $value in $colors {
+  .btn-#{$color} {
+    @include button-variant($color,.8);
   }
-}
-
-.btn-outline-white {
-  background-color:transparent;
-  border-color:white;
-  color:white;
-  
-  &:hover, &:active, &:focus {
-    color:white;
-    background-color:$primary-color;
-    border-color:$primary-color;
+  .btn-outline-#{$color} {
+    @include button-outline-variant($color);
   }
-}
-
-.btn.split {
-  border-top-right-radius:0;
-  border-bottom-right-radius:0;
-  
-  ~ .sub-toggle {
-    @extend .btn;
-    @extend .btn-primary;
-    border-top-right-radius:.25rem;
-    border-bottom-right-radius:.25rem;
-    margin-left:1px;
+  .btn-reverse-outline-#{$color} {
+    @include button-reverse-outline-variant($color);
   }
-}
-.btn.single {
-  display:flex;
-  align-items:center;
-  
-  ~ .sub-toggle {
-    display:none;
-  }
-  &:after {
-    display: inline-block; 
-    content: "";
-    color:white;
-    margin-top:.15em;
-    margin-left:10px;
-    border-top: .3em solid;
-    border-right: .3em solid transparent;
-    border-bottom: 0;
-    border-left: .3em solid transparent;
+  .btn-inverse-#{$color} {
+    @include button-inverse-variant($color,.9);
   }
 }
