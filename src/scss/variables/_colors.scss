@@ -1,12 +1,39 @@
-// Colors
-$light-grey: #e6e6e6 !default;
-$grey:#7d7d7d !default;
-$dark-grey: #333333 !default;
+// Color Array
+$colors: (
+    "white":white,
+    "light-shade":#b0b1c3,
+    "light-accent":#e0e1eb,
+    "main-shade":#181c8c,
+    "main-accent":#2893fc,
+    "main-highlight":#75b8fc,
+    "sub-shade":#2be6c2,
+    "sub-accent":#7cebd4,
+    "sub-highlight":#bcfdf0,
+    "dark-shade":#050621,
+    "dark-highlight":#484858,
+    "black":black
+);
 
-$primary-color: map-get($theme-colors, 'primary') !default;
-$secondary-color: map-get($theme-colors, 'secondary')  !default;
-$tertiary-color: #462a2b !default;
+// Convert Hex to RGB
+@function hex-to-rgb($hex) {
+    @return red($hex), green($hex), blue($hex);
+}
 
-$border-color: #bbb !default;
-$link-color: $primary-color !default;
-$font-color: #4a4a4a !default;
+// Setup Color Array as CSS4 Variables
+:root {
+    @each $name, $color in $colors {
+        --color-#{$name}: #{$color};
+    }
+    @each $name, $color in $colors {
+        --color-#{$name}--rgb: #{hex-to-rgb($color)};
+    }
+}
+
+// Color Selector
+@function color($color-name, $rgb: false) {
+    @if($rgb) {
+        @return var(--color-#{$color-name}--rgb, map-get($colors, $color-name));
+    } @else {
+        @return var(--color-#{$color-name}, map-get($colors, $color-name));
+    }
+}

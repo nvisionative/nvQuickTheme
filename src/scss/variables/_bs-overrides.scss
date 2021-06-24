@@ -12,15 +12,6 @@ $theme-colors: (
   'dark':#343a40
 );
 
-$primary:map-get($theme-colors, 'primary');
-$secondary:map-get($theme-colors, 'secondary');
-$success:map-get($theme-colors, 'success');
-$info:map-get($theme-colors, 'info');
-$warning:map-get($theme-colors, 'warning');
-$danger:map-get($theme-colors, 'danger');
-$light:map-get($theme-colors, 'light');
-$dark:map-get($theme-colors, 'dark');
-
 // Grid breakpoints (changed to relative units to fix cross-platform inconsistencies)
 $grid-breakpoints: (
   xs: 0,
@@ -74,6 +65,3 @@ $form-check-input-margin-y:3px;
 
 $custom-file-height-inner:unset;
 $custom-file-line-height:1.61539;
-
-// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-// $yiq-contrasted-threshold:  195 !default;

@@ -1,5 +1,5 @@
 <footer>
-  <div class="bg-primary">
+  <div class="bg-dark-highlight">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-secondary">
+  <div class="bg-dark-shade text-white">
     <div class="container py-2">
       <div class="row">
         <div class="col-12">
