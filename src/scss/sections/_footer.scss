@@ -1,40 +1,22 @@
 footer {
-  
-  .upper {
-    margin-bottom:0;
-
-  }
-  a {
-    font-weight:400;
-  }
-
   .disclaimer {
     @include font-size(12);
-    padding-top:1rem;
-    padding-bottom:1rem;
-    margin-bottom:0;
-
-    ul {
-      list-style-type:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-
-      li + li:before {
+    display:flex;
+    margin:0;
+    margin-left:-1rem;
+    margin-right:-1rem;
+    li {
+      position:relative;
+      padding:0 1rem;
+      + li:before {
         content:'';
-        display:inline-block;
-        vertical-align:middle;
-        height:100%;
-        width:10px;
-        border-left:1px solid white;
-        margin-left:10px;
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        width:1px;
+        background-color:white;
       }
-    }
-    
-    a {
-      color:white;
     }
   }
 }

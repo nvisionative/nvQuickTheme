@@ -1,5 +1,5 @@
 /* Main Navigation */
-.nav-main {
+.navbar-header {
   justify-content:space-between;
   position:relative;
   
@@ -44,13 +44,13 @@
       color:white;
       
       &:hover, &:focus {
-        color:$secondary-color;
+        color:color('main-accent');
       }
     }
     
     input {
       padding:.375rem .375rem;
-      border:1px solid $tertiary-color;
+      border:1px solid color('dark-highlight');
       border-radius:.25rem;
     }
     
@@ -74,7 +74,6 @@
   position:relative;
   width:100%;
   height:100%;
-  background-color:purple;
 }
 
 /* Mobile Button */
@@ -89,7 +88,7 @@
   width:44px;
   height:44px;
   padding:6px;
-  color:$tertiary-color;
+  color:color('dark-highlight');
   @include font-size(30);
   text-align:center;
   background-color:rgba(255,255,255, .75);
@@ -97,7 +96,7 @@
   cursor:pointer;
   
   &:hover, &:focus {
-    color:$primary-color;
+    color:color('main-shade');
   }
 }
 
@@ -145,7 +144,7 @@ nav ul {
       left:0;
       top:calc(100% + 1px);
       z-index:999;
-      background:$tertiary-color;
+      background:color('dark-highlight');
       display:none;
       width:auto;
       border-radius:.25em;
@@ -188,7 +187,7 @@ nav ul {
         white-space:nowrap;
 
         &:hover, &:focus {
-          background-color:$primary-color;
+          background-color:color('main-shade');
         }
       }
 
@@ -196,7 +195,7 @@ nav ul {
 
         /* Under 2 */
         ul {
-          background:$tertiary-color;
+          background:color('dark-highlight');
           position: absolute;
           left:calc(100% + 1px);
           top: 0;
@@ -221,7 +220,7 @@ nav ul {
         }
 
         &:hover, &:focus {
-          background-color:$primary-color;
+          background-color:color('main-shade');
         }
       }
     }
@@ -232,7 +231,7 @@ nav ul {
       right:0;
       top:calc(100% + 1px);
       z-index:999;
-      background:$tertiary-color;
+      background:color('dark-highlight');
       display:none;
       width:auto;
       min-width:250px;
@@ -259,7 +258,7 @@ nav ul {
         border-radius:0;
 
         &:hover, &:focus {
-          background-color:$primary-color !important;
+          background-color:color('main-shade') !important;
         }
         
         &.btn.single {
@@ -275,7 +274,7 @@ nav ul {
       > li {
         /* Under 2 */
         ul {
-          background:$tertiary-color;
+          background:color('dark-highlight');
           position:relative;
           display:none;
           width:100%;
@@ -317,7 +316,7 @@ nav ul {
         right:0;
         width:44px;
         height:44px;
-        background-color:$tertiary-color;
+        background-color:color('dark-highlight');
         border-radius:0 !important;
         
         &:before {
@@ -331,11 +330,11 @@ nav ul {
         }
 
         &:hover, &:focus {
-          background-color:$primary-color !important;
+          background-color:color('main-shade') !important;
         }
         
         &.expanded {
-          background-color:$primary-color;
+          background-color:color('main-shade');
           
           &:before {
             transform:rotate(90deg);

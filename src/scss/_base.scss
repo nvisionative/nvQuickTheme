@@ -14,7 +14,7 @@ body {
   font-weight: 200;
   line-height: 1.5;
   font-family: $open-sans;
-  color: $font-color;
+  color: color('dark-shade');
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
 }
@@ -92,22 +92,18 @@ sub {
 //–––––––––––––––––––––––––––––––––––––––––––––––––
 
 a {
-  color: $link-color;
+  color: color('sub-highlight');
   text-decoration:none;
   transition:.25s ease-in-out all;
 
   &:hover {
-    color: darken($link-color, 5%);
+    color: color('light-shade');
     text-decoration:none;
   }
 }
 header a, footer a {
-	color: $primary-color;
+	color: color('white');
 	font-weight:600;
-	
-	&:hover {
-    	color: lighten($primary-color, 20%);
-  	}
 }
 
 
@@ -120,13 +116,13 @@ hr {
   height:1px;
   width:25%;
   border:0;
-  border-top: 1px solid white;
+  border-top:1px solid color('white');
   margin-top:1.5rem;
   margin-bottom:1.5rem;
   padding: 0;
 }
 
 pre {
-  background:$light-grey;
+  background:color('sub-highlight');
   padding:10px 15px;
 }

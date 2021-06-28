@@ -4,6 +4,8 @@ var bs            = require('browser-sync').create(),
     jshint        = require('gulp-jshint'),
     sass          = require('gulp-sass'),
     imagemin      = require('gulp-imagemin'),
+    imwebp        = require('imagemin-webp'),
+    webp          = require('gulp-webp'),
     rename        = require('gulp-rename'),
     uglify        = require('gulp-uglify'),
     notify        = require('gulp-notify'),
@@ -49,7 +51,7 @@ var paths = {
     dest: './dist/js/'
   },
   images: {
-    src: './src/images/**/*.{jpg,jpeg,png,gif,svg}',
+    src: './src/images/**/*.{jpg,jpeg,png,gif,svg,webp}',
     dest: './dist/images/'
   },
   styles: {
@@ -154,17 +156,34 @@ function bsJsInit() {
 /* IMAGE TASKS -----------------------------------------*/
 /*------------------------------------------------------*/
 // Optimize images and copy to dist/images
-function images() {
+function optimize() {
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
-		.pipe(imagemin({
-      interlaced: true,
-      progressive: true,
-      optimizationLevel: 5,
-      svgoPlugins: [{removeViewBox: true}]
-    }))
+		.pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.mozjpeg({quality: 75, progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+        plugins: [
+          {removeViewBox: true},
+          {cleanupIDs: false}
+        ]
+      })
+      ], {
+        plugins: imwebp({quality:75})
+      }
+    ))
 		.pipe(gulp.dest(paths.images.dest))
     .pipe(notify({message: '<%= file.relative %> optimized!', title : 'images', sound: false}));
 }
+
+// Make WebP versions of all images
+function convert() {
+  return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
+    .pipe(webp())
+    .pipe(gulp.dest(paths.images.dest))
+    .pipe(notify({message: '<%= file.relative %> converted to webp!', title : 'images', sound: false}));
+}
+
 /*------------------------------------------------------*/
 /* END IMAGE TASKS -------------------------------------*/
 /*------------------------------------------------------*/
@@ -327,6 +346,9 @@ function watch() {
   gulp.watch(paths.containers.src, containers);
 }
 
+// gulp images
+var images = gulp.series(optimize, convert);
+
 // gulp init
 var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit);
 
@@ -350,6 +372,8 @@ exports.faCssInit = faCssInit;
 exports.slimMenuInit = slimMenuInit;
 exports.normalizeInit = normalizeInit;
 exports.bsJsInit = bsJsInit;
+exports.convert = convert;
+exports.optimize = optimize;
 exports.images = images;
 exports.styles = styles;
 exports.scripts = scripts;

@@ -1,7 +1,7 @@
 /* Bootstrap Overrides */
 
 // Bootstrap colors
-$bs-colors: (
+$theme-colors: (
   'primary':#ec3d46,
   'secondary':#00a5e1,
   'success':#28a745,
@@ -12,51 +12,46 @@ $bs-colors: (
   'dark':#343a40
 );
 
-$primary:map-get($bs-colors, 'primary');
-$secondary:map-get($bs-colors, 'secondary');
-$success:map-get($bs-colors, 'success');
-$info:map-get($bs-colors, 'info');
-$warning:map-get($bs-colors, 'warning');
-$danger:map-get($bs-colors, 'danger');
-$light:map-get($bs-colors, 'light');
-$dark:map-get($bs-colors, 'dark');
-
 // Grid breakpoints (changed to relative units to fix cross-platform inconsistencies)
 $grid-breakpoints: (
   xs: 0,
-  sm: 36rem,
-  md: 48rem,
-  lg: 62rem,
-  xl: 75rem
+  sm: 36rem, //576px
+  md: 48rem, //768px
+  lg: 62rem, //992px
+  xl: 75rem, //1200px
+  xxl: 87.5rem //1400px
 );
 
 // Grid containers (changed to relative units to fix cross-platform inconsistencies)
 $container-max-widths: (
-  sm: 33.75rem,
-  md: 45rem,
-  lg: 60rem,
-  xl: 71.25rem
+  sm: 33.75rem, //540px
+  md: 45rem, //720px
+  lg: 60rem, //960px
+  xl: 71.25rem, //1140px
+  xxl: 82.5rem //1320px
 );
 
 // Override Bootstrap spacers for more options
 $spacer:1rem;
 $spacers: (
-    0: 0,
-    1: $spacer,
-    2: ($spacer * 2),
-    3: ($spacer * 3),
-    4: ($spacer * 4),
-    5: ($spacer * 5),
-    6: ($spacer * 6),
-    7: ($spacer * 7),
-    8: ($spacer * 8)
+  0: 0,
+  half: ($spacer / 2),
+  1: $spacer,
+  3half: ($spacer * 1.5),
+  2: ($spacer * 2),
+  3: ($spacer * 3),
+  4: ($spacer * 4),
+  5: ($spacer * 5),
+  6: ($spacer * 6),
+  7: ($spacer * 7),
+  8: ($spacer * 8)
 );
 
 // Get rid of deprecated warnings
 $enable-deprecation-messages: false;
 
 // Change gutter width
-$grid-gutter-width: 22px !default;
+$grid-gutter-width: 2rem;
 
 // Form Control changes
 $input-height:2rem;
@@ -70,6 +65,3 @@ $form-check-input-margin-y:3px;
 
 $custom-file-height-inner:unset;
 $custom-file-line-height:1.61539;
-
-// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-// $yiq-contrasted-threshold:  195 !default;
