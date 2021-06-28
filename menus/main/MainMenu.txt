@@ -8,7 +8,7 @@
       [?ENABLED]
         <a href="[=URL]" class="btn btn-main-shade[?NODE] split[/?]"[?TARGET] target="[=TARGET]"[/?]>[=TEXT]</a>
       [?ELSE]    
-        <a href="#" class="btn btn-primary[?NODE] single[/?]"[?TARGET] target="[=TARGET]"[/?]>[=TEXT]</a>
+        <a href="#" class="btn btn-main-shade[?NODE] single[/?]"[?TARGET] target="[=TARGET]"[/?]>[=TEXT]</a>
       [/?]
       
       [?NODE]
