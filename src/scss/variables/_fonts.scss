@@ -7,7 +7,7 @@
         url('../fonts/OpenSans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
 }
 
 @font-face {
@@ -19,7 +19,7 @@
         url('../fonts/OpenSans-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
 }
 
 @font-face {
@@ -31,7 +31,7 @@
         url('../fonts/OpenSans-ExtraBold.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
 }
 
 @font-face {
@@ -43,7 +43,7 @@
         url('../fonts/OpenSans-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
 }
 
 @font-face {
@@ -55,5 +55,5 @@
         url('../fonts/OpenSans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
-    font-display: fallback;
+    font-display: swap;
 }
