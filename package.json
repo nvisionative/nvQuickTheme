@@ -1,13 +1,13 @@
 {
   "name": "nvquicktheme",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Barebones Bootstrap 4 DNN Theme",
   "main": "gulpfile.js",
   "author": "nvisionative",
   "license": "GPL-3.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "bootstrap": "^4.5.0",
     "normalize.css": "^8.0.1"
   },
@@ -17,14 +17,16 @@
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.0.0",
-    "gulp-imagemin": "^5.0.3",
+    "gulp-imagemin": "^7.1.0",
     "gulp-jshint": "2.x",
     "gulp-notify": "^3.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.0",
+    "gulp-webp": "^4.0.1",
     "gulp-zip": "^4.1.0",
+    "imagemin-webp": "^6.0.0",
     "jshint": "^2.9.5"
   },
   "browserslist": [

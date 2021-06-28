@@ -1,60 +1,9 @@
-// position 
-.pos-relative{
-    position: relative
-}
-
-// cover links
-.cover-link {
-	position:absolute;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	z-index:100;
-}
-
-// bg colors
-[class*="bg-"] {
-  color:white;
-
-  &[class*="-primary"] {
-    background-color:$primary-color !important;
-  }
-  &[class*="-secondary"] {
-    background-color:$secondary-color !important;
-  }
-  &[class*="-tertiary"] {
-    background-color:$tertiary-color;
-  }
-  &[class*="-light-grey"] {
-    background-color:$light-grey;
-    color:$font-color;
-  }
-  pre {
-    background:white;
-  }
-}
-
-// padding on div below contentpane
-// usage: adding cpy-4 class to a div would add padding to top and bottom of the div underneath it
-// mostly useful for cols with a bg color
-@each $size, $length in $cspacers {
-
-  .cp-#{$size} > div { padding: $length !important; }
-  .cpt-#{$size} > div,
-  .cpy-#{$size} > div {
-    padding-top: $length !important;
-  }
-  .cpr-#{$size} > div,
-  .cpx-#{$size} > div {
-    padding-right: $length !important;
-  }
-  .cpb-#{$size} > div,
-  .cpy-#{$size} > div {
-    padding-bottom: $length !important;
-  }
-  .cpl-#{$size} > div,
-  .cpx-#{$size} > div {
-    padding-left: $length !important;
-  }
+// text classes from current color scheme
+@each $color, $value in $colors {
+    .text-#{$color} {
+        color: color($color) !important;
+    }
+    .border-#{$color} {
+        border-color: color($color) !important;
+    }
 }
