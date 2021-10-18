@@ -80,6 +80,8 @@
                     </staticContent>
                   </node>
                   <node path="/configuration/system.webServer/staticContent" action="update" key="fileExtension" collision="ignore">
+                    <remove fileExtension=".eot" />
+                    <mimeMap fileExtension=".eot" mimeType="application/vnd.ms-fontobject" />
                     <remove fileExtension=".otf" />
                     <mimeMap fileExtension=".otf" mimeType="font/otf" />
                     <remove fileExtension=".svg" />
