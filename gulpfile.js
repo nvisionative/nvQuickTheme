@@ -4,6 +4,7 @@ var bs            = require('browser-sync').create(),
     jshint        = require('gulp-jshint'),
     sass          = require('gulp-sass')(require('sass')),
     imagemin      = require('gulp-imagemin'),
+    modernizr     = require('gulp-modernizr'),
     imwebp        = require('imagemin-webp'),
     webp          = require('gulp-webp'),
     rename        = require('gulp-rename'),
@@ -147,6 +148,24 @@ function bsJsInit() {
     .pipe(gulp.dest(paths.bsJs.dest))
     .pipe(notify({message: '<%= file.relative %> distributed!', title : 'bsJsInit'}));
 }
+
+// modernizr Init
+function modernizrInit() {
+  return gulp.src(paths.scripts.src)
+    .pipe(modernizr({
+      'options': [
+        'setClasses'
+      ],
+      'tests': [
+        'webp'
+      ]
+    }))
+    .pipe(uglify())
+    .pipe(rename({suffix: '-custom.min'}))
+    .pipe(gulp.dest(paths.scripts.dest))
+    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'modernizrInit', sound: false}));
+}
+
 /*------------------------------------------------------*/
 /* END INIT TASKS --------------------------------------*/
 /*------------------------------------------------------*/
@@ -350,7 +369,7 @@ function watch() {
 var images = gulp.series(optimize, convert);
 
 // gulp init
-var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit);
+var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit, modernizrInit);
 
 // gulp build
 var build = gulp.series(cleandist, init, styles, scripts, images, containers, manifest);
@@ -375,6 +394,7 @@ exports.bsJsInit = bsJsInit;
 exports.convert = convert;
 exports.optimize = optimize;
 exports.images = images;
+exports.modernizrInit = modernizrInit;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.containers = containers;
