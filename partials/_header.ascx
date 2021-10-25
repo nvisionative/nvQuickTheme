@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-dark-shade">
+  <div class="bg-light-shade">
     <div class="container">
       <div class="row navbar-header">
         <dnn:LOGO id="dnnLOGO" runat="server" />
