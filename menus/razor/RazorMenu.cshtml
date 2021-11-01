@@ -18,7 +18,7 @@
         var hasChildren = page.HasChildren();
         var split = hasChildren ? "split" : string.Empty;
         var single = hasChildren ? "single" :string.Empty;
-        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
+        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=" + page.Target) :string.Empty;
 
         <li class="@(page.Breadcrumb ? "active" : string.Empty)">
             @if (page.Enabled)
@@ -46,7 +46,7 @@
     {
         var hasChildren = page.HasChildren();
         var split = hasChildren ? "split" : string.Empty;
-        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
+        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=" + page.Target) :string.Empty;
 
         <li class="@(page.Selected ? "active" : string.Empty)">
             @if (page.Enabled)
