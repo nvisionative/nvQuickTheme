@@ -82,7 +82,7 @@ var paths = {
     dest: './temp/'
   },
   zipelse: {
-    src: ['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm}'],
+    src: ['./menus/**/*', './partials/*', '*.{ascx,xml,html,htm}', 'koi.json'],
     zipfile: 'else.zip',
     dest: './temp/'
   },
