@@ -11,7 +11,10 @@ $colors: (
     "sub-highlight":#48ceff,
     "dark-shade":#050621,
     "dark-highlight":#484858,
-    "black":black
+    "black":black,
+    "dnnPrimaryAction": darkblue,      // DNN Primary Button 
+    "dnnSecondaryAction": gainsboro,    // DNN Secondary Button 
+    "dnnTertiaryAction": grey           // DNN TertiaryButton 
 );
 
 // Convert Hex to RGB
