@@ -1,8 +1,8 @@
-<header class="bg-light-grey">
-  <div class="container-fluid bg-tertiary">
+<header class="sticky-top">
+  <div class="bg-main-accent py-1">
     <div class="container">
-      <div class="row user-controls justify-content-end">
-        <ul>
+      <div class="row justify-content-end">
+        <ul class="list-unstyled user-controls">
           <li><dnn:Login runat="server" id="dnnLogin" /></li>
           <li><dnn:User runat="server" id="dnnUser" /></li>
           <li><dnn:Search runat="server" id="dnnSearch" ShowSite="false" ShowWeb="false" Submit="<i class='fas fa-search'></i>" /></li>
@@ -11,11 +11,11 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="bg-light-shade">
     <div class="container">
-      <div class="row nav-main">
+      <div class="row navbar-header">
         <dnn:LOGO id="dnnLOGO" runat="server" />
-        <nav id="nav-items">
+        <nav>
           <dnn:MENU id="menu" MenuStyle="menus/razor" runat="server" NodeSelector="*"></dnn:MENU>
         </nav>
       </div>
