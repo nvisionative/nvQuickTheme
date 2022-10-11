@@ -15,19 +15,19 @@
 	font-size: $font-size + px;
 	font-size: calc($font-size / $base-font-size) + rem;
 	line-height: calc($lineheight / $font-size);
-  margin: 0 0 ((calc($lineheight / $font-size) * calc(1 / calc($lineheight / $defaultlineheight))) * .5em ) 0; 
+  margin: 0 0 calc((($lineheight / $font-size) * (1 / ($lineheight / $defaultlineheight))) * .5em ) 0; 
 }
 
 // Shorthand for media queries at px width and lower
 @mixin mq-max-width( $width-in-px ) {
-  @media only screen and (max-width: (calc($width-in-px / $base-font-size) * 1em )) {
+  @media only screen and (max-width: calc(($width-in-px / $base-font-size) * 1em )) {
     @content;
   }
 }
 
 // Shorthand for media queries at px width and higher
 @mixin mq-min-width( $width-in-px ) {
-  @media only screen and (min-width: (calc($width-in-px / $base-font-size) * 1em )) {
+  @media only screen and (min-width: calc(($width-in-px / $base-font-size) * 1em )) {
     @content;
   }
 }
