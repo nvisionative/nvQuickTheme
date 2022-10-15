@@ -169,7 +169,7 @@ function bsJsInit() {
     .pipe(gulp.dest(paths.bsJs.dest))
     .on('data', function() { nSrc+=1; })
     .on('end', function() {
-      log(nSrc, 'files distributed!');
+      log(nSrc, 'Bootstrap JS files distributed!');
     })
 }
 
