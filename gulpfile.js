@@ -357,6 +357,9 @@ function zipcontainers() {
   return gulp.src(paths.zipcontainers.src)
     .pipe(zip(paths.zipcontainers.zipfile))
     .pipe(gulp.dest(paths.zipcontainers.dest))
+    .on('end', function() {
+      log('zipcontainers temporarily created!');
+    })
 }
 
 // ZIP everything else
