@@ -2,7 +2,7 @@
 @using System.Dynamic;
 @inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
     
-<ul class="slimmenu normal" id="navigation">
+<ul class="h-100" id="nav-desktop">
     @RenderPages(Model.Source.root.Children)
 </ul>
 
@@ -16,18 +16,16 @@
     foreach (var page in pages)
     {
         var hasChildren = page.HasChildren();
-        var split = hasChildren ? "split" : string.Empty;
-        var single = hasChildren ? "single" :string.Empty;
         var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
 
-        <li class="@(page.Breadcrumb ? "active" : string.Empty)">
+        <li class="@(page.Selected ? "selected" : string.Empty)">
             @if (page.Enabled)
             {
-                <a href="@page.Url" class="btn btn-main-shade @split" @attrTarget>@page.Text</a>
+                <a href="@page.Url" @attrTarget>@page.Text</a>
             }
             else
             {
-                <a href="#" class="btn btn-main-shade @single" @attrTarget>@page.Text</a>
+                <a href="javascript:void(0);" @attrTarget>@page.Text</a>
             }
 
             @if (hasChildren)
@@ -37,7 +35,7 @@
                 </ul>
             }
         </li>
-    }    
+    }
 }
 
 @helper RenderNestedPages(IEnumerable<MenuNode> pages)
@@ -45,17 +43,16 @@
     foreach (var page in pages)
     {
         var hasChildren = page.HasChildren();
-        var split = hasChildren ? "split" : string.Empty;
         var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
 
-        <li class="@(page.Selected ? "active" : string.Empty)">
+        <li class="@(page.Selected ? "selected" : string.Empty)">
             @if (page.Enabled)
             {
-                <a href="@page.Url" class="@split" @attrTarget>@page.Text</a>
+                <a href="@page.Url" @attrTarget>@page.Text</a>
             }
             else
             {
-                <a href="#" @attrTarget>@page.Text</a>
+                <a href="javascript:void(0);" @attrTarget>@page.Text</a>
             }
 
             @if (hasChildren)

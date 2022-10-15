@@ -8,7 +8,7 @@ var bs            = require('browser-sync').create(),
     imwebp        = require('imagemin-webp'),
     webp          = require('gulp-webp'),
     rename        = require('gulp-rename'),
-    uglify        = require('gulp-uglify'),
+    uglify        = require('gulp-uglify-es').default,
     log           = require('fancy-log'),
     replace       = require('gulp-replace'),
     zip           = require('gulp-zip'),
@@ -38,10 +38,6 @@ var paths = {
   faCss: {
     src: './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
     dest: './dist/css/'
-  },
-  slimMenu: {
-    src: './src/assets/jquery.slimmenu.min.js',
-    dest: './dist/js/'
   },
   normalize: {
     src: './node_modules/normalize.css/normalize.css',
@@ -133,17 +129,6 @@ function faCssInit() {
     .on('data', function() { nSrc+=1; })
     .on('end', function() {
       log(nSrc, 'CSS files distributed!');
-    })
-}
-
-// Copy jquery.slimmenu.min.js from src/assets to dist/js
-function slimMenuInit() {
-  var nSrc=0;
-  return gulp.src(paths.slimMenu.src)
-    .pipe(gulp.dest(paths.slimMenu.dest))
-    .on('data', function() { nSrc+=1; })
-    .on('end', function() {
-      log(nSrc, 'slimMenu files distributed!');
     })
 }
 
@@ -429,7 +414,7 @@ function watch() {
 var images = gulp.series(optimize, convert);
 
 // gulp init
-var init = gulp.series(fontsInit, faFontsInit, faCssInit, slimMenuInit, normalizeInit, bsJsInit, modernizrInit);
+var init = gulp.series(fontsInit, faFontsInit, faCssInit, normalizeInit, bsJsInit, modernizrInit);
 
 // gulp build
 var build = gulp.series(cleandist, init, styles, scripts, images, containers, manifest);
@@ -448,7 +433,6 @@ var package = gulp.series(build, ziptemp, zippackage, cleantemp);
 exports.fontsInit = fontsInit;
 exports.faFontsInit = faFontsInit;
 exports.faCssInit = faCssInit;
-exports.slimMenuInit = slimMenuInit;
 exports.normalizeInit = normalizeInit;
 exports.bsJsInit = bsJsInit;
 exports.convert = convert;
