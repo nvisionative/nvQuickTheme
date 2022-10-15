@@ -347,6 +347,9 @@ function zipdist() {
   return gulp.src(paths.zipdist.src)
     .pipe(zip(paths.zipdist.zipfile))
     .pipe(gulp.dest(paths.zipdist.dest))
+    .on('end', function() {
+      log('zipdist temporarily created!');
+    })
 }
 
 // ZIP contents of containers folder
