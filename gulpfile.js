@@ -158,7 +158,7 @@ function normalizeInit() {
   .pipe(gulp.dest(paths.normalize.dest, { sourcemaps: '.' }))
   .on('data', function() { nSrc+=1; })
   .on('end', function() {
-    log(nSrc, 'files distributed!');
+    log(nSrc, 'normalize files distributed!');
   })
 }
 
