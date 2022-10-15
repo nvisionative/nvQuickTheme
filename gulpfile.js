@@ -372,6 +372,9 @@ function zipelse() {
     .pipe(replace('dist/', ''))
     .pipe(zip(paths.zipelse.zipfile))
     .pipe(gulp.dest(paths.zipelse.dest))
+    .on('end', function() {
+      log('dist path removed and zipdist temporarily recreated!');
+    })
 }
 
 // git ziptemp
