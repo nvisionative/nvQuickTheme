@@ -366,6 +366,9 @@ function zipcontainers() {
 function zipelse() {
   return gulp.src(paths.zipelse.src, {base: '.'})
     .pipe(gulp.dest(paths.zipelse.dest))
+    .on('end', function() {
+      log('zipelse temporarily created!');
+    })
     .pipe(replace('dist/', ''))
     .pipe(zip(paths.zipelse.zipfile))
     .pipe(gulp.dest(paths.zipelse.dest))
