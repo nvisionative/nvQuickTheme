@@ -110,7 +110,7 @@ function fontsInit() {
     .pipe(gulp.dest(paths.fonts.dest))
     .on('data', function() { nSrc+=1; })
     .on('end', function() {
-      log(nSrc, 'files distributed!');
+      log(nSrc, 'font files distributed!');
     })
 }
 
