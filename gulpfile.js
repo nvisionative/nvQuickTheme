@@ -9,7 +9,7 @@ var bs            = require('browser-sync').create(),
     webp          = require('gulp-webp'),
     rename        = require('gulp-rename'),
     uglify        = require('gulp-uglify-es').default,
-    notify        = require('gulp-notify'),
+    log           = require('fancy-log'),
     replace       = require('gulp-replace'),
     zip           = require('gulp-zip'),
     clean         = require('gulp-clean'),
@@ -101,45 +101,66 @@ var paths = {
 /*------------------------------------------------------*/
 // Copy fonts from src/fonts to dist/fonts
 function fontsInit() {
+  var nSrc=0;
   return gulp.src(paths.fonts.src)
     .pipe(gulp.dest(paths.fonts.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'fontsInit'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'font files distributed!');
+    })
 }
 
 // Copy fontawesome-free fonts from node_modules to dist/fonts
 function faFontsInit() {
+  var nSrc=0;
   return gulp.src(paths.faFonts.src)
     .pipe(gulp.dest(paths.faFonts.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'faFontsInit'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'FontAwesome files distributed!');
+    })
 }
 
 // Copy fontawesome-free CSS from node_modules to dist/css/fontawesome-free
 function faCssInit() {
+  var nSrc=0;
   return gulp.src(paths.faCss.src)
     .pipe(gulp.dest(paths.faCss.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'faCssInit'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'CSS files distributed!');
+    })
 }
 
 // Compile normalize.css from node_modules and copy to dist/js
 function normalizeInit() {
+  var nSrc=0;
   return gulp.src(paths.normalize.src, { sourcemaps: true })
   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
   .pipe(rename({suffix: '.min'}))
   .pipe(autoprefixer())
   .pipe(gulp.dest(paths.normalize.dest, { sourcemaps: '.' }))
-  .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title : 'normalizeInit'}));
+  .on('data', function() { nSrc+=1; })
+  .on('end', function() {
+    log(nSrc, 'normalize files distributed!');
+  })
 }
 
 // Copy bootstrap JS from node_modules to dist/js
 function bsJsInit() {
+  var nSrc=0;
   return gulp.src(paths.bsJs.src)
     .pipe(gulp.dest(paths.bsJs.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'bsJsInit'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'Bootstrap JS files distributed!');
+    })
 }
 
 // modernizr Init
 function modernizrInit() {
+  var nSrc=0;
   return gulp.src(paths.scripts.src)
     .pipe(modernizr({
       'options': [
@@ -152,7 +173,10 @@ function modernizrInit() {
     .pipe(uglify())
     .pipe(rename({suffix: '-custom.min'}))
     .pipe(gulp.dest(paths.scripts.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'modernizrInit', sound: false}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'modernizr files distributed!');
+    })
 }
 
 /*------------------------------------------------------*/
@@ -165,6 +189,7 @@ function modernizrInit() {
 /*------------------------------------------------------*/
 // Optimize images and copy to dist/images
 function optimize() {
+  var nSrc=0;
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
 		.pipe(imagemin([
       imagemin.gifsicle({interlaced: true}),
@@ -181,15 +206,22 @@ function optimize() {
       }
     ))
 		.pipe(gulp.dest(paths.images.dest))
-    .pipe(notify({message: '<%= file.relative %> optimized!', title : 'images'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'images optimized!');
+    })
 }
 
 // Make WebP versions of all images
 function convert() {
+  var nSrc=0;
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
     .pipe(webp())
     .pipe(gulp.dest(paths.images.dest))
-    .pipe(notify({message: '<%= file.relative %> converted to webp!', title : 'images'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'webp files created!');
+    })
 }
 
 /*------------------------------------------------------*/
@@ -208,7 +240,9 @@ function styles() {
   .pipe(rename({suffix: '.min'}))
   .pipe(autoprefixer())
   .pipe(gulp.dest(paths.styles.dest, { sourcemaps: '.' }))
-  .pipe(notify({message: '<%= file.relative %> compiled and distributed!', title: 'styles'}));
+  .on('end', function() {
+    log('SCSS compiled, minified, and distributed!');
+  })
 }
 /*------------------------------------------------------*/
 /* END STYLES TASKS ------------------------------------*/
@@ -227,7 +261,9 @@ function scripts() {
     .pipe(gulp.dest(paths.scripts.dest, { sourcemaps: '.' }))
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'))
-    .pipe(notify({ message : '<%= file.relative %> minified!', title : "scripts"}));
+    .on('end', function() {
+      log('JS uglified and distributed!');
+    })
 }
 /*------------------------------------------------------*/
 /* END SCRIPTS TASKS -----------------------------------*/
@@ -239,9 +275,13 @@ function scripts() {
 /*------------------------------------------------------*/
 // Copy containers to proper DNN theme containers folder
 function containers() {
+  var nSrc=0;
   return gulp.src(paths.containers.src)
     .pipe(gulp.dest(paths.containers.dest))
-    .pipe(notify({message: '<%= file.relative %> distributed!', title : 'containers'}));
+    .on('data', function() { nSrc+=1; })
+    .on('end', function() {
+      log(nSrc, 'container files distributed!');
+    })
 }
 
 // Update manifest.dnn
@@ -259,7 +299,9 @@ function manifest() {
     .pipe(replace(/(\\Skins\\)(.*?)(?=\\)/g, '\\Skins\\'+project))
     .pipe(replace(/(\\Containers\\)(.*?)(?=\\)/g, '\\Containers\\'+project))
     .pipe(gulp.dest(paths.manifest.dest))
-    .pipe(notify({message: '<%= file.relative %> updated!', title : 'manifest'}));
+    .on('end', function() {
+      log('DNN manifest updated!');
+    })
 }
 /*------------------------------------------------------*/
 /* END DNN TASKS ---------------------------------------*/
@@ -273,7 +315,9 @@ function manifest() {
 function cleandist() {
   return gulp.src(paths.cleandist.src, { allowEmpty: true })
     .pipe(clean())
-    .pipe(notify({message: 'dist folder cleaned up!', title : 'cleandist'}));
+    .on('end', function() {
+      log('dist folder cleaned up!');
+    })
 }
 /*------------------------------------------------------*/
 /* END MAINTENANCE TASKS -------------------------------*/
@@ -288,7 +332,9 @@ function zipdist() {
   return gulp.src(paths.zipdist.src)
     .pipe(zip(paths.zipdist.zipfile))
     .pipe(gulp.dest(paths.zipdist.dest))
-    .pipe(notify({message: '<%= file.relative %> temporarily created!', title : 'zipdist'}));
+    .on('end', function() {
+      log('zipdist temporarily created!');
+    })
 }
 
 // ZIP contents of containers folder
@@ -296,18 +342,24 @@ function zipcontainers() {
   return gulp.src(paths.zipcontainers.src)
     .pipe(zip(paths.zipcontainers.zipfile))
     .pipe(gulp.dest(paths.zipcontainers.dest))
-    .pipe(notify({message: '<%= file.relative %> temporarily created!', title : 'zipcontainers'}));
+    .on('end', function() {
+      log('zipcontainers temporarily created!');
+    })
 }
 
 // ZIP everything else
 function zipelse() {
   return gulp.src(paths.zipelse.src, {base: '.'})
     .pipe(gulp.dest(paths.zipelse.dest))
-    .pipe(notify({message: '<%= file.relative %> temporarily created!', title : 'zipcontainers'}))
+    .on('end', function() {
+      log('zipelse temporarily created!');
+    })
     .pipe(replace('dist/', ''))
     .pipe(zip(paths.zipelse.zipfile))
     .pipe(gulp.dest(paths.zipelse.dest))
-    .pipe(notify({message: '<%= file.relative %> temporarily created!', title : 'zipcontainers'}));
+    .on('end', function() {
+      log('dist path removed and zipdist temporarily recreated!');
+    })
 }
 
 // git ziptemp
@@ -318,14 +370,18 @@ function zippackage() {
   return gulp.src(paths.zippackage.src)
     .pipe(zip(paths.zippackage.zipfile))
     .pipe(gulp.dest(paths.zippackage.dest))
-    .pipe(notify({message: '<%= file.relative %> created!', title : 'zippackage'}));
+    .on('end', function() {
+      log('Theme install package created!');
+    })
 }
 
 // Clean temp folder
 function cleantemp() {
   return gulp.src(paths.cleantemp.src)
     .pipe(clean())
-    .pipe(notify({message: 'temp folder cleaned up!', title : 'cleantemp'}));
+    .on('end', function() {
+      log('temp folder cleaned up!');
+    })
 }
 /*------------------------------------------------------*/
 /* END PACKAGING TASKS ---------------------------------*/
