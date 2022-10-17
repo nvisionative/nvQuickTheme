@@ -13,11 +13,16 @@
   </div>
   <div class="bg-light-shade">
     <div class="container">
-      <div class="row navbar-header">
-        <dnn:LOGO id="dnnLOGO" runat="server" />
-        <nav>
-          <dnn:MENU id="menu" MenuStyle="menus/razor" runat="server" NodeSelector="*"></dnn:MENU>
-        </nav>
+      <div class="row justify-content-between flex-nowrap">
+        <div class="col-auto">
+          <dnn:LOGO id="dnnLOGO" runat="server" />
+        </div>
+        <div class="col-auto ml-auto d-none d-xl-block">
+          <dnn:MENU id="menu_desktop" MenuStyle="menus/desktop" runat="server" NodeSelector="*,0,2"></dnn:MENU>
+        </div>
+        <div class="col-auto ml-auto d-flex align-items-center d-xl-none">
+          <dnn:MENU id="menu_mobile" MenuStyle="menus/mobile" runat="server" NodeSelector="*,0,2"></dnn:MENU>
+        </div>
       </div>
     </div>
   </div>

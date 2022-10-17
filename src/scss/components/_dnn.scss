@@ -323,7 +323,7 @@ ul.dnnAdminTabNav li a,
     *overflow: visible;
     border: 1px solid #c2c2c2;
     background: #eaeaea;
-    border-radius: 3px;
+    border-radius: 0.25px;
     color: #333;
     font-weight: bold;
     text-decoration: none;
@@ -342,26 +342,22 @@ ul.dnnAdminTabNav li a,
 /* Primary Action */
 
 .dnnPrimaryAction, .dnnFormItem input[type="submit"], a.dnnPrimaryAction {
-    border-color: #0D569E; /*dark blue*/
-    background: #3792ED;
-    background: linear-gradient(to bottom, #358eea 0%,#2170cd 100%); /* W3C */
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.6), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4);
+    border-color: color('dnnPrimaryAction');
+    background: color('dnnPrimaryAction');
     color: #efefef;
     text-shadow: 0px -1px 0px #185B93;
+    cursor: pointer;
 }
 
     .dnnPrimaryAction:hover, .dnnFormItem input[type="submit"]:hover, a.dnnPrimaryAction:hover {
-        border-color: #0D569E;
+        border-color: #6cb6f3;
         background: #6cb6f3; /* Old browsers */
-        background: linear-gradient(to bottom, #6cb6f3 0%,#4387d2 100%); /* W3C */
         color: #fff;
     }
 
     .dnnPrimaryAction:active, .dnnFormItem input[type="submit"]:active, a.dnnPrimaryAction:active {
-        border-color: #0D569E;
-        background: #1f66be; /* Old browsers */
-        background: linear-gradient(to bottom, #1f66be 0%,#3085e0 100%); /* W3C */
-        box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
+        border-color: color('dnnPrimaryAction');
+        background: color('dnnPrimaryAction');
         color: #fff;
     }
 
@@ -380,11 +376,11 @@ ul.dnnAdminTabNav li a,
 a.dnnSecondaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    background: #f5f5f5; /* Old browsers */
-    background: linear-gradient(to bottom, #f5f5f5 0%,#dfdfdf 100%); /* W3C */
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.4), inset 0px 1px 0px 0px rgba(255, 255, 255, 1);
+    background: color('dnnSecondaryAction'); /* Old browsers */
+    border-color: color('dnnSecondaryAction');
     text-shadow: 0px 1px 0px #ffffff;
     color: #333;
+    cursor: pointer;
 }
 
     .dnnFormItem button:hover, .dnnFormItem input[type="button"]:hover,
@@ -393,8 +389,7 @@ ul.dnnAdminTabNav li a,
     a.dnnSecondaryAction:hover,
     ul.dnnAdminTabNav li a:hover,
     .dnnLogin .LoginTabGroup span:hover {
-        background: #fefefe; /* Old browsers */
-        background: linear-gradient(to bottom, #fefefe 0%,#e8e8e8 100%); /* W3C */
+        background: whitesmoke; /* Old browsers */
         color: #555;
     }
 
@@ -405,10 +400,8 @@ ul.dnnAdminTabNav li a,
     .dnnSecondaryAction:active,
     a.dnnSecondaryAction:active,
     ul.dnnAdminTabNav li a:active {
-        border-color: #999;
-        background: #c6c6c6; /* Old browsers */
-        background: linear-gradient(to bottom, #c6c6c6 0%,#f3f3f3 100%); /* W3C */
-        box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
+        border-color: color('dnnSecondaryAction');
+        background: color('dnnSecondaryAction'); 
     }
 
 /* Fix some old forge modules use .dnnPrimaryAction and .dnnSecondaryAction in wrong way */
@@ -429,7 +422,7 @@ span.dnnSecondaryAction > a.dnnSecondaryAction {
 .dnnTertiaryAction, a.dnnTertiaryAction {
     padding: 10px 10px;
     border: none;
-    background: #eaeaea;
+    background: color('dnnTertiaryAction');
     color: #333;
 }
 
@@ -438,7 +431,7 @@ span.dnnSecondaryAction > a.dnnSecondaryAction {
     }
 
     .dnnTertiaryAction:active, a.dnnTertiaryAction:active {
-        background: #d8d8d8;
+        background: color('dnnTertiaryAction');
     }
 
 /* Action Button behind input */
