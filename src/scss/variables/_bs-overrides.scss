@@ -47,9 +47,6 @@ $spacers: (
   8: ($spacer * 8)
 );
 
-// Get rid of deprecated warnings
-$enable-deprecation-messages: false;
-
 // Change gutter width
 $grid-gutter-width: 2rem;
 
