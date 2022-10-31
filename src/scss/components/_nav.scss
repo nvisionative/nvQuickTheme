@@ -3,11 +3,13 @@ header {
 	a[id*="dnnLOGO"] {
 		display: block;
 		padding: 1.125rem 0;
+
 		img {
 			height: 70px;
 			max-height: 100%;
 			width: auto;
 		}
+
 		@include mq-max-width(400) {
 			img {
 				height: 50px;
@@ -19,36 +21,42 @@ header {
 /* Desktop Styling */
 
 #nav-desktop {
-	&, ul {
+
+	&,
+	ul {
 		display: flex;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
+
 	li {
 		display: flex;
 	}
+
 	a {
 		@include font-size(16);
-    color: color('main-accent');
+		color: color('main-accent');
 		font-weight: 600;
 		text-decoration: none;
 		text-transform: uppercase;
+
 		&:hover {
 			color: color('black');
 		}
 	}
-	
+
 	// First Level
-	> li {
-    position: relative;
+	>li {
+		position: relative;
+
 		&:hover {
-			> ul {
+			>ul {
 				display: flex;
 			}
 		}
 
-		> a {
+		>a {
 			display: flex;
 			align-items: flex-end;
 			padding: 1rem 1.5rem;
@@ -60,24 +68,25 @@ header {
 		}
 
 		li {
-			&.selected > a {
+			&.selected>a {
 				background: color('main-shade');
 				color: color('white');
 			}
-			&:not(.selected) > a:hover {
+
+			&:not(.selected)>a:hover {
 				background: color('light-accent');
 			}
 		}
 
 		// Second Level
-		> ul {
+		>ul {
 			display: none;
 			position: absolute;
 			flex-direction: column;
 			top: 100%;
-      min-width: 250px;
+			min-width: 250px;
 			max-width: 100%;
-      background: color('white');
+			background: color('white');
 			box-shadow: 1px 1px 5px 1px rgba(color('black', true), 0.2);
 
 			// Below Second Level
@@ -87,20 +96,22 @@ header {
 
 			li {
 				flex-direction: column;
+
 				&:not(:first-child) {
-					border-top: 1px solid color('dark-highlight');
+					// border-top: 1px solid color('dark-highlight');
 				}
 
-        // Below Third Level
-				> ul {
-          border-top: 1px solid color('dark-highlight');
+				// Below Third Level
+				>ul {
+
+					// border-top: 1px solid color('dark-highlight');
 					a {
 						@include font-size(14);
 						font-weight: 700;
 						padding: .5rem .75rem .5rem 3rem;
 					}
 				}
-			}			
+			}
 		}
 	}
 }
@@ -121,7 +132,7 @@ $nav-width: 320px;
 	z-index: 1;
 	background: rgba(black, .6);
 }
-	
+
 .hamburger {
 	margin-left: auto;
 	color: color('main-accent');
@@ -131,12 +142,14 @@ $nav-width: 320px;
 .nav-drill {
 	margin-top: $nav-height;
 	transform: translateX(100%);
+
 	ul {
 		list-style: none;
-		margin:0;
-		padding:0;
+		margin: 0;
+		padding: 0;
 	}
 }
+
 .nav-is-toggled {
 	.nav-drill {
 		transform: translateX(0);
@@ -159,11 +172,11 @@ $nav-width: 320px;
 		-webkit-overflow-scrolling: touch;
 		transition: 0.45s;
 	}
-	
+
 	&-items {
 		flex: 0 0 100%;
 	}
-	
+
 	&-item {
 		display: flex;
 		justify-content: space-between;
@@ -174,28 +187,30 @@ $nav-width: 320px;
 
 		.nav-link {
 			background-color: color('white');
-      color: color('main-accent');
+			color: color('main-accent');
 		}
 
 		&.selected {
 			background-color: color('main-shade');
-			> .nav-link {
+
+			>.nav-link {
 				background-color: transparent;
 				color: color('white');
 			}
 		}
 
-    .nav-back-link {
+		.nav-back-link {
 			display: flex;
 			align-items: center;
 			background: color('main-accent');
 			color: color('white');
+
 			i {
 				font-size: 1.125rem;
 			}
 		}
 	}
-	
+
 	&-link {
 		display: block;
 		flex: 1 1 auto;
@@ -203,7 +218,7 @@ $nav-width: 320px;
 		font-size: 1rem;
 		line-height: 1.5em;
 		font-weight: 500;
-		
+
 		.link-description {
 			font-size: .875rem;
 			font-weight: 400;
@@ -222,16 +237,16 @@ $nav-width: 320px;
 			transition: 0.3s;
 			visibility: hidden;
 		}
-		
+
 		&-link {
 			flex-grow: 0;
 			font-size: 1.125rem;
 			display: flex;
 			align-items: center;
 		}
-		
+
 		&.active {
-			> .nav-expand-content {
+			>.nav-expand-content {
 				transform: translateX(0);
 				visibility: visible;
 			}
