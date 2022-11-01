@@ -18,7 +18,7 @@ navExpand.forEach(item => {
 });
 
 // setup and add overlay
-var overlay = document.createElement('div');
+let overlay = document.createElement('div');
 overlay.setAttribute('id', 'body-overlay');
 document.body.appendChild(overlay).classList.add('d-none');
 

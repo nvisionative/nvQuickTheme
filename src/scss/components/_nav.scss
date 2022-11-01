@@ -139,17 +139,6 @@ $nav-width: 320px;
 	cursor: pointer;
 }
 
-.nav-drill {
-	margin-top: $nav-height;
-	transform: translateX(100%);
-
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-}
-
 .nav-is-toggled {
 	.nav-drill {
 		transform: translateX(0);
@@ -171,6 +160,14 @@ $nav-width: 320px;
 		overflow-x: hidden;
 		-webkit-overflow-scrolling: touch;
 		transition: 0.45s;
+		margin-top: $nav-height;
+		transform: translateX(100%);
+	
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	&-items {
