@@ -1,4 +1,4 @@
-var bs            = require('browser-sync').create(),
+const bs            = require('browser-sync').create(),
     gulp          = require('gulp'),
     autoprefixer  = require('gulp-autoprefixer'),
     jshint        = require('gulp-jshint'),
@@ -23,7 +23,7 @@ var bs            = require('browser-sync').create(),
     email         = details.email,
     description   = details.description;
     
-var paths = {
+const paths = {
   projectdetails: {
     src: './project-details.json'
   },
@@ -101,7 +101,7 @@ var paths = {
 /*------------------------------------------------------*/
 // Copy fonts from src/fonts to dist/fonts
 function fontsInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.fonts.src)
     .pipe(gulp.dest(paths.fonts.dest))
     .on('data', function() { nSrc+=1; })
@@ -112,7 +112,7 @@ function fontsInit() {
 
 // Copy fontawesome-free fonts from node_modules to dist/fonts
 function faFontsInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.faFonts.src)
     .pipe(gulp.dest(paths.faFonts.dest))
     .on('data', function() { nSrc+=1; })
@@ -123,7 +123,7 @@ function faFontsInit() {
 
 // Copy fontawesome-free CSS from node_modules to dist/css/fontawesome-free
 function faCssInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.faCss.src)
     .pipe(gulp.dest(paths.faCss.dest))
     .on('data', function() { nSrc+=1; })
@@ -134,7 +134,7 @@ function faCssInit() {
 
 // Compile normalize.css from node_modules and copy to dist/js
 function normalizeInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.normalize.src, { sourcemaps: true })
   .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
   .pipe(cleanCSS())
@@ -149,7 +149,7 @@ function normalizeInit() {
 
 // Copy bootstrap JS from node_modules to dist/js
 function bsJsInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.bsJs.src)
     .pipe(gulp.dest(paths.bsJs.dest))
     .on('data', function() { nSrc+=1; })
@@ -160,7 +160,7 @@ function bsJsInit() {
 
 // modernizr Init
 function modernizrInit() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.scripts.src)
     .pipe(modernizr({
       'options': [
@@ -189,7 +189,7 @@ function modernizrInit() {
 /*------------------------------------------------------*/
 // Optimize images and copy to dist/images
 function optimize() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
 		.pipe(imagemin([
       imagemin.gifsicle({interlaced: true}),
@@ -214,7 +214,7 @@ function optimize() {
 
 // Make WebP versions of all images
 function convert() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.images.src, {since: gulp.lastRun(images)})
     .pipe(webp())
     .pipe(gulp.dest(paths.images.dest))
@@ -275,7 +275,7 @@ function scripts() {
 /*------------------------------------------------------*/
 // Copy containers to proper DNN theme containers folder
 function containers() {
-  var nSrc=0;
+  let nSrc=0;
   return gulp.src(paths.containers.src)
     .pipe(gulp.dest(paths.containers.dest))
     .on('data', function() { nSrc+=1; })
@@ -363,7 +363,7 @@ function zipelse() {
 }
 
 // git ziptemp
-var ziptemp = gulp.series(zipdist, zipcontainers, zipelse);
+const ziptemp = gulp.series(zipdist, zipcontainers, zipelse);
 
 // Assemble files into DNN theme install package
 function zippackage() { 
@@ -411,16 +411,16 @@ function watch() {
 }
 
 // gulp images
-var images = gulp.series(optimize, convert);
+const images = gulp.series(optimize, convert);
 
 // gulp init
-var init = gulp.series(fontsInit, faFontsInit, faCssInit, normalizeInit, bsJsInit, modernizrInit);
+const init = gulp.series(fontsInit, faFontsInit, faCssInit, normalizeInit, bsJsInit, modernizrInit);
 
 // gulp build
-var build = gulp.series(cleandist, init, styles, scripts, images, containers, manifest);
+const build = gulp.series(cleandist, init, styles, scripts, images, containers, manifest);
 
-// gulp package
-var package = gulp.series(build, ziptemp, zippackage, cleantemp);
+// gulp packageTheme
+const packageTheme = gulp.series(build, ziptemp, zippackage, cleantemp);
 /*------------------------------------------------------*/
 /* END DEV TASKS ---------------------------------------*/
 /*------------------------------------------------------*/
@@ -454,7 +454,7 @@ exports.serve = serve;
 exports.watch = watch;
 exports.init = init;
 exports.build = build;
-exports.package = package;
+exports.packageTheme = packageTheme;
 
 // Define default task that can be called by just running `gulp` from cli
 exports.default = build;
