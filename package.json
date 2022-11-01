@@ -1,6 +1,6 @@
 {
   "name": "nvquicktheme",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Barebones Bootstrap 5 DNN Theme",
   "main": "gulpfile.js",
   "author": "nvisionative",
