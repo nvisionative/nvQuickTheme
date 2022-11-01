@@ -1196,7 +1196,7 @@ div.dnnTagsInput > div > input:focus {
     background: transparent;
     outline: none;
     font-weight: normal;
-    font-family: helvetica;
+    font-family: helvetica, sans-serif;
     font-size: 12px;
     display: inline-block;
     vertical-align: top;
@@ -1335,15 +1335,14 @@ div.dnnTagsInput > div > input.dnnTagsInvalid {
     .dnn_acResults ul {
         margin: 0px;
         padding: 0px;
-        list-style-position: outside;
         list-style: none;
+        list-style-position: outside;
     }
 
         .dnn_acResults ul li {
             margin: 0px;
             padding: 6px 22px 6px 22px;
             border-top: 1px solid #c9c9c9;
-            color: #666;
             cursor: pointer;
             display: block;
             overflow: hidden;
@@ -1396,7 +1395,7 @@ div.dnnTagsInput > div > input.dnnTagsInvalid {
         margin: 0;
         height: 100%;
         background-color: #1a82f7;
-        background: linear-gradient(to right, #2b7fda 0%, #3fbdff 100%); /* W3C */
+        background-image: linear-gradient(to right, #2b7fda 0%, #3fbdff 100%); /* W3C */
     }
 
 /* Button Dropdown */
@@ -2248,7 +2247,7 @@ table.dnnASPGrid {
         margin-bottom: 10px;
     }
 
-    .urlControl dnnFormItem > a.dnnSecondaryAction {
+    .urlControl .dnnFormItem > a.dnnSecondaryAction {
         margin: 10px 10px 0 0;
         float: left;
     }
@@ -2293,7 +2292,7 @@ span[id$="FileControl"] {
         margin-top: -30px;
     }
 
-    .dnnFilePicker dnnFormItem {
+    .dnnFilePicker .dnnFormItem {
         margin: 0;
         margin-top: -10px;
         padding: 0;
