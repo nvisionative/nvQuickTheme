@@ -80,6 +80,10 @@
         padding: 0;
         border-left: 1px solid #d1d1d1;
         box-shadow: 1px 0px 0px 0px rgba(255, 255, 255, 0.9);
+        background: linear-gradient(to bottom, #f5f5f5 0%,#dfdfdf 100%); /* W3C */
+        text-align: left;
+        text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+        color: #333;
     }
 
         .dnnTableDisplay th > span,
@@ -99,14 +103,6 @@
 
     .dnnTableDisplay caption {
         display: none;
-    }
-
-    /* thead styles */
-    .dnnTableDisplay th {
-        background: linear-gradient(to bottom, #f5f5f5 0%,#dfdfdf 100%); /* W3C */
-        text-align: left;
-        text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
-        color: #333;
     }
 
         .dnnTableDisplay th a, .dnnTableDisplay th label {
@@ -396,7 +392,6 @@ ul.dnnAdminTabNav li a,
     .dnnFormItem button:active,
     .dnnFormItem input[type="button"]:active,
     .dnnFormItem input[type="reset"]:active,
-    .dnnFormItem input[type="reset"]:active,
     .dnnSecondaryAction:active,
     a.dnnSecondaryAction:active,
     ul.dnnAdminTabNav li a:active {
@@ -438,7 +433,9 @@ span.dnnSecondaryAction > a.dnnSecondaryAction {
 .dnnFormItem input[type="text"] + a.dnnPrimaryAction,
 .dnnFormItem input[type="text"] + a.dnnSecondaryAction,
 .dnnFormItem input[type="text"] + a.dnnTerriaryAction { 
-    margin-left: 5px;
+    display: inline-block;
+    width: auto;
+    margin: 6px 5px 6px 5px;
 }
 
 .dnnFormItem input[type="checkbox"] + span,
@@ -496,6 +493,7 @@ span.dnnSecondaryAction > a.dnnSecondaryAction {
     overflow: auto;
     vertical-align: top;
     resize: vertical;
+    min-height: 80px;
 }
 
     .dnnFormItem input:invalid, .dnnFormItem textarea:invalid {
@@ -739,13 +737,6 @@ div.dnnFormItem.dnnFormRequired > div.dnnLabel span:after {
     font-weight: bold;
 }
 
-.dnnFormItem input[type="checkbox"] + span,
-.dnnFormItem input[type="radio"] + span {
-    display: inline-block;
-    width: auto;
-    margin: 6px 5px 6px 5px;
-}
-
 /* Help Label */
 a.dnnFormHelp,
 .dnnForm .dnnFormItem a.dnnFormHelp,
@@ -949,25 +940,19 @@ a.pinHelp {
     cursor: pointer;
 }
 
-    .dnnCheckbox .mark {
-        display: inline-block; /*margin-top: 3px;*/
-    }
+.dnnCheckbox .mark {
+    display: inline-block; /*margin-top: 3px;*/
+}
 
-    .dnnCheckbox img {
-        display: inline-block;
-        width: 20px;
-        height: 18px;
-        min-width: 20px;
-        vertical-align: middle;
-    }
-
-    .dnnCheckbox img {
-        background: transparent url(../../../../../../images/checkbox.png) no-repeat;
-    }
-
-    .dnnCheckbox img {
-        background-position: 0px 0px;
-    }
+.dnnCheckbox img {
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+    min-width: 20px;
+    vertical-align: middle;
+    background: transparent url(../../../../../../images/checkbox.png) no-repeat;
+    background-position: 0px 0px;
+}
 
 .dnnCheckbox-hover img {
     background-position: 0px 0px;
@@ -1009,24 +994,18 @@ a.pinHelp {
     cursor: pointer;
 }
 
-    .dnnRadiobutton .mark {
-        display: inline-block;
-    }
+.dnnRadiobutton .mark {
+    display: inline-block;
+}
 
-    .dnnRadiobutton img {
-        width: 20px;
-        height: 18px;
-        min-width: 20px;
-        vertical-align: middle;
-    }
-
-    .dnnRadiobutton img {
-        background: transparent url(../../../../../../images/radiobutton.png) no-repeat;
-    }
-
-    .dnnRadiobutton img {
-        background-position: 0px 0px;
-    }
+.dnnRadiobutton img {
+    width: 20px;
+    height: 18px;
+    min-width: 20px;
+    vertical-align: middle;
+    background: transparent url(../../../../../../images/radiobutton.png) no-repeat;
+    background-position: 0px 0px;
+}
 
 .dnnRadiobutton-hover img {
     background-position: 0px 0px;
@@ -1582,10 +1561,6 @@ ul.dnnButtonGroup {
     margin-left: 16px;
     padding: 18px 0;
     background: rgba(0,0,0,0.05);
-}
-
-.dnnFormItem textarea {
-    min-height: 80px;
 }
 
 .dnnAddress input[type="checkbox"] {
@@ -2302,6 +2277,8 @@ span[id$="FileControl"] {
     .dnnFilePicker .dnnLeft img {
         max-width: 135px;
         max-height: 100px;
+        display: block;
+        margin: 20px 15px;
     }
 
     .dnnFilePicker .dnnLeft .dnnFilePickerImageHolder {
@@ -2331,11 +2308,6 @@ span[id$="FileControl"] {
     .dnnFilePicker .dnnLeft a.dnnSecondaryAction {
         margin: 10px 10px 0 0;
         display: inline-block;
-    }
-
-    .dnnFilePicker .dnnLeft img {
-        display: block;
-        margin: 20px 15px;
     }
 
 /* FILE UPLOAD CSS */
@@ -2602,6 +2574,9 @@ h2.dnnFormSectionHead {
 
 .jspHorizontalBar .jspCap {
     float: left;
+    display: block;
+    width: 3px;
+    height: 11px;
 }
 
 .jspTrack {
@@ -2623,12 +2598,6 @@ h2.dnnFormSectionHead {
     display: block;
     height: 3px;
     width: 11px;
-}
-
-.jspHorizontalBar .jspCap {
-    display: block;
-    width: 3px;
-    height: 11px;
 }
 
 .jspDrag {
@@ -2761,19 +2730,6 @@ div.ModDNNLinksC .urlControl span.dnnRadiobutton {
    word-wrap: break-word;      /* IE */
 }
 /*Edit In Place Tool Bar Classes*/
-.eipbackimg {
-	position:absolute;
-	margin-top:-32px;
-	white-space:nowrap;
-	background:url(../../../../../../images/eip_toolbar.png) repeat-x;
-	height:32px;
-	z-index: 1;
-}
-.eipbackimg.editMode {
-	border: 1px solid #777777 !important;
-  background: linear-gradient(to bottom, #303030 0%,#191919 100%) !important; /* W3C */
-	opacity: 0.8;
-}
 .eipbackimg.containerTitle {
 	margin-top: -8px;
 }
@@ -2792,12 +2748,6 @@ div.ModDNNLinksC .urlControl span.dnnRadiobutton {
 	background: url(../../../../../../images/eip_toolbar.png) no-repeat;
 	
 }
-.eipbackimg.editMode .eipbuttonbackimg {
-	border-left: 1px solid #1f1f1f;
-	border-right: 1px solid #393939;
-	opacity: 0.5;
-}
-
 .eipbackimg.editMode.containerTitle .eipbuttonbackimg {
 	border: none;
 	opacity: 1;
@@ -3296,14 +3246,23 @@ div.actionMenu .dnn_mact {
 
 /* On Page Editor */
 .eipbackimg {
+    position:absolute;
+    margin-top:-32px;
+    white-space:nowrap;
+    background:url(../../../../../../images/eip_toolbar.png) repeat-x;
+    height:32px;
+    z-index: 1;
   height:30px !important;
   z-index:1250;
   
   &.editMode {
+	background: linear-gradient(to bottom, #303030 0%,#191919 100%) !important; /* W3C */
+	opacity: 0.8;
     border:none !important;
     
     .eipbuttonbackimg {
-      border:none !important;
+        opacity: 0.5;
+        border:none !important;
     }
   }
   
