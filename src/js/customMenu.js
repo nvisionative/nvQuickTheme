@@ -1,7 +1,5 @@
 /*jshint esversion: 6 */
 
-console.clear();
-
 const navExpand = [].slice.call(document.querySelectorAll('.nav-expand'));
 
 navExpand.forEach(item => {

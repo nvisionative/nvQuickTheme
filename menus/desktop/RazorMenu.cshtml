@@ -31,34 +31,7 @@
             @if (hasChildren)
             {
                 <ul>
-                    @RenderNestedPages(page.Children)
-                </ul>
-            }
-        </li>
-    }
-}
-
-@helper RenderNestedPages(IEnumerable<MenuNode> pages)
-{
-    foreach (var page in pages)
-    {
-        var hasChildren = page.HasChildren();
-        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
-
-        <li class="@(page.Selected ? "selected" : string.Empty)">
-            @if (page.Enabled)
-            {
-                <a href="@page.Url" @attrTarget>@page.Text</a>
-            }
-            else
-            {
-                <a href="javascript:void(0);" @attrTarget>@page.Text</a>
-            }
-
-            @if (hasChildren)
-            {
-                <ul>
-                    @RenderNestedPages(page.Children)
+                    @RenderPages(page.Children)
                 </ul>
             }
         </li>
