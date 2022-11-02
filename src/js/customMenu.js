@@ -1,16 +1,9 @@
 /*jshint esversion: 6 */
 
+// add event listeners to expands
 const navExpand = [].slice.call(document.querySelectorAll('.nav-expand'));
 
 navExpand.forEach(item => {
-	const parent = item.querySelector('.nav-link').text;
-	const backLink = `<li class="nav-item">
-		<a class="nav-link nav-back-link" href="javascript:;">
-			<i class="fas fa-chevron-left mr-1"></i>Back to ` + parent + `
-		</a>
-	</li>`;
-	
-	item.querySelector('.nav-expand-content').insertAdjacentHTML('afterbegin', backLink);
 	item.querySelector('.nav-expand-link').addEventListener('click', () => item.classList.add('active'));
 	item.querySelector('.nav-back-link').addEventListener('click', () => item.classList.remove('active'));
 });

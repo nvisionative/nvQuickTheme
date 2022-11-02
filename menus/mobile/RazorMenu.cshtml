@@ -20,53 +20,31 @@
     foreach (var page in pages)
     {
         var hasChildren = page.HasChildren();
+        var pageDesc = Html.Raw(!string.IsNullOrEmpty(page.Description) ? ("<br/><span class=\"link-description\">" + @page.Description + "</span>") :string.Empty);
         var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
 
         <li class="nav-item @(hasChildren ? "nav-expand " : string.Empty)@(page.Selected ? "selected" : string.Empty)">
             @if (page.Enabled)
             {
-                <a class="nav-link" href="@page.Url" @attrTarget>@page.Text</a>
+                <a class="nav-link" href="@page.Url" @attrTarget>@page.Text @pageDesc</a>
             }
             else
             {
-                <a href="javascript:void(0);" @attrTarget>@page.Text</a>
+                <a href="javascript:void(0);" @attrTarget>@page.Text @pageDesc</a>
             }
 
             @if (hasChildren)
             {
                 <a href="javascript:void(0);" class="nav-link nav-expand-link"><i class="fas fa-chevron-right"></i></a>
                 <ul class="nav-items nav-expand-content">
-                    @RenderNestedPages(page.Children)
+                    <li class="nav-item">
+                        <a class="nav-link nav-back-link" href="javascript:;">
+                            <em class="fas fa-chevron-left me-1"></em>Back to @page.Text
+                        </a>
+                    </li>
+                    @RenderPages(page.Children)
                 </ul>
             }
         </li>
     }    
-}
-
-@helper RenderNestedPages(IEnumerable<MenuNode> pages)
-{
-    foreach (var page in pages)
-    {
-        var hasChildren = page.HasChildren();
-        var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
-
-        <li class="nav-item @(hasChildren ? "nav-expand " : string.Empty)@(page.Selected ? "selected" : string.Empty)">
-            @if (page.Enabled)
-            {
-                <a class="nav-link" href="@page.Url" @attrTarget>@page.Text<br/><span class="link-description">@page.Description</span></a>
-            }
-            else
-            {
-                <a href="javascript:void(0);" @attrTarget>@page.Text<br/><span class="link-description">@page.Description</span></a>
-            }
-
-            @if (hasChildren)
-            {
-                <a href="javascript:void(0);" class="nav-link nav-expand-link"><i class="fas fa-chevron-right"></i></a>
-                <ul class="nav-items nav-expand-content">
-                    @RenderNestedPages(page.Children)
-                </ul>
-            }
-        </li>
-    }
 }
