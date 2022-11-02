@@ -20,21 +20,17 @@
     foreach (var page in pages)
     {
         var hasChildren = page.HasChildren();
-        var hasDescription = !string.IsNullOrEmpty(page.Description);
+        var pageDesc = Html.Raw(!string.IsNullOrEmpty(page.Description) ? ("<br/><span class=\"link-description\">" + @page.Description + "</span>") :string.Empty);
         var attrTarget = !string.IsNullOrEmpty(page.Target) ? ("target=\"" + page.Target + "\"") :string.Empty;
 
         <li class="nav-item @(hasChildren ? "nav-expand " : string.Empty)@(page.Selected ? "selected" : string.Empty)">
             @if (page.Enabled)
             {
-                <a class="nav-link" href="@page.Url" @attrTarget>@page.Text
-                    @Html.Raw(hasDescription ? "<br/><span class=\"link-description\">" + @page.Description + "</span>" : string.Empty)
-                </a>
+                <a class="nav-link" href="@page.Url" @attrTarget>@page.Text @pageDesc</a>
             }
             else
             {
-                <a href="javascript:void(0);" @attrTarget>@page.Text
-                    @Html.Raw(hasDescription ? "<br/><span class=\"link-description\">" + @page.Description + "</span>" : string.Empty)
-                </a>
+                <a href="javascript:void(0);" @attrTarget>@page.Text @pageDesc</a>
             }
 
             @if (hasChildren)
