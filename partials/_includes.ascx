@@ -18,10 +18,15 @@
             "dist/webfonts/fa-regular-400",
             "dist/webfonts/fa-solid-900",
             "dist/fonts/OpenSans-Bold",
+            "dist/fonts/OpenSans-BoldItalic",
             "dist/fonts/OpenSans-ExtraBold",
+            "dist/fonts/OpenSans-ExtraBoldItalic",
             "dist/fonts/OpenSans-Light",
+            "dist/fonts/OpenSans-LightItalic",
             "dist/fonts/OpenSans-Regular",
-            "dist/fonts/OpenSans-SemiBold"
+            "dist/fonts/OpenSans-Italic",
+            "dist/fonts/OpenSans-SemiBold",
+            "dist/fonts/OpenSans-SemiBoldItalic"
         };
 
         var types = new Dictionary<string, string>();
