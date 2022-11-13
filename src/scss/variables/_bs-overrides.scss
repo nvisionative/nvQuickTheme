@@ -35,7 +35,7 @@ $container-max-widths: (
 $spacer:1rem;
 $spacers: (
   0: 0,
-  half: ($spacer / 2),
+  half: calc($spacer / 2),
   1: $spacer,
   3half: ($spacer * 1.5),
   2: ($spacer * 2),
@@ -46,9 +46,6 @@ $spacers: (
   7: ($spacer * 7),
   8: ($spacer * 8)
 );
-
-// Get rid of deprecated warnings
-$enable-deprecation-messages: false;
 
 // Change gutter width
 $grid-gutter-width: 2rem;
