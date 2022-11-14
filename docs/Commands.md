@@ -26,7 +26,7 @@ This sets your node instance to watch all changes of images, JS and SCSS in the 
 
 **Note:** _This command will take over your node instance (in Command Prompt, PowerShell, Git Bash, VS Code Terminal, etc.).  Therefore, you may want to start a new instance if you need to run other commands at the same time._
 
-### gulp package
+### gulp packageTheme
 This command builds and packages your custom theme into a DNN theme installation package (ZIP file). It will place the ZIP file in the `./build/` folder using the following naming convention: `[project]_[version]_install.zip`
 
 
