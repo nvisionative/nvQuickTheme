@@ -337,19 +337,9 @@ legend.error {
 .dnnTertiaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    display: inline-block;
-    padding: 9px 9px;
-    margin-bottom: 9px;
-    cursor: pointer;
-    min-width: 75px;
-    *overflow: visible;
-    border: 1px solid #c2c2c2;
-    background: #eaeaea;
-    border-radius: 0.25px;
-    color: #333;
-    font-weight: bold;
-    text-decoration: none;
-    text-align: center;
+    @extend .btn;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .dnnFormItem button,
@@ -358,47 +348,28 @@ ul.dnnAdminTabNav li a,
 .dnnFormItem input[type="submit"],
 .dnnPrimaryAction,
 .dnnSecondaryAction,
-.dnnTertiaryAction {
-    padding: 6px 6px;
-}
+.dnnTertiaryAction {}
 
 /* Primary Action */
 
 .dnnPrimaryAction,
 .dnnFormItem input[type="submit"],
 a.dnnPrimaryAction {
-    border-color: color('dnnPrimaryAction');
-    background: color('dnnPrimaryAction');
-    color: #efefef;
-    text-shadow: 0px -1px 0px #185B93;
-    cursor: pointer;
+    @extend .btn-main-shade;
 }
 
 .dnnPrimaryAction:hover,
 .dnnFormItem input[type="submit"]:hover,
-a.dnnPrimaryAction:hover {
-    border-color: #6cb6f3;
-    background: #6cb6f3;
-    /* Old browsers */
-    color: #fff;
-}
+a.dnnPrimaryAction:hover {}
 
 .dnnPrimaryAction:active,
 .dnnFormItem input[type="submit"]:active,
-a.dnnPrimaryAction:active {
-    border-color: color('dnnPrimaryAction');
-    background: color('dnnPrimaryAction');
-    color: #fff;
-}
+a.dnnPrimaryAction:active {}
 
 .dnnPrimaryAction[disabled],
 .dnnPrimaryAction[disabled]:hover,
 .dnnPrimaryAction[disabled]:active {
-    background: #ccc !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: #aaa !important;
-    text-shadow: none;
+    @extend .btn-disabled !optional;
 }
 
 /* Secondary Action */
@@ -409,12 +380,7 @@ a.dnnPrimaryAction:active {
 a.dnnSecondaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    background: color('dnnSecondaryAction');
-    /* Old browsers */
-    border-color: color('dnnSecondaryAction');
-    text-shadow: 0px 1px 0px #ffffff;
-    color: #333;
-    cursor: pointer;
+    @extend .btn-main-highlight;
 }
 
 .dnnFormItem button:hover,
@@ -423,11 +389,7 @@ ul.dnnAdminTabNav li a,
 .dnnSecondaryAction:hover,
 a.dnnSecondaryAction:hover,
 ul.dnnAdminTabNav li a:hover,
-.dnnLogin .LoginTabGroup span:hover {
-    background: whitesmoke;
-    /* Old browsers */
-    color: #555;
-}
+.dnnLogin .LoginTabGroup span:hover {}
 
 .dnnFormItem button:active,
 .dnnFormItem input[type="button"]:active,
@@ -435,8 +397,8 @@ ul.dnnAdminTabNav li a:hover,
 .dnnSecondaryAction:active,
 a.dnnSecondaryAction:active,
 ul.dnnAdminTabNav li a:active {
-    border-color: color('dnnSecondaryAction');
-    background: color('dnnSecondaryAction');
+    border-color: color('main-accent');
+    background: color('main-accent'); 
 }
 
 /* Fix some old forge modules use .dnnPrimaryAction and .dnnSecondaryAction in wrong way */
@@ -456,34 +418,25 @@ span.dnnSecondaryAction>a.dnnSecondaryAction {
 /* Tertiary Action */
 .dnnTertiaryAction,
 a.dnnTertiaryAction {
-    padding: 10px 10px;
-    border: none;
-    background: color('dnnTertiaryAction');
-    color: #333;
+    @extend .btn-main-accent;
 }
 
 .dnnTertiaryAction:hover,
-a.dnnTertiaryAction:hover {
-    background: #f2f2f2;
-}
+a.dnnTertiaryAction:hover {}
 
 .dnnTertiaryAction:active,
-a.dnnTertiaryAction:active {
-    background: color('dnnTertiaryAction');
-}
+a.dnnTertiaryAction:active {}
 
 /* Action Button behind input */
 .dnnFormItem input[type="text"]+a.dnnPrimaryAction,
 .dnnFormItem input[type="text"]+a.dnnSecondaryAction,
 .dnnFormItem input[type="text"]+a.dnnTerriaryAction {
-    display: inline-block;
-    width: auto;
-    margin: 6px 5px 6px 5px;
+    margin-left: 0.325rem;
 }
 
-.dnnFormItem input[type="checkbox"]+span,
-.dnnFormItem input[type="radio"]+span {
-    margin: 5px;
+.dnnFormItem input[type="checkbox"] + span,
+.dnnFormItem input[type="radio"] + span {
+    margin: 0.325rem;
 }
 
 /* text style for buttons and link buttons used in the portal admin pages */
@@ -497,8 +450,7 @@ a.dnnTertiaryAction:active {
 /* Re-set default cursor for disabled elements */
 .dnnFormItem button[disabled],
 .dnnFormItem input[disabled] {
-    cursor: default;
-    opacity: 0.5;
+    @extend .btn-disabled !optional;
 }
 
 
