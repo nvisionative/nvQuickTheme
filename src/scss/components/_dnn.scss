@@ -323,10 +323,10 @@ legend.error {
 }
 
 /*
-	 * 1. Display hand cursor for clickable form elements
-	 * 2. Allow styling of clickable form elements in iOS
-	 * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
-	 */
+* 1. Display hand cursor for clickable form elements
+* 2. Allow styling of clickable form elements in iOS
+* 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
+*/
 
 .dnnFormItem button,
 .dnnFormItem input[type="button"],
@@ -342,14 +342,6 @@ ul.dnnAdminTabNav li a,
     margin-bottom: 0.5rem;
 }
 
-.dnnFormItem button,
-.dnnFormItem input[type="button"],
-.dnnFormItem input[type="reset"],
-.dnnFormItem input[type="submit"],
-.dnnPrimaryAction,
-.dnnSecondaryAction,
-.dnnTertiaryAction {}
-
 /* Primary Action */
 
 .dnnPrimaryAction,
@@ -357,14 +349,6 @@ ul.dnnAdminTabNav li a,
 a.dnnPrimaryAction {
     @extend .btn-main-shade;
 }
-
-.dnnPrimaryAction:hover,
-.dnnFormItem input[type="submit"]:hover,
-a.dnnPrimaryAction:hover {}
-
-.dnnPrimaryAction:active,
-.dnnFormItem input[type="submit"]:active,
-a.dnnPrimaryAction:active {}
 
 .dnnPrimaryAction[disabled],
 .dnnPrimaryAction[disabled]:hover,
@@ -382,14 +366,6 @@ ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
     @extend .btn-main-highlight;
 }
-
-.dnnFormItem button:hover,
-.dnnFormItem input[type="button"]:hover,
-.dnnFormItem input[type="reset"]:hover,
-.dnnSecondaryAction:hover,
-a.dnnSecondaryAction:hover,
-ul.dnnAdminTabNav li a:hover,
-.dnnLogin .LoginTabGroup span:hover {}
 
 .dnnFormItem button:active,
 .dnnFormItem input[type="button"]:active,
@@ -420,12 +396,6 @@ span.dnnSecondaryAction>a.dnnSecondaryAction {
 a.dnnTertiaryAction {
     @extend .btn-main-accent;
 }
-
-.dnnTertiaryAction:hover,
-a.dnnTertiaryAction:hover {}
-
-.dnnTertiaryAction:active,
-a.dnnTertiaryAction:active {}
 
 /* Action Button behind input */
 .dnnFormItem input[type="text"]+a.dnnPrimaryAction,
