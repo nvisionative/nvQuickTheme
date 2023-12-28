@@ -17,7 +17,6 @@
         var fonts = new string[]
         {
             "dist/webfonts/fa-brands-400",
-            "dist/webfonts/fa-regular-400",
             "dist/webfonts/fa-solid-900",
             "dist/fonts/OpenSans-Bold",
             "dist/fonts/OpenSans-BoldItalic",
