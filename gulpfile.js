@@ -32,11 +32,18 @@ const paths = {
     dest: './dist/fonts/'
   },
   faFonts: {
-    src: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
+    src: [
+      './node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.*',
+      './node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.*'
+    ],
     dest: './dist/webfonts/'
   },
   faCss: {
-    src: './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
+    src: [
+      './node_modules/@fortawesome/fontawesome-free/css/brands.min.css',
+      './node_modules/@fortawesome/fontawesome-free/css/solid.min.css',
+      './node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css',
+    ],
     dest: './dist/css/'
   },
   normalize: {
