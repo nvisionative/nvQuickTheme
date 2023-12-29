@@ -32,7 +32,6 @@
 
         var types = new Dictionary<string, string>();
         types.Add("woff2", "font/woff2");
-        types.Add("woff", "font/woff");
 
         var defaultPage = (CDefault)this.Page;
 
