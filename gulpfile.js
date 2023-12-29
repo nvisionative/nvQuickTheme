@@ -401,7 +401,15 @@ function cleantemp() {
 //gulp serve
 function serve() {
   bs.init({
-      proxy: "nvQuickTheme.loc"
+      proxy: "nvQuickTheme.loc",
+      rewriteRules: [
+        {
+            match: /w\[".*"].*/g,
+            fn: (req, _res, match) => {
+                return match.replace(/(http:\/\/|https:\/\/)[a-zA-Z0-9.-]+\//g, `//${req.headers.host}/`);
+            }
+        },
+    ],
   });
   gulp.watch(paths.images.src, images).on('change', bs.reload);
   gulp.watch(paths.styles.src, styles).on('change', bs.reload);
