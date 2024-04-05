@@ -4,6 +4,6 @@
 		"discoverMore": "https://connect-koi.net/"
 	},
 	"default": {
-		"cssFramework": "bs4"
+		"cssFramework": "bs5"
 	}
 }

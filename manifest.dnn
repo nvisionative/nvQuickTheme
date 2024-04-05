@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="nvisionative.nvQuickTheme" type="Skin" version="3.1.0">
+    <package name="nvisionative.nvQuickTheme" type="Skin" version="3.1.1">
       <friendlyName>nvQuickTheme</friendlyName>
       <description>A DNN Theme Dev Framework</description>
       <iconFile>MyIcon.png</iconFile>
