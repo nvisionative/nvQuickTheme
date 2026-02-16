@@ -2,10 +2,10 @@
   <packages>
     <package name="nvisionative.nvQuickTheme" type="Skin" version="3.2.0">
       <friendlyName>nvQuickTheme</friendlyName>
-      <description>A DNN Theme Dev Framework</description>
+      <description>A Basic DNN Theme</description>
       <iconFile>MyIcon.png</iconFile>
       <owner>
-        <name>TK Sheppard &amp; David Poindexter</name>
+        <n>TK Sheppard &amp; David Poindexter</name>
         <organization>nvisionative</organization>
         <url>www.nvquicktheme.com</url>
         <email>support@nvisionative.com</email>
@@ -24,11 +24,11 @@
             <!-- Main Directory -->
             <skinFile>
               <path />
-              <name>default.png</name>
+              <n>TK Sheppard &amp; David Poindexter</name>
             </skinFile>
             <skinFile>
               <path />
-              <name>thumbnail_default.png</name>
+              <n>TK Sheppard &amp; David Poindexter</name>
             </skinFile>
             <skinFile>
               <path />
