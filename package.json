@@ -8,17 +8,21 @@
   "private": true,
   "scripts": {
     "watch": "node scripts/watch.js",
+    "serve": "node scripts/serve.js",
     "build": "node scripts/build.js",
     "clean": "node scripts/clean.js",
     "package": "node scripts/package.js"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "archiver": "^6.0.1",
+    "bootstrap": "^5.3.8",
+    "browser-sync": "^3.0.4",
+    "chokidar": "^5.0.0",
+    "fast-xml-parser": "^5.3.6",
+    "glob": "^10.3.10",
     "sass": "^1.69.5",
     "terser": "^5.26.0",
-    "archiver": "^6.0.1",
-    "glob": "^10.3.10",
-    "@fortawesome/fontawesome-free": "^7.0.1",
-    "bootstrap": "^5.3.8"
+    "vite": "^5.0.0"
   }
 }
