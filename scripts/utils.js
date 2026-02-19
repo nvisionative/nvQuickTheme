@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, statSync } from 'fs';
 import { globSync } from 'glob';
+import { XMLParser, XMLBuilder } from 'fast-xml-parser';
 
 // Load project details
 const details = JSON.parse(readFileSync('./project-details.json', 'utf-8'));
@@ -30,7 +31,6 @@ export function copyFontAwesome() {
     mkdirSync(webfontsDir, { recursive: true });
   }
   
-  // Font Awesome 7 font files - includes brands and solid styles
   const faFonts = globSync('./node_modules/@fortawesome/fontawesome-free/webfonts/{fa-brands-400.*,fa-solid-900.*,fa-regular-400.*}');
   faFonts.forEach(file => {
     const fileName = file.split('/').pop();
@@ -38,20 +38,13 @@ export function copyFontAwesome() {
   });
   console.log(`${faFonts.length} FontAwesome 7 font files copied!`);
   
-  // Copy FA CSS - Font Awesome 7 structure
   const cssDir = './dist/css';
   if (!existsSync(cssDir)) {
     mkdirSync(cssDir, { recursive: true });
   }
   
-  // Font Awesome 7 uses all.min.css for everything, or individual style files
   const faCss = [
-    './node_modules/@fortawesome/fontawesome-free/css/all.min.css', // All styles in one file
-    // Or use individual files:
-    // './node_modules/@fortawesome/fontawesome-free/css/brands.min.css',
-    // './node_modules/@fortawesome/fontawesome-free/css/solid.min.css',
-    // './node_modules/@fortawesome/fontawesome-free/css/regular.min.css',
-    // './node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css',
+    './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
   ];
   
   faCss.forEach(file => {
@@ -98,7 +91,6 @@ export function processImages() {
     cpSync(file, destPath);
   });
   console.log(`${images.length} images copied!`);
-  console.log('Note: Use vite-plugin-imagemin for optimization in production');
 }
 
 // Copy DNN containers
@@ -118,37 +110,29 @@ export function copyContainers() {
 
 // Update DNN manifest
 export function updateManifest() {
-  let manifest = readFileSync('./manifest.dnn', 'utf-8');
-  
-  manifest = manifest
-    .replace(/\<package name\="(.*?)(?=")/, `<package name="${company}.${project}`)
-    .replace(/type\="Skin" version\="(.*?)(?=")/, `type="Skin" version="${version}`)
-    .replace(/\<friendlyName\>(.*?)(?=\<)/, `<friendlyName>${project}`)
-    .replace(/\<description\>(.*?)(?=\<)/, `<description>${description}`)
-    .replace(/\<name\>(.*?)(?=\<)/, `<n>${author}`)
-    .replace(/\<organization\>(.*?)(?=\<)/, `<organization>${company}`)
-    .replace(/\<url\>(.*?)(?=\<)/, `<url>${url}`)
-    .replace(/\<email\>(.*?)(?=\<)/, `<email>${email}`)
-    .replace(/\<skinName\>(.*?)(?=\<)/, `<skinName>${project}`)
-    .replace(/(\\Skins\\)(.*?)(?=\\)/g, `\\Skins\\${project}`)
-    .replace(/(\\Containers\\)(.*?)(?=\\)/g, `\\Containers\\${project}`);
-  
-  writeFileSync('./manifest.dnn', manifest);
-  console.log('DNN manifest updated!');
-}
+  const template = readFileSync('./manifest.template.dnn', 'utf-8');
 
-// Run all post-build tasks
-export function runPostBuildTasks() {
-  console.log('Running post-build tasks...');
-  
-  copyFonts();
-  copyFontAwesome();
-  copyBootstrapJs();
-  processImages();
-  copyContainers();
-  updateManifest();
-  
-  console.log('Post-build tasks complete!');
+  const replacements = {
+    PACKAGE_NAME: `${company}.${project}`,
+    VERSION: version,
+    PROJECT: project,
+    DESCRIPTION: description,
+    AUTHOR: author,
+    COMPANY: company,
+    URL: url,
+    EMAIL: email,
+  };
+
+  let output = template;
+
+  for (const [key, value] of Object.entries(replacements)) {
+    const regex = new RegExp(`{{${key}}}`, 'g');
+    output = output.replace(regex, value);
+  }
+
+  writeFileSync('./manifest.dnn', output);
+
+  console.log('DNN manifest generated from template!');
 }
 
 // ============================================================================
