@@ -1,14 +1,14 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="nvisionative.nvQuickTheme" type="Skin" version="3.2.0">
-      <friendlyName>nvQuickTheme</friendlyName>
-      <description>A Basic DNN Theme</description>
-      <iconFile>MyIcon.png</iconFile>
+    <package name="{{PACKAGE_NAME}}" type="Skin" version="{{VERSION}}">
+      <friendlyName>{{PROJECT}}</friendlyName>
+      <description>{{DESCRIPTION}}</description>
+
       <owner>
-        <n>TK Sheppard &amp; David Poindexter</name>
-        <organization>nvisionative</organization>
-        <url>www.nvquicktheme.com</url>
-        <email>support@nvisionative.com</email>
+        <name>{{AUTHOR}}</name>
+        <organization>{{COMPANY}}</organization>
+        <url>{{URL}}</url>
+        <email>{{EMAIL}}</email>
       </owner>
       <license src="themeLicense.txt" />
       <releaseNotes src="themeReleaseNotes.txt" />
@@ -18,17 +18,17 @@
       <components>
         <component type="Skin">
           <skinFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
-            <skinName>nvQuickTheme</skinName>
+            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
+            <skinName>{{PROJECT}}</skinName>
 
             <!-- Main Directory -->
             <skinFile>
               <path />
-              <n>TK Sheppard &amp; David Poindexter</name>
+              <name>default.png</name>
             </skinFile>
             <skinFile>
               <path />
-              <n>TK Sheppard &amp; David Poindexter</name>
+              <name>thumbnail_default.png</name>
             </skinFile>
             <skinFile>
               <path />
@@ -41,7 +41,7 @@
         <!-- Menus, Partials, and Root -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
+            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
             <resourceFile>
               <name>else.zip</name>
             </resourceFile>
@@ -51,7 +51,7 @@
         <!-- CSS, Fonts, JS, Images Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\nvQuickTheme\</basePath>
+            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
             <resourceFile>
               <name>dist.zip</name>
             </resourceFile>
@@ -61,7 +61,7 @@
         <!-- Containers Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Containers\nvQuickTheme\</basePath>
+            <basePath>Portals\_default\Containers\{{PROJECT}}\</basePath>
             <resourceFile>
               <name>cont.zip</name>
             </resourceFile>
