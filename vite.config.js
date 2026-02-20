@@ -22,29 +22,26 @@ export default defineConfig({
   build: {
     outDir: '../dist',
     emptyOutDir: true,
-    
+  
+    lib: {
+      entry: resolve(__dirname, 'src/js/custom.js'),
+      name: 'custom',
+      formats: ['es'],
+      fileName: () => 'js/custom.min.js',
+      cssFileName: 'css/style.min.css',
+    },
+  
     rollupOptions: {
-      // Entry point(s) - change 'custom' to match your JS filename
-      input: {
-        custom: resolve(__dirname, 'src/js/custom.js'),
-      },
-      
-      // Output file naming
       output: {
-        entryFileNames: 'js/[name].min.js',
-        chunkFileNames: 'js/[name].min.js',
         assetFileNames: (assetInfo) => {
-          const name = assetInfo.names?.[0] || assetInfo.name;
-          
-          if (name?.endsWith('.css')) {
-            return 'css/[name].min[extname]';
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'css/style.min.css';
           }
           return 'assets/[name][extname]';
         },
       },
     },
-    
-    // Minification settings
+  
     minify: 'terser',
     sourcemap: true,
     cssMinify: true,
