@@ -1,14 +1,14 @@
 <dotnetnuke type="Package" version="9.0">
   <packages>
-    <package name="{{PACKAGE_NAME}}" type="Skin" version="{{VERSION}}">
-      <friendlyName>{{PROJECT}}</friendlyName>
-      <description>{{DESCRIPTION}}</description>
+    <package name="" type="Skin" version="">
+      <friendlyName></friendlyName>
+      <description></description>
 
       <owner>
-        <name>{{AUTHOR}}</name>
-        <organization>{{COMPANY}}</organization>
-        <url>{{URL}}</url>
-        <email>{{EMAIL}}</email>
+        <name></name>
+        <organization></organization>
+        <url></url>
+        <email></email>
       </owner>
       <license src="themeLicense.txt" />
       <releaseNotes src="themeReleaseNotes.txt" />
@@ -18,21 +18,17 @@
       <components>
         <component type="Skin">
           <skinFiles>
-            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
-            <skinName>{{PROJECT}}</skinName>
+            <basePath></basePath>
+            <skinName></skinName>
 
             <!-- Main Directory -->
             <skinFile>
               <path />
-              <name>default.png</name>
+              <n>default.png</n>
             </skinFile>
             <skinFile>
               <path />
-              <name>thumbnail_default.png</name>
-            </skinFile>
-            <skinFile>
-              <path />
-              <name>LICENSE</name>
+              <n>thumbnail_default.png</n>
             </skinFile>
 
           </skinFiles>
@@ -41,9 +37,9 @@
         <!-- Menus, Partials, and Root -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
+            <basePath></basePath>
             <resourceFile>
-              <name>else.zip</name>
+              <n>else.zip</n>
             </resourceFile>
           </resourceFiles>
         </component>
@@ -51,9 +47,9 @@
         <!-- CSS, Fonts, JS, Images Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Skins\{{PROJECT}}\</basePath>
+            <basePath></basePath>
             <resourceFile>
-              <name>dist.zip</name>
+              <n>dist.zip</n>
             </resourceFile>
           </resourceFiles>
         </component>
@@ -61,9 +57,9 @@
         <!-- Containers Folder -->
         <component type="ResourceFile">
           <resourceFiles>
-            <basePath>Portals\_default\Containers\{{PROJECT}}\</basePath>
+            <basePath>Portals\_default\Containers\</basePath>
             <resourceFile>
-              <name>cont.zip</name>
+              <n>cont.zip</n>
             </resourceFile>
           </resourceFiles>
         </component>
