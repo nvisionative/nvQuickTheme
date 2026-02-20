@@ -1,5 +1,5 @@
 export default {
-    dnnUrl: 'http://mysite.loc',
+    dnnUrl: 'https://2sxc-19.me',
     port: 3000,
     watchPaths: ['dist/**/*', 'containers/**/*', '*.ascx'],
     sourcePaths: ['src/**/*'],
