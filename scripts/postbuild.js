@@ -1,31 +1,30 @@
-import { 
-  copyFonts, 
-  copyFontAwesome, 
-  copyBootstrapJs, 
-  processImages, 
-  copyContainers, 
-  updateManifest 
+import {
+  copyFonts,
+  copyFontAwesome,
+  copyBootstrapJs,
+  processImages,
+  copyContainers,
 } from './utils.js';
+import { logInfo, logSuccess, logError } from './helpers.js';
 
 export function postBuild() {
   return {
     name: 'dnn-post-build',
-    
-    // Run after Vite finishes building
+
+    // Runs after Vite finishes writing the bundle
     closeBundle() {
-      console.log('\n🔧 Running post-build tasks...\n');
-      
+      logInfo('Running post-build tasks...\n');
+
       try {
         copyFonts();
         copyFontAwesome();
         copyBootstrapJs();
         processImages();
         copyContainers();
-        updateManifest();
-        
-        console.log('\n✅ Post-build tasks complete!\n');
+
+        logSuccess('Post-build tasks complete!\n');
       } catch (error) {
-        console.error('\n❌ Post-build tasks failed:', error);
+        logError('Post-build tasks failed', error);
         throw error;
       }
     },
