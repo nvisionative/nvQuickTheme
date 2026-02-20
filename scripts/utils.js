@@ -1,244 +1,296 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, statSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, statSync, createWriteStream, rmSync } from 'fs';
 import { globSync } from 'glob';
 import { XMLParser, XMLBuilder } from 'fast-xml-parser';
+import archiver from 'archiver';
+import { ensureDir, getFileName, getDirectoryPath, logSuccess, logError, logInfo, formatFileCount } from './helpers.js';
 
-// Load project details
+// ============================================================================
+// PROJECT DETAILS
+// ============================================================================
+
 const details = JSON.parse(readFileSync('./project-details.json', 'utf-8'));
 const { project, version, author, company, url, email, description } = details;
 
 export { project, version, author, company, url, email, description };
 
+// ============================================================================
+// ASSET COPY FUNCTIONS
+// ============================================================================
+
 // Copy custom fonts
 export function copyFonts() {
-  const fontsDir = './dist/fonts';
-  if (!existsSync(fontsDir)) {
-    mkdirSync(fontsDir, { recursive: true });
-  }
-  
+  ensureDir('./dist/fonts');
+
   const fonts = globSync('./src/fonts/*');
   fonts.forEach(file => {
-    const fileName = file.split('/').pop();
-    cpSync(file, `${fontsDir}/${fileName}`);
+    cpSync(file, `./dist/fonts/${getFileName(file)}`);
   });
-  console.log(`${fonts.length} font files copied!`);
+  logSuccess(`${formatFileCount(fonts, 'font')} copied!`);
 }
 
 // Copy FontAwesome assets
 export function copyFontAwesome() {
-  // Copy FA webfonts
-  const webfontsDir = './dist/webfonts';
-  if (!existsSync(webfontsDir)) {
-    mkdirSync(webfontsDir, { recursive: true });
-  }
-  
+  ensureDir('./dist/webfonts');
+  ensureDir('./dist/css');
+
   const faFonts = globSync('./node_modules/@fortawesome/fontawesome-free/webfonts/{fa-brands-400.*,fa-solid-900.*,fa-regular-400.*}');
   faFonts.forEach(file => {
-    const fileName = file.split('/').pop();
-    cpSync(file, `${webfontsDir}/${fileName}`);
+    cpSync(file, `./dist/webfonts/${getFileName(file)}`);
   });
-  console.log(`${faFonts.length} FontAwesome 7 font files copied!`);
-  
-  const cssDir = './dist/css';
-  if (!existsSync(cssDir)) {
-    mkdirSync(cssDir, { recursive: true });
-  }
-  
-  const faCss = [
-    './node_modules/@fortawesome/fontawesome-free/css/all.min.css',
-  ];
-  
+  logSuccess(`${formatFileCount(faFonts, 'FontAwesome 7 font')} copied!`);
+
+  const faCss = globSync('./node_modules/@fortawesome/fontawesome-free/css/all.min.css');
   faCss.forEach(file => {
-    if (existsSync(file)) {
-      const fileName = file.split('/').pop();
-      cpSync(file, `${cssDir}/${fileName}`);
-    }
+    cpSync(file, `./dist/css/${getFileName(file)}`);
   });
-  console.log(`FontAwesome 7 CSS files copied!`);
+  logSuccess(`${formatFileCount(faCss, 'FontAwesome 7 CSS')} copied!`);
 }
 
 // Copy Bootstrap JS
 export function copyBootstrapJs() {
-  const jsDir = './dist/js';
-  if (!existsSync(jsDir)) {
-    mkdirSync(jsDir, { recursive: true });
-  }
-  
+  ensureDir('./dist/js');
+
   const bsFiles = globSync('./node_modules/bootstrap/dist/js/bootstrap.bundle.min.*');
   bsFiles.forEach(file => {
-    const fileName = file.split('/').pop();
-    cpSync(file, `${jsDir}/${fileName}`);
+    cpSync(file, `./dist/js/${getFileName(file)}`);
   });
-  console.log(`${bsFiles.length} Bootstrap 5.3.8 JS files copied!`);
+  logSuccess(`${formatFileCount(bsFiles, 'Bootstrap 5 JS')} copied!`);
 }
 
 // Process images
 export function processImages() {
-  const imagesDir = './dist/images';
-  if (!existsSync(imagesDir)) {
-    mkdirSync(imagesDir, { recursive: true });
-  }
-  
+  ensureDir('./dist/images');
+
   const images = globSync('./src/images/**/*.{jpg,jpeg,png,gif,svg,webp}');
   images.forEach(file => {
     const relativePath = file.replace('./src/images/', '');
-    const destPath = `${imagesDir}/${relativePath}`;
-    const destDir = destPath.substring(0, destPath.lastIndexOf('/'));
-    
-    if (!existsSync(destDir)) {
-      mkdirSync(destDir, { recursive: true });
-    }
-    
+    const destPath = `./dist/images/${relativePath}`;
+    ensureDir(getDirectoryPath(destPath));
     cpSync(file, destPath);
   });
-  console.log(`${images.length} images copied!`);
+  logSuccess(`${formatFileCount(images, 'image')} copied!`);
 }
 
 // Copy DNN containers
 export function copyContainers() {
   const containersDir = `../../Containers/${project}`;
-  if (!existsSync(containersDir)) {
-    mkdirSync(containersDir, { recursive: true });
-  }
-  
+  ensureDir(containersDir);
+
   const containers = globSync('./containers/*');
   containers.forEach(file => {
-    const fileName = file.split('/').pop();
-    cpSync(file, `${containersDir}/${fileName}`);
+    cpSync(file, `${containersDir}/${getFileName(file)}`);
   });
-  console.log(`${containers.length} container files copied!`);
+  logSuccess(`${formatFileCount(containers, 'container')} copied!`);
 }
 
-// Update DNN manifest
-export function updateManifest() {
-  const template = readFileSync('./manifest.template.dnn', 'utf-8');
+// ============================================================================
+// MANIFEST GENERATION
+// ============================================================================
 
-  const replacements = {
-    PACKAGE_NAME: `${company}.${project}`,
-    VERSION: version,
-    PROJECT: project,
-    DESCRIPTION: description,
-    AUTHOR: author,
-    COMPANY: company,
-    URL: url,
-    EMAIL: email,
-  };
+/**
+ * Generate manifest.dnn from the XML template in build-resources/.
+ *
+ * Instead of regex string replacement, we parse the template as proper XML,
+ * inject project-details values into the correct nodes, then serialize back.
+ * The template no longer needs {{PLACEHOLDER}} tokens — they have been removed.
+ */
+export function updateManifest(outputPath = './manifest.dnn') {
+  const templatePath = './build-resources/manifest.template.dnn';
+  const templateXml  = readFileSync(templatePath, 'utf-8');
 
-  let output = template;
+  // Parser: keep attributes, handle self-closing tags, preserve comments
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: '@_',
+    allowBooleanAttributes: true,
+    parseAttributeValue: false,
+    cdataPropName: '__cdata',
+    commentPropName: '__comment',
+    isArray: (name) => ['component', 'resourceFile', 'skinFile', 'node', 'mimeMap', 'remove'].includes(name),
+  });
 
-  for (const [key, value] of Object.entries(replacements)) {
-    const regex = new RegExp(`{{${key}}}`, 'g');
-    output = output.replace(regex, value);
-  }
+  const builder = new XMLBuilder({
+    ignoreAttributes: false,
+    attributeNamePrefix: '@_',
+    format: true,
+    indentBy: '  ',
+    suppressEmptyNode: false,
+    cdataPropName: '__cdata',
+    commentPropName: '__comment',
+  });
 
-  writeFileSync('./manifest.dnn', output);
+  const doc = parser.parse(templateXml);
 
-  console.log('DNN manifest generated from template!');
+  // Navigate to the <package> node and inject values
+  const pkg = doc.dotnetnuke.packages.package;
+
+  pkg['@_name']    = `${company}.${project}`;
+  pkg['@_version'] = version;
+  pkg.friendlyName = project;
+  pkg.description  = description;
+
+  const owner      = pkg.owner;
+  owner.name       = author;
+  owner.organization = company;
+  owner.url        = url;
+  owner.email      = email;
+
+  // Inject {{PROJECT}} into basePath and skinName fields throughout <components>
+  // We walk every component and fix up any remaining path references.
+  const components = pkg.components.component;
+  components.forEach(component => {
+    if (component.skinFiles) {
+      component.skinFiles.basePath = `Portals\\_default\\Skins\\${project}\\`;
+      component.skinFiles.skinName = project;
+    }
+    if (component.resourceFiles) {
+      component.resourceFiles.basePath = component.resourceFiles.basePath.includes('Containers')
+        ? `Portals\\_default\\Containers\\${project}\\`
+        : `Portals\\_default\\Skins\\${project}\\`;
+    }
+  });
+
+  const outputXml = `<?xml version="1.0" encoding="utf-8" ?>\n` + builder.build(doc);
+  writeFileSync(outputPath, outputXml, 'utf-8');
+
+  logSuccess(`manifest.dnn generated from build-resources/manifest.template.dnn`);
 }
 
 // ============================================================================
 // DNN PACKAGING FUNCTIONS
 // ============================================================================
 
-import archiver from 'archiver';
-import { createWriteStream, rmSync } from 'fs';
-
 /**
- * Create a zip file from source files
+ * Create a zip archive from a glob pattern or array of file paths.
  */
 function createZip(src, dest) {
   return new Promise((resolve, reject) => {
-    const output = createWriteStream(dest);
+    const output  = createWriteStream(dest);
     const archive = archiver('zip', { zlib: { level: 9 } });
-    
-    output.on('close', () => resolve());
-    archive.on('error', (err) => reject(err));
-    
+
+    output.on('close', resolve);
+    archive.on('error', reject);
     archive.pipe(output);
-    
+
     if (typeof src === 'string') {
-      const files = globSync(src);
-      files.forEach(file => {
-        const stats = statSync(file);
-        if (stats.isFile()) {
-          archive.file(file, { name: file.replace(/^\.\/[^\/]+\//, '') });
+      // Glob pattern — preserve the full relative path (e.g. dist/css/style.min.css)
+      // so the zip structure matches what DNN expects based on the skin's includes.
+      globSync(src).forEach(file => {
+        if (statSync(file).isFile()) {
+          archive.file(file, { name: file.replace(/^\.\//, '') });
         }
       });
     } else {
-      src.forEach(file => {
-        const fileName = file.replace(/^.*[\/\\]/, '');
-        archive.file(file, { name: fileName });
-      });
+      // Explicit file list — use bare filenames as zip entry names
+      src.forEach(file => archive.file(file, { name: getFileName(file) }));
     }
-    
+
     archive.finalize();
   });
 }
 
 /**
- * Copy miscellaneous files (menus, partials, etc.) for packaging
+ * Build cont.zip with container files flat at the zip root (no containers/ parent folder).
+ * archive.directory(src, false) adds the directory's contents directly, not the folder itself.
  */
-function copyElseFiles() {
-  const tempDir = './temp';
-  const files = globSync('{./menus/**/*,./partials/*,*.{ascx,xml,html,htm},koi.json}');
-  
-  files.forEach(file => {
-    const stats = existsSync(file) ? statSync(file) : null;
-    if (!stats) return;
-    
-    const fileName = file.split('/').pop();
-    const destPath = `${tempDir}/${fileName}`;
-    
-    if (stats.isDirectory()) {
-      cpSync(file, destPath, { recursive: true });
-    } else {
-      cpSync(file, destPath);
+function buildContZip(dest) {
+  return new Promise((resolve, reject) => {
+    const output  = createWriteStream(dest);
+    const archive = archiver('zip', { zlib: { level: 9 } });
+
+    output.on('close', resolve);
+    archive.on('error', reject);
+    archive.pipe(output);
+
+    if (existsSync('./containers')) {
+      archive.directory('./containers', false);
     }
-  });
-  
-  return createZip(`${tempDir}/*`, `${tempDir}/else.zip`).then(() => {
-    // Clean up individual files, keep only zip
-    files.forEach(file => {
-      const fileName = file.split('/').pop();
-      const tempFile = `${tempDir}/${fileName}`;
-      if (existsSync(tempFile)) {
-        rmSync(tempFile, { recursive: true });
-      }
-    });
+
+    archive.finalize();
   });
 }
 
 /**
- * Create complete DNN install package
+ * Build else.zip, preserving the original folder structure.
+ *
+ * - menus/desktop/** and menus/mobile/** → menus/desktop/, menus/mobile/ inside zip
+ * - partials/*                           → partials/ inside zip
+ * - root-level .ascx, .xml, .html, etc. → zip root
  */
-export function createPackage() {
-  console.log('Creating DNN theme package...');
-  
-  const tempDir = './temp';
-  const buildDir = './build';
-  
-  // Clean and create directories
-  if (existsSync(tempDir)) {
-    rmSync(tempDir, { recursive: true });
-  }
-  mkdirSync(tempDir, { recursive: true });
-  
-  if (!existsSync(buildDir)) {
-    mkdirSync(buildDir, { recursive: true });
-  }
-  
-  // Create zip files
-  return Promise.all([
-    createZip('./dist/**/*', `${tempDir}/dist.zip`),
-    createZip('./containers/**/*', `${tempDir}/cont.zip`),
-    copyElseFiles(),
-  ]).then(() => {
-    // Create final package
-    const files = globSync('./temp/*.zip').concat(globSync('./*.{dnn,png,jpg,txt}'));
-    return createZip(files, `${buildDir}/${project}_${version}_install.zip`);
-  }).then(() => {
-    // Clean temp
-    rmSync(tempDir, { recursive: true });
-    console.log(`\n✅ Package created: ${buildDir}/${project}_${version}_install.zip\n`);
+function buildElseZip(dest) {
+  return new Promise((resolve, reject) => {
+    const output  = createWriteStream(dest);
+    const archive = archiver('zip', { zlib: { level: 9 } });
+
+    output.on('close', resolve);
+    archive.on('error', reject);
+    archive.pipe(output);
+
+    // Directories — added with their folder name so structure is preserved
+    if (existsSync('./menus')) {
+      archive.directory('./menus', 'menus');
+    }
+    if (existsSync('./partials')) {
+      archive.directory('./partials', 'partials');
+    }
+
+    // Root-level skin files (default.ascx, etc.) — added flat to zip root
+    globSync('./*.{ascx,xml,html,htm}').forEach(file => {
+      archive.file(file, { name: getFileName(file) });
+    });
+
+    // koi.json if present
+    if (existsSync('./koi.json')) {
+      archive.file('./koi.json', { name: 'koi.json' });
+    }
+
+    archive.finalize();
   });
 }
 
+/**
+ * Build the final DNN install package.
+ *
+ * Asset zips (dist, containers, else) are assembled in temp/, then bundled
+ * together with the generated manifest and build-resources support files into
+ * the final install zip under build/.
+ *
+ * build-resources/ files (manifest.dnn, *.png, themeLicense.txt,
+ * themeReleaseNotes.txt) are included automatically.
+ */
+export function createPackage() {
+  logInfo('Creating DNN theme package...');
+
+  const tempDir  = './temp';
+  const buildDir = './build';
+
+  if (existsSync(tempDir)) rmSync(tempDir, { recursive: true });
+  mkdirSync(tempDir, { recursive: true });
+  ensureDir(buildDir);
+
+  // Generate manifest directly into temp/ — it never needs to land in the project root
+  updateManifest(`${tempDir}/manifest.dnn`);
+
+  return Promise.all([
+    createZip('./dist/**/*', `${tempDir}/dist.zip`),
+    buildContZip(`${tempDir}/cont.zip`),
+    buildElseZip(`${tempDir}/else.zip`),
+  ]).then(() => {
+    // Collect temp zips + generated manifest + build-resources support files
+    // + root-level preview images (default.png, thumbnail_default.png)
+    const packageFiles = [
+      ...globSync('./temp/*.zip'),
+      `${tempDir}/manifest.dnn`,
+      ...globSync('./build-resources/*.{png,jpg,txt}'),
+      ...globSync('./*.{png,jpg}'),
+    ];
+
+    return createZip(packageFiles, `${buildDir}/${project}_${version}_install.zip`);
+  }).then(() => {
+    rmSync(tempDir, { recursive: true });
+    logSuccess(`Package created: ${buildDir}/${project}_${version}_install.zip`);
+  }).catch(err => {
+    logError('Packaging failed', err);
+    throw err;
+  });
+}
