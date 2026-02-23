@@ -41,6 +41,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         includePaths: ['./node_modules'],
+        quietDeps: true,
       },
     },
   },
