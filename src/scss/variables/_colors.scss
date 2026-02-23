@@ -1,3 +1,5 @@
+@use "sass:color";
+@use "sass:map";
 // Color Array
 $colors: (
     "white":white,
@@ -19,7 +21,9 @@ $colors: (
 
 // Convert Hex to RGB
 @function hex-to-rgb($hex) {
-    @return red($hex), green($hex), blue($hex);
+    @return color.channel($hex, 'red',   $space: rgb),
+            color.channel($hex, 'green', $space: rgb),
+            color.channel($hex, 'blue',  $space: rgb);
 }
 
 // Setup Color Array as CSS4 Variables
@@ -34,9 +38,9 @@ $colors: (
 
 // Color Selector
 @function color($color-name, $rgb: false) {
-    @if($rgb) {
-        @return var(--color-#{$color-name}--rgb, map-get($colors, $color-name));
+    @if $rgb {
+      @return var(--color-#{$color-name}--rgb, #{map.get($colors, $color-name)});
     } @else {
-        @return var(--color-#{$color-name}, map-get($colors, $color-name));
+      @return var(--color-#{$color-name}, #{map.get($colors, $color-name)});
     }
 }

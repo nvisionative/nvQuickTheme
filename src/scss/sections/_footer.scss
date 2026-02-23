@@ -1,6 +1,8 @@
+@use "../mixins/mixins";
+
 footer {
   .disclaimer {
-    @include font-size(12);
+    @include mixins.font-size(12);
     display:flex;
     margin:0;
     margin-left:-1rem;
