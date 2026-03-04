@@ -1,7 +1,3 @@
-@use "sass:map";
-@use "bootstrap" as bs;
-@use "../variables/colors";
-@use "../variables/type";
 
 
 // ----------------------------------------
@@ -49,6 +45,16 @@ $yellow-light:  #fed22f;
 
 // Semantic — success
 $green:      #00ff00;   // base, used via rgba()
+
+// DNN action buttons
+$btn-primary:          #ec3d46;   // main-shade
+$btn-primary-hover:    #d4373f;
+$btn-secondary:        #462a2b;   // main-accent
+$btn-secondary-hover:  #3e2526;
+$btn-tertiary:         #00a5e1;   // main-highlight
+$btn-tertiary-hover:   #0094ca;
+$btn-disabled:         #484858;   // dark-highlight
+$btn-disabled-hover:   #414150;
 
 
 .dnn_mact {
@@ -377,8 +383,15 @@ $green:      #00ff00;   // base, used via rgba()
 
     button[disabled],
     input[disabled] {
-        $btn-color: map.get(colors.$colors, "dark-highlight");
-        @include bs.button-variant($btn-color, $btn-color, bs.$white);
+        color: $white;
+    background-color: $btn-disabled;
+    border-color: $btn-disabled;
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $btn-disabled-hover;
+        border-color: $btn-disabled-hover;
+    }
     }
 
     input[type="text"] + .dnnTertiaryAction,
@@ -433,6 +446,7 @@ legend.required:after {
     }
 }
 
+// Base sizing applied to all DNN action buttons
 .dnnFormItem button,
 .dnnFormItem input[type="button"],
 .dnnFormItem input[type="reset"],
@@ -442,26 +456,43 @@ legend.required:after {
 .dnnTertiaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    @include bs.button-size(bs.$btn-padding-y, bs.$btn-padding-x, bs.$btn-font-size, bs.$btn-border-radius);
-    @include bs.button-variant(bs.$primary, bs.$primary, bs.$white);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.375rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
+// Primary — main-shade
 .dnnPrimaryAction,
 .dnnFormItem input[type="submit"],
 a.dnnPrimaryAction {
-    $btn-color: map.get(colors.$colors, "main-shade");
-    @include bs.button-variant($btn-color, $btn-color, bs.$white);
+    color: $white;
+    background-color: $btn-primary;
+    border-color: $btn-primary;
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $btn-primary-hover;
+        border-color: $btn-primary-hover;
+    }
 }
 
 .dnnPrimaryAction[disabled],
 .dnnPrimaryAction[disabled]:hover,
 .dnnPrimaryAction[disabled]:active {
-    $btn-color: map.get(colors.$colors, "dark-highlight");
-    @include bs.button-variant($btn-color, $btn-color, bs.$white);
+    color: $white;
+    background-color: $btn-disabled;
+    border-color: $btn-disabled;
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $btn-disabled-hover;
+        border-color: $btn-disabled-hover;
+    }
 }
 
+// Secondary — main-accent
 .dnnFormItem button,
 .dnnFormItem input[type="button"],
 .dnnFormItem input[type="reset"],
@@ -469,20 +500,32 @@ a.dnnPrimaryAction {
 a.dnnSecondaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    $btn-color: map.get(colors.$colors, "main-accent");
-    @include bs.button-variant($btn-color, $btn-color, bs.$white);
+    color: $white;
+    background-color: $btn-secondary;
+    border-color: $btn-secondary;
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $btn-secondary-hover;
+        border-color: $btn-secondary-hover;
+    }
 }
 
-.dnnFormItem button:active,
-.dnnFormItem input[type="button"]:active,
-.dnnFormItem input[type="reset"]:active,
-.dnnSecondaryAction:active,
-a.dnnSecondaryAction:active,
-ul.dnnAdminTabNav li a:active {
-    border-color: colors.color('main-accent');
-    background: colors.color('main-accent');
+// Tertiary — main-highlight
+.dnnTertiaryAction,
+a.dnnTertiaryAction {
+    color: $white;
+    background-color: $btn-tertiary;
+    border-color: $btn-tertiary;
+    &:hover,
+    &:focus {
+        color: $white;
+        background-color: $btn-tertiary-hover;
+        border-color: $btn-tertiary-hover;
+    }
 }
 
+// Inline button fixes for old forge modules
 span.dnnPrimaryAction > input[type="image"],
 span.dnnSecondaryAction > input[type="image"] {
     display: none;
@@ -494,12 +537,6 @@ span.dnnSecondaryAction > a.dnnSecondaryAction {
     background: transparent;
     border: none;
     box-shadow: none;
-}
-
-.dnnTertiaryAction,
-a.dnnTertiaryAction {
-    $btn-color: map.get(colors.$colors, "main-highlight");
-    @include bs.button-variant($btn-color, $btn-color, bs.$white);
 }
 
 .StandardButton {
