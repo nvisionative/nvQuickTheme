@@ -42,6 +42,13 @@ export default defineConfig({
       scss: {
         includePaths: ['./node_modules'],
         quietDeps: true,
+        logger: {
+          warn(message, options) {
+            const stack = options?.stack ?? '';
+            if (stack.includes('autoload') || stack.includes('bootstrap')) return;
+            console.warn(`⚠️ [sass] ${message}`);
+          },
+        },
       },
     },
   },
