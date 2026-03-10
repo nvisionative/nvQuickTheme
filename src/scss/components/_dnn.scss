@@ -1,11 +1,6 @@
-$btn-primary:          #ec3d46;
-$btn-primary-hover:    #d4373f;
-$btn-secondary:        #462a2b;
-$btn-secondary-hover:  #3e2526;
-$btn-tertiary:         #00a5e1;
-$btn-tertiary-hover:   #0094ca;
-$btn-disabled:         #484858;
-$btn-disabled-hover:   #414150;
+@use '../autoload/autoload';
+@use '../variables/colors';
+@use 'buttons';
 
 .dnn_mact {
     padding-left: 0;
@@ -346,9 +341,7 @@ legend.error {
 .dnnTertiaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
+    @extend .btn;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
@@ -358,29 +351,13 @@ ul.dnnAdminTabNav li a,
 .dnnPrimaryAction,
 .dnnFormItem input[type="submit"],
 a.dnnPrimaryAction {
-    color: white;
-    background-color: $btn-primary;
-    border-color: $btn-primary;
-    &:hover,
-    &:focus {
-        color: white;
-        background-color: $btn-primary-hover;
-        border-color: $btn-primary-hover;
-    }
+    @extend .btn-main-shade;
 }
 
 .dnnPrimaryAction[disabled],
 .dnnPrimaryAction[disabled]:hover,
 .dnnPrimaryAction[disabled]:active {
-    color: white;
-    background-color: $btn-disabled;
-    border-color: $btn-disabled;
-    &:hover,
-    &:focus {
-        color: white;
-        background-color: $btn-disabled-hover;
-        border-color: $btn-disabled-hover;
-    }
+    @extend .btn-disabled !optional;
 }
 
 /* Secondary Action */
@@ -391,15 +368,7 @@ a.dnnPrimaryAction {
 a.dnnSecondaryAction,
 ul.dnnAdminTabNav li a,
 .dnnLogin .LoginTabGroup span {
-    color: white;
-    background-color: $btn-secondary;
-    border-color: $btn-secondary;
-    &:hover,
-    &:focus {
-        color: white;
-        background-color: $btn-secondary-hover;
-        border-color: $btn-secondary-hover;
-    }
+    @extend .btn-main-highlight;
 }
 
 .dnnFormItem button:active,
@@ -408,8 +377,8 @@ ul.dnnAdminTabNav li a,
 .dnnSecondaryAction:active,
 a.dnnSecondaryAction:active,
 ul.dnnAdminTabNav li a:active {
-    border-color: $btn-secondary-hover;
-    background: $btn-secondary-hover; 
+    border-color: colors.color('main-accent');
+    background: colors.color('main-accent'); 
 }
 
 /* Fix some old forge modules use .dnnPrimaryAction and .dnnSecondaryAction in wrong way */
@@ -429,15 +398,7 @@ span.dnnSecondaryAction>a.dnnSecondaryAction {
 /* Tertiary Action */
 .dnnTertiaryAction,
 a.dnnTertiaryAction {
-    color: white;
-    background-color: $btn-tertiary;
-    border-color: $btn-tertiary;
-    &:hover,
-    &:focus {
-        color: white;
-        background-color: $btn-tertiary-hover;
-        border-color: $btn-tertiary-hover;
-    }
+    @extend .btn-main-accent;
 }
 
 /* Action Button behind input */
@@ -472,6 +433,7 @@ a.dnnTertiaryAction {
 .dnnFormItem input[type="radio"] {
     width: 13px;
     height: 13px;
+    /*why are we using hacks here*/
     padding: 0;
     box-sizing: border-box;
 }
