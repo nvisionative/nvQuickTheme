@@ -24,11 +24,11 @@
             <!-- Main Directory -->
             <skinFile>
               <path />
-              <n>default.png</n>
+              <name>default.png</name>
             </skinFile>
             <skinFile>
               <path />
-              <n>thumbnail_default.png</n>
+              <name>thumbnail_default.png</name>
             </skinFile>
 
           </skinFiles>
@@ -39,7 +39,7 @@
           <resourceFiles>
             <basePath></basePath>
             <resourceFile>
-              <n>else.zip</n>
+              <name>else.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
@@ -49,7 +49,7 @@
           <resourceFiles>
             <basePath></basePath>
             <resourceFile>
-              <n>dist.zip</n>
+              <name>dist.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
@@ -59,7 +59,7 @@
           <resourceFiles>
             <basePath>Portals\_default\Containers\</basePath>
             <resourceFile>
-              <n>cont.zip</n>
+              <name>cont.zip</name>
             </resourceFile>
           </resourceFiles>
         </component>
