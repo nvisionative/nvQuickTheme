@@ -13,10 +13,12 @@
     "clean": "node scripts/clean.js",
     "package": "node scripts/package.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
     "archiver": "^6.0.1",
-    "bootstrap": "^5.3.8",
     "browser-sync": "^3.0.4",
     "fast-xml-parser": "^5.3.6",
     "glob": "^10.3.10",
