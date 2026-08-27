@@ -7,23 +7,37 @@
   "license": "GPL-3.0",
   "private": true,
   "scripts": {
-    "watch": "node scripts/watch.js",
-    "serve": "node scripts/serve.js",
-    "build": "node scripts/build.js",
-    "clean": "node scripts/clean.js",
-    "package": "node scripts/package.js"
+    "watch":     "tsx scripts/watch.ts",
+    "serve":     "tsx scripts/serve.ts",
+    "build":     "npm run typecheck && npm run lint && tsx scripts/build.ts",
+    "clean":     "tsx scripts/clean.ts",
+    "package":   "npm run typecheck && npm run lint && tsx scripts/package.ts",
+    "typecheck": "tsc --noEmit",
+    "lint":      "eslint \"scripts/**/*.ts\" \"*.ts\"",
+    "lint:fix":  "eslint \"scripts/**/*.ts\" \"*.ts\" --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
     "bootstrap": "^5.3.8"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/archiver": "^6.0.3",
+    "@types/browser-sync": "^2.29.0",
+    "@types/node": "^20.0.0",
     "archiver": "^6.0.1",
     "browser-sync": "^3.0.4",
+    "chokidar": "^5.0.0",
+    "eslint": "^9.0.0",
     "fast-xml-parser": "^5.3.6",
     "glob": "^10.3.10",
-    "sass": "^1.97.3",
+    "jiti": "^2.0.0",
+    "sass": "^1.69.5",
     "terser": "^5.26.0",
-    "vite": "^5.0.0"
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^5.0.0",
+    "vite-plugin-checker": "^0.14.0"
   }
 }

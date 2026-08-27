@@ -4,9 +4,9 @@ console.log('Watching for file changes...');
 
 build({
   build: {
-    watch: {}
-  }
-}).catch(err => {
+    watch: {},
+  },
+}).catch((err: Error) => {
   console.error('Watch failed:', err);
   process.exit(1);
 });
