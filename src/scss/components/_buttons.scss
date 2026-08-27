@@ -1,15 +1,17 @@
-// button iterations for each color
-@each $color, $value in $colors {
+@use "../mixins/mixins";
+@use "../variables/colors";
+
+@each $color, $value in colors.$colors {
   .btn-#{$color} {
-    @include button-variant($color,.8);
+    @include mixins.btn-solid($color, .8);
   }
   .btn-outline-#{$color} {
-    @include button-outline-variant($color);
+    @include mixins.btn-outline($color);
   }
   .btn-reverse-outline-#{$color} {
-    @include button-reverse-outline-variant($color);
+    @include mixins.btn-reverse-outline($color);
   }
   .btn-inverse-#{$color} {
-    @include button-inverse-variant($color,.9);
+    @include mixins.btn-inverse($color, .9);
   }
 }

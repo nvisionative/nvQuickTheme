@@ -1,3 +1,6 @@
+@use "../mixins/mixins";
+@use "../variables/colors";
+
 /* Main Navigation */
 header {
 	a[id*="dnnLOGO"] {
@@ -10,7 +13,7 @@ header {
 			width: auto;
 		}
 
-		@include mq-max-width(400) {
+		@include mixins.mq-max-width(400) {
 			img {
 				height: 50px;
 			}
@@ -35,14 +38,14 @@ header {
 	}
 
 	a {
-		@include font-size(16);
-		color: color('main-accent');
+		@include mixins.font-size(16);
+		color: colors.color('main-accent');
 		font-weight: 600;
 		text-decoration: none;
 		text-transform: uppercase;
 
 		&:hover {
-			color: color('black');
+			color: colors.color('black');
 		}
 	}
 
@@ -69,12 +72,12 @@ header {
 
 		li {
 			&.selected>a {
-				background: color('main-shade');
-				color: color('white');
+				background: colors.color('main-shade');
+				color: colors.color('white');
 			}
 
 			&:not(.selected)>a:hover {
-				background: color('light-accent');
+				background: colors.color('light-accent');
 			}
 		}
 
@@ -86,8 +89,8 @@ header {
 			top: 100%;
 			min-width: 250px;
 			max-width: 100%;
-			background: color('white');
-			box-shadow: 1px 1px 5px 1px rgba(color('black', true), 0.2);
+			background: colors.color('white');
+			box-shadow: 1px 1px 5px 1px rgba(colors.color('black', true), 0.2);
 
 			// Below Second Level
 			a {
@@ -106,7 +109,7 @@ header {
 
 					// border-top: 1px solid color('dark-highlight');
 					a {
-						@include font-size(14);
+						@include mixins.font-size(14);
 						font-weight: 700;
 						padding: .5rem .75rem .5rem 3rem;
 					}
@@ -135,7 +138,7 @@ $nav-width: 320px;
 
 .hamburger {
 	margin-left: auto;
-	color: color('main-accent');
+	color: colors.color('main-accent');
 	cursor: pointer;
 }
 
@@ -155,7 +158,7 @@ $nav-width: 320px;
 		width: $nav-width;
 		max-width: 100%;
 		height: calc(100vh - $nav-height);
-		background-color: color('white');
+		background-color: colors.color('white');
 		overflow-y: auto;
 		overflow-x: hidden;
 		-webkit-overflow-scrolling: touch;
@@ -179,28 +182,28 @@ $nav-width: 320px;
 		justify-content: space-between;
 
 		&:not(:last-child) {
-			border-bottom: solid 1px color('dark-highlight');
+			border-bottom: solid 1px colors.color('dark-highlight');
 		}
 
 		.nav-link {
-			background-color: color('white');
-			color: color('main-accent');
+			background-color: colors.color('white');
+			color: colors.color('main-accent');
 		}
 
 		&.selected {
-			background-color: color('main-shade');
+			background-color: colors.color('main-shade');
 
 			>.nav-link {
 				background-color: transparent;
-				color: color('white');
+				color: colors.color('white');
 			}
 		}
 
 		.nav-back-link {
 			display: flex;
 			align-items: center;
-			background: color('main-accent');
-			color: color('white');
+			background: colors.color('main-accent');
+			color: colors.color('white');
 
 			i {
 				font-size: 1.125rem;
@@ -230,7 +233,7 @@ $nav-width: 320px;
 			width: 100%;
 			height: 100%;
 			transform: translateX(100%);
-			background-color: color('white');
+			background-color: colors.color('white');
 			transition: 0.3s;
 			visibility: hidden;
 		}

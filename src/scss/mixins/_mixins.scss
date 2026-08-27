@@ -1,88 +1,99 @@
+@use 'sass:math';
+@use "../variables/colors";
+@use "../variables/type";
+
+// Strip unit from a number
 @function strip-unit($num) {
-  @return calc($num / ($num * 0 + 1));
+  @return math.div($num, $num * 0 + 1);
 }
 
 // rem font-size with px fallback
 // usage: @include font-size(16)
 @mixin font-size($sizeValue) {
-  font-size: $sizeValue + px;
-  font-size: calc($sizeValue / 16) + rem;
+  font-size: #{$sizeValue}px;
+  font-size: #{math.div($sizeValue, 16)}rem;
 }
 
-// vertical rhythm
-// usage: @include font-baseline(16,24);
-@mixin font-baseline($font-size, $lineheight){
-	font-size: $font-size + px;
-	font-size: calc($font-size / $base-font-size) + rem;
-	line-height: calc($lineheight / $font-size);
-  margin: 0 0 calc((($lineheight / $font-size) * (1 / ($lineheight / $defaultlineheight))) * .5em ) 0; 
+// Vertical rhythm
+// usage: @include font-baseline(16, 24)
+@mixin font-baseline($font-size, $lineheight) {
+  font-size: #{$font-size}px;
+  font-size: #{math.div($font-size, type.$base-font-size)}rem;
+  line-height: math.div($lineheight, $font-size);
+  margin: 0 0 #{(math.div($lineheight, $font-size) * math.div(1, math.div($lineheight, type.$defaultlineheight))) * .5}em 0;
 }
 
-// Shorthand for media queries at px width and lower
-@mixin mq-max-width( $width-in-px ) {
-  @media only screen and (max-width: calc(($width-in-px / $base-font-size) * 1em )) {
+// Media query shorthand — max-width
+// usage: @include mq-max-width(768)
+@mixin mq-max-width($width-in-px) {
+  @media only screen and (max-width: #{math.div($width-in-px, type.$base-font-size)}em) {
     @content;
   }
 }
 
-// Shorthand for media queries at px width and higher
-@mixin mq-min-width( $width-in-px ) {
-  @media only screen and (min-width: calc(($width-in-px / $base-font-size) * 1em )) {
+// Media query shorthand — min-width
+// usage: @include mq-min-width(768)
+@mixin mq-min-width($width-in-px) {
+  @media only screen and (min-width: #{math.div($width-in-px, type.$base-font-size)}em) {
     @content;
   }
 }
 
-// Regular solid buttons
-@mixin button-variant($color, $hover-alpha: 1) {
-  $var-color: color($color);
-  $var-rgb-color: color($color, true);
+// Solid button — colored background, white text
+// usage: @include mixins.btn-solid('main-shade')
+@mixin btn-solid($color, $hover-alpha: 1) {
+  $c: colors.color($color);
+  $c-rgb: colors.color($color, true);
   color: white;
-  background-color: $var-color;
-  border-color: $var-color;
+  background-color: $c;
+  border-color: $c;
   &:hover, &:focus {
     color: white;
-    background-color: rgba($var-rgb-color, $hover-alpha);
-    border-color: rgba($var-rgb-color, $hover-alpha);
+    background-color: rgba($c-rgb, $hover-alpha);
+    border-color: rgba($c-rgb, $hover-alpha);
   }
 }
 
-// Outline buttons
-@mixin button-outline-variant($color) {
-  $var-color: color($color);
-  color: $var-color;
+// Outline button — transparent background, colored border and text
+// usage: @include mixins.btn-outline('main-shade')
+@mixin btn-outline($color) {
+  $c: colors.color($color);
+  color: $c;
   background-color: transparent;
-  border-color: $var-color;
+  border-color: $c;
   &:hover, &:focus {
     color: white;
-    background-color: $var-color;
-    border-color: $var-color;
+    background-color: $c;
+    border-color: $c;
   }
 }
 
-// Reverse outline to solid buttons
-@mixin button-reverse-outline-variant($color) {
-  $var-color: color($color);
+// Reverse outline — solid by default, outline on hover
+// usage: @include mixins.btn-reverse-outline('main-shade')
+@mixin btn-reverse-outline($color) {
+  $c: colors.color($color);
   color: white;
-  background-color: $var-color;
+  background-color: $c;
   background-image: none;
-  border-color: $var-color;
+  border-color: $c;
   &:hover, &:focus {
-    color: $var-color;
+    color: $c;
     background-color: transparent;
-    border-color: $var-color;
+    border-color: $c;
   }
 }
 
-// Inverse buttons to white background and colored text
-@mixin button-inverse-variant($color, $hover-alpha: 1) {
-  $var-color: color($color);
-  color: $var-color;
-  background-color: color('white');
+// Inverse button — white background, colored text, inverts on hover
+// usage: @include mixins.btn-inverse('main-shade')
+@mixin btn-inverse($color, $hover-alpha: 1) {
+  $c: colors.color($color);
+  color: $c;
+  background-color: colors.color('white');
   background-image: none;
-  border-color: color('white');
+  border-color: colors.color('white');
   &:hover, &:focus {
-    color: $color;
-    background-color: rgba(color('white', true), $hover-alpha);
-    border-color: rgba(color('white', true), $hover-alpha);
+    color: $c;
+    background-color: rgba(colors.color('white', true), $hover-alpha);
+    border-color: rgba(colors.color('white', true), $hover-alpha);
   }
 }
